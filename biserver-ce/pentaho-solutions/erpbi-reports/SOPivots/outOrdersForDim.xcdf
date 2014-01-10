@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Outstanding Orders for Dimension Value</title>
+	<author></author>
+	<description>Outstanding Orders for Dimension Value</description>
+	<icon></icon>
+	<template>outOrdersForDimTemplate.html</template>
+	<style>SODashMantle</style>
+</cdf>

@@ -1,0 +1,2 @@
+company_nk;company_name;company_external
+01;ProDiem, 01;N

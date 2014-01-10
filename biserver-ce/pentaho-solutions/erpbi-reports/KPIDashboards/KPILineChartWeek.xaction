@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<action-sequence> 
+  <name>LineChart3.xaction</name>
+  <title>KPI Line Chart by Week</title>
+  <version>1</version>
+  <logging-level>TRACE</logging-level>
+  <documentation> 
+    <author/>  
+    <description>KPI Line Chart by Week</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs> 
+    <YEAR type="string"> 
+      <sources> 
+        <request>YEAR</request> 
+      </sources>  
+      <default-value><![CDATA[2010]]></default-value> 
+    </YEAR>  
+    <CUSTOMER type="string"> 
+      <sources> 
+        <request>CUSTOMER</request> 
+      </sources>  
+      <default-value><![CDATA[All Customers by Code]]></default-value> 
+    </CUSTOMER>  
+    <PRODUCTCLASS type="string"> 
+      <sources> 
+        <request>PRODUCTCLASS</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Class]]></default-value> 
+    </PRODUCTCLASS>  
+    <PRODUCTCODE type="string"> 
+      <sources> 
+        <request>PRODUCTCODE</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Code]]></default-value> 
+    </PRODUCTCODE>  
+    <PERIOD type="string"> 
+      <sources> 
+        <request>PERIOD</request> 
+      </sources>  
+      <default-value><![CDATA[1]]></default-value> 
+    </PERIOD>  
+    <KPI type="string"> 
+      <sources> 
+        <request>KPI</request> 
+      </sources>  
+      <default-value><![CDATA[Amount, Order Gross]]></default-value> 
+    </KPI>  
+    <TIMEDIM type="string"> 
+      <sources> 
+        <request>TIMEDIM</request> 
+      </sources>  
+      <default-value><![CDATA[Order Date.Calendar Weeks]]></default-value> 
+    </TIMEDIM>  
+    <CUBE type="string"> 
+      <sources> 
+        <request>CUBE</request> 
+      </sources>  
+      <default-value><![CDATA[SOOrder]]></default-value> 
+    </CUBE>  
+    <PRODUCTCATEGORY type="string"> 
+      <sources> 
+        <request>PRODUCTCATEGORY</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Category]]></default-value> 
+    </PRODUCTCATEGORY>  
+    <ACCOUNTREP type="string"> 
+      <sources> 
+        <request>ACCOUNTREP</request> 
+      </sources>  
+      <default-value><![CDATA[All Account Reps by Code]]></default-value> 
+    </ACCOUNTREP>  
+    <SHIPREGION type="string"> 
+      <sources> 
+        <request>SHIPREGION</request> 
+      </sources>  
+      <default-value><![CDATA[All Ship Regions]]></default-value> 
+    </SHIPREGION> 
+  </inputs>
+
+  <outputs> 
+    <!--query_result/-->  
+    <image-tag type="string"/> 
+  </outputs>
+
+  <resources> 
+    <catalog> 
+      <solution-file> 
+        <location>\..\admin\ERPI_SO_Schema.xml</location>  
+        <mime-type>text/plain</mime-type> 
+      </solution-file> 
+    </catalog> 
+  </resources>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>SQLLookupRule</component-name>
+      <action-type>Relational</action-type>
+      <action-inputs> 
+        <YEAR type="string"/>  
+        <PERIOD type="string"/> 
+      </action-inputs>
+      <action-outputs> 
+        <query-result type="result-set" mapping="query_result"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <live><![CDATA[true]]></live>  
+        <query><![CDATA[SELECT DISTINCT CAST("WEEK" as CHARACTER VARYING) as "week" 
+FROM "ERPI"."DATE_DATA"
+where "YEAR" = {YEAR} and "PERIOD" = {PERIOD}
+ORDER BY "week" DESC
+LIMIT 1]]></query> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>JavascriptRule</component-name>
+      <action-type>JavaScript</action-type>
+      <action-inputs> 
+        <query_result type="result-set"/> 
+      </action-inputs>
+      <action-outputs> 
+        <last type="string"/> 
+      </action-outputs>
+      <component-definition> 
+        <script><![CDATA[// query_result is a JavaScriptResultSet
+
+last = query_result.getValueAt(0,0);]]></script> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>MDXLookupRule</component-name>
+      <action-type>OLAP</action-type>
+      <action-inputs> 
+        <CUSTOMER type="string"/>  
+        <PRODUCTCODE type="string"/>  
+        <CUBE type="string"/>  
+        <YEAR type="string"/>  
+        <KPI type="string"/>  
+        <PRODUCTCLASS type="string"/>  
+        <TIMEDIM type="string"/>  
+        <last type="string"/>  
+        <ACCOUNTREP type="string"/>  
+        <SHIPREGION type="string"/>  
+        <PRODUCTCATEGORY type="string"/> 
+      </action-inputs>
+      <action-resources> 
+        <catalog type="resource"/> 
+      </action-resources>
+      <action-outputs> 
+        <query-results type="result-set" mapping="query_result"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <location><![CDATA[mondrian]]></location>  
+        <query><![CDATA[WITH 
+MEMBER [Measures].[prevperiod] 
+	AS (ParallelPeriod([{TIMEDIM}].[Year], 1, [{TIMEDIM}].CurrentMember), [Measures].[{KPI}]) 
+
+MEMBER [Measures].[Previous Year] 
+	AS iif([Measures].[prevperiod] = NULL or IsEmpty([Measures].[prevperiod] ), 0, [Measures].[prevperiod])
+
+MEMBER [Measures].[Current Year] 
+	AS iif([Measures].[{KPI}] = NULL or IsEmpty([Measures].[{KPI}] ), 0, [Measures].[{KPI}])
+
+SELECT NON EMPTY {[Measures].[Current Year], [Measures].[Previous Year]  } ON COLUMNS,
+NON EMPTY{LastPeriods(52, [{TIMEDIM}].[{YEAR}].[{last}])} ON ROWS
+
+from [{CUBE}]
+where 
+(
+	[Customer.Customer Code].[{CUSTOMER}],
+	[Product.Product by Class].[{PRODUCTCLASS}],
+      	[Product.Product Code].[{PRODUCTCODE}],
+	[Product.Product by Category].[{PRODUCTCATEGORY}],
+       [Account Rep.Account Reps by Code].[{ACCOUNTREP}],
+       [Ship City.Ship Region].[{SHIPREGION}]
+)]]></query> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>ChartComponent</component-name>
+      <action-type>LineChart</action-type>
+      <action-inputs> 
+        <chart-data type="result-set" mapping="query_result"/> 
+      </action-inputs>
+      <action-outputs> 
+        <image-tag type="string"/> 
+      </action-outputs>
+      <component-definition> 
+        <chart-attributes> 
+          <chart-type>LineChart</chart-type>  
+          <by-row>true</by-row>  
+          <title-font> 
+            <font-family>Arial</font-family>  
+            <size>14</size>  
+            <is-bold>false</is-bold> 
+          </title-font>  
+          <border-visible>false</border-visible>  
+          <orientation>vertical</orientation>  
+          <include-legend>true</include-legend>  
+          <is-3D>false</is-3D>  
+          <foreground-alpha>0.75</foreground-alpha>  
+          <background-alpha>1</background-alpha>  
+          <url-template><![CDATA[#]]></url-template>  
+          <url-target>_self</url-target>  
+          <use-base-url>false</use-base-url>  
+          <domain-label-rotation>0.7</domain-label-rotation>  
+          <chart-background type="color">#FFFFFF</chart-background>  
+          <plot-background type="color">#EEE9E9</plot-background>  
+          <domain-includes-zero>false</domain-includes-zero>  
+          <color-palette> 
+            <color>#336600</color>  
+            <color>#FF6A6A</color> 
+          </color-palette>  
+          <line-width>2.0</line-width>  
+          <label-font> 
+            <font-family>Arial</font-family>  
+            <size>8</size>  
+            <is-bold>false</is-bold>  
+            <is-italic>false</is-italic> 
+          </label-font> 
+        </chart-attributes>  
+        <title><![CDATA[KPI by Period, Previous 52 Weeks]]></title>  
+        <width><![CDATA[1100]]></width>  
+        <height><![CDATA[750]]></height>
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

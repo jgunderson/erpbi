@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Liability and Asset Dashboard</title>
+	<description>Liability and Asset Dashboard</description>
+	<icon></icon>
+	<template>liabilityAssetTemplate.html</template>
+	<style>GLCategoryMantle</style>
+</cdf>

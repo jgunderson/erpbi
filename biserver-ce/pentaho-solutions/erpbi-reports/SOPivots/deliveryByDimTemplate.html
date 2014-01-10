@@ -1,0 +1,76 @@
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<script language="javascript" type="text/javascript">
+
+var dashTitle = 
+{
+	name: "dashTitle",
+	type: "textComponent",
+  	listeners:["Dashboards.storage.yearPeriod", 
+  			"Dashboards.storage.dimOne" 
+  			],
+	expression: function(){return "<b>Deliveries by <i>" + Dashboards.storage.dimOne + "</i> for " 
+									+ Dashboards.storage.yearPeriod.slice(0,4) + "</br>";},
+	htmlObject: "dashTitle",
+	executeAtStart: true
+};
+
+deliveryP = 
+{
+  name: "deliveryP",
+  type: "jpivot",
+  solution: "erpbi-reports",
+  path: "SOPivots",
+  action: "deliveryByDim.xaction",
+  listeners:["Dashboards.storage.yearPeriod", 
+  			"Dashboards.storage.dimOne" 
+  			],
+  parameters: [["YEAR","Dashboards.storage.yearPeriod.slice(0,4)"], 
+  			["dimOne","Dashboards.storage.dimOne"] 
+  			],
+  htmlObject: "deliveryPivot",
+  iframe: true,
+  iframeHeight: "1100px",
+  iframeWidth: "1000px",
+  iframeScrolling: "auto",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var components = 
+[	
+	yearPeriodSelector,
+	dimOneSelector,
+	dashTitle,
+	deliveryP,
+	extractDateXAction
+];
+
+	function load()
+	{
+		Dashboards.init(components);
+	}
+
+	loadTree();
+	load();
+	document.close();
+
+</script>
+
+<table id="board">
+	<tr>
+		<td class= "titles" valign="top"><div id="dashTitle"></div></td>
+	</tr> 
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top" ><div id="deliveryPivot"></div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+

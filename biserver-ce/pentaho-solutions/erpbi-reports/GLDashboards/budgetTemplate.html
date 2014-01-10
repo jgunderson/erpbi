@@ -1,0 +1,118 @@
+<!--
+**************************** Settings for this dashboard
+  -->
+  
+<script language="javascript" type="text/javascript">
+//
+// Set Column Names for Content Charts
+//
+var column1 = "Revenue";
+var column2 = "Expense";
+var column3 = "Cash";
+//
+// Set the dashboard name to be called from hyperlinks
+//
+var hyperlinkDash = "budgetPivot.xcdf";
+//
+// Set title for Content
+//
+var finTitle = "Budget for <i>";
+</script>
+
+<!--
+**************************** Generate the content table
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/GLDashboards/categoryhtml.js"></script>	
+
+<!--
+**************************** Set all parameters
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!--
+**************************** Set up queries for content charts.  Last 2 digits are coordinates of chart.
+  -->
+<script language="javascript" type="text/javascript">
+
+function query11()	{
+	return "SELECT NON EMPTY {[Measures].[Amount, Sales Income]," +
+            "        [Measures].[Amount, Sales Income Budget]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLFactsByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query21()	{
+	var theYear = Dashboards.storage.yearPeriod.slice(0,4);
+	if ( theYear > Dashboards.storage.lastYear)
+		{theYear = theYear - 1;}
+	return "SELECT NON EMPTY {[Measures].[Amount, Sales Income]," +
+			"        [Measures].[Amount, Sales Income Budget]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + theYear + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLFactsByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query12()	{
+	return "SELECT NON EMPTY {[Measures].[Amount, Cost of Goods Sold (IS)]," +
+            "        [Measures].[Amount, Cost of Goods Sold Budget (IS)]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLFactsByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query22()	{
+	var theYear = Dashboards.storage.yearPeriod.slice(0,4);
+	if ( theYear > Dashboards.storage.lastYear)
+		{theYear = theYear - 1;}
+	return "SELECT NON EMPTY {[Measures].[Amount, Cost of Goods Sold (IS)]," +
+			"        [Measures].[Amount, Cost of Goods Sold Budget (IS)]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + theYear + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLFactsByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query13()	{
+	return "SELECT NON EMPTY {[Measures].[Amount, Net Cash Flow (CF)]," +
+            "        [Measures].[Amount, Net Cash Flow Budget (CF)]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLFactsByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query23()	{
+	var theYear = Dashboards.storage.yearPeriod.slice(0,4);
+	if ( theYear > Dashboards.storage.lastYear)
+		{theYear = theYear - 1;}
+	return "SELECT NON EMPTY {[Measures].[Amount, Net Cash Flow (CF)]," +
+			"        [Measures].[Amount, Net Cash Flow Budget (CF)]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + theYear + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLFactsByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+</script>
+
+<!--
+**************************** Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/GLDashboards/categorycontent.js"></script>	
+

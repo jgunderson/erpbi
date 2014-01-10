@@ -1,0 +1,54 @@
+<!--
+***************************** Settings for this dashboard
+  -->
+
+<script language="javascript" type="text/javascript">
+
+var cube = "SODelivery";
+var timedim = "Delivery Date.Calendar";
+var timedimagg = "[last12]"
+//
+//  We have to set Dashboards.storage.kpi here as the KPIs depend on 
+//  on the cube.  
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Amount, Delivery Gross";}
+if (Dashboards.storage.kpi != "Amount, Delivery Gross" && 
+	Dashboards.storage.kpi != "Amount, Cost Gross" && 
+	Dashboards.storage.kpi != "Amount, Profit Gross" &&
+	Dashboards.storage.kpi != "Average, Delivery Gross" && 
+	Dashboards.storage.kpi != "Average, Cost Gross" && 
+	Dashboards.storage.kpi != "Average, Profit Gross" && 
+	Dashboards.storage.kpi != "Count, Deliveries" &&
+	Dashboards.storage.kpi != "Count, Orders" &&
+	Dashboards.storage.kpi != "Ratio, Gross Profit Margin")
+{Dashboards.storage.kpi = "Amount, Delivery Gross";}
+Dashboards.saveStorage();
+
+//
+//  Set the url template function for line chart and bar chart
+//
+function openByDimWindow(seriesCategory){
+	window.open("RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=deliveryByDim.xcdf&template=mantle&seriesCategory=" + seriesCategory);
+};
+
+//
+//  Set the title
+//
+var kpiTitle = "</i> for Deliveries in <i>";
+
+var hyperlinkWkDash ="deliveryKPIDashWeek.xcdf";
+var hyperlinkPivot = "SOPivotsdeliveryForDim";
+
+</script>
+<!-- CONTENT MOVED TO delicategoryhtml.js  -->
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!-- Define charts and render   -->
+
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/content.js"></script>
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/categoryhtml.js"></script>	
+

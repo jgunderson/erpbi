@@ -1,0 +1,400 @@
+//
+//  Common include for explorer html
+//
+// Function to get the parameter value from the URL
+function getURLParameters(paramName) 
+{
+        var sURL = window.document.URL.toString();  
+    if (sURL.indexOf("?") > 0)
+    {
+       var arrParams = sURL.split("?");         
+       var arrURLParams = arrParams[1].split("&");      
+       var arrParamNames = new Array(arrURLParams.length);
+       var arrParamValues = new Array(arrURLParams.length);     
+       var i = 0;
+       for (i=0;i<arrURLParams.length;i++)
+       {
+        var sParam =  arrURLParams[i].split("=");
+        arrParamNames[i] = sParam[0];
+        if (sParam[1] != "")
+            arrParamValues[i] = unescape(sParam[1]);
+        else
+            arrParamValues[i] = "No Value";
+       }
+
+       for (i=0;i<arrURLParams.length;i++)
+       {
+                if(arrParamNames[i] == paramName)
+                {
+                   return arrParamValues[i];
+                }
+       }
+       return "";
+    }
+
+}
+
+//Function will return the leafselected value if the action & series category parameters are same as action & series category parameters
+// derived from the URL.
+function isLeafSelected(pAction, pSeriesCategory)
+{
+    var leafSelected = 'leafselected';
+    var leafUnSelected = ' ';
+    
+    if ((action == pAction) && (seriesCategory == pSeriesCategory))
+    {
+       return leafSelected;
+    }
+    else
+    {
+       return leafUnSelected;
+    }
+}
+
+//Select the Action & seriesCategory parameters from the URL.
+var action = getURLParameters('action');
+var seriesCategory = getURLParameters('seriesCategory');
+
+//Defaulting the Node Open & Node Close variables
+var tNodeOpen = "open";
+var tNodeClose = "close";
+
+//--------------------------------------------------------
+//   Setup Tree Nodes Open property for Sales Dashboard
+//--------------------------------------------------------
+
+//Setting the default value of Node to be closed for all Sales Dashboard nodes
+var tnSales = 'closed';
+var tnOrder = 'closed';
+var tnDelivery = 'closed';
+var tnOrderFullfillment = 'closed';
+
+//Set the Sales Node to be open for the top Dashboard
+if (action == "Dashboard.xcdf" )
+{
+  tnSales = 'open';
+}
+
+//Set the Sales and Sales Order Nodes to be open for the Order Dashboard components
+if (action == "orderKPIDash.xcdf" || action == "orderMap.xcdf" || action == "orderDimDash.xcdf" || action == "orderByDim.xcdf" || action == "orderForDim.xcdf")
+{
+  tnSales = 'open';
+  tnOrder = 'open';
+}
+
+//Set the Sales and Sales Deliver Nodes to be open for the Sales Delivery Dashboard components
+if (action == "deliveryKPIDash.xcdf" || action == "deliveryMap.xcdf" || action == "deliveryDimDash.xcdf" || action == "deliveryByDim.xcdf" || action == "deliveryForDim.xcdf")
+{
+  tnSales = 'open';
+  tnDelivery = 'open';
+}
+
+//Set the Sales and Sales Order Fullfillment Nodes to be open for the Order Fullfillment Dashboard components
+if (action == "outOrdersKPIDash.xcdf" || action == "outOrdersMap.xcdf" || action == "outOrdersDimDash.xcdf" || action == "outOrdersByDim.xcdf" || action == "outOrdersForDim.xcdf")
+{
+  tnSales = 'open';
+  tnOrderFullfillment = 'open';
+}
+
+//------------End of Sales Node Setup----------------//
+
+var treehtml_header = 
+		'<ul >' + '\n' + 
+		'<li id="phtml_2" class="treeitem"><a href="RenderXCDF?solution=erpbi-reports&path=&action=erpbiHome.xcdf&template=mantle" >Home</a></li>' + '\n' ;
+
+var treehtml_sales =
+		'<li id="phtml_1s" class="'+ tnSales +'"><a href="#" >Sales</a>' + '\n' +  
+			'<ul>' + '\n' + 
+				'<li id="phtml_2" class="treeitem '+isLeafSelected("Dashboard.xcdf", "")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FSODashboards&action=Dashboard.xcdf&template=mantle" >Dashboard</a></li>' + '\n' +
+				'<li id="phtml_1_1" class="'+tnOrder+'"><a href="#" >Order</a>' + '\n' +
+					'<ul>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("orderKPIDash.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FKPIDashboards&action=orderKPIDash.xcdf&template=mantle" >KPI by Period</a></li>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("orderMap.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FMaps&action=orderMap.xcdf&template=mantle" >KPI City Map</a></li>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("orderDimDash.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSODimensions&action=orderDimDash.xcdf&template=mantle" >Compare Dimensions</a></li>' + '\n' + 
+					'<li id="phtml_3" class="treeitem '+isLeafSelected("orderByDim.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=orderByDim.xcdf&template=mantle" >Detail by Dimension</a></li>' + '\n' + 
+					'<li id="phtml_4" class="treeitem '+isLeafSelected("orderForDim.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=orderForDim.xcdf&template=mantle" >Detail for Dimension Value</a></li>' + '\n' + 
+					'</ul>' + '\n' + 
+				'</li>' + '\n' + 	
+				'<li id="phtml_1_2" class="'+tnDelivery+'"><a href="#" >Delivery</a>' + '\n' +
+					'<ul>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("deliveryKPIDash.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FKPIDashboards&action=deliveryKPIDash.xcdf&template=mantle" >KPI by Period</a></li>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("deliveryMap.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FMaps&action=deliveryMap.xcdf&template=mantle" >KPI City Map</a></li>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("deliveryDimDash.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSODimensions&action=deliveryDimDash.xcdf&template=mantle" >Compare Dimensions</a></li>' + '\n' + 
+					'<li id="phtml_5" class="treeitem '+isLeafSelected("deliveryByDim.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=deliveryByDim.xcdf&template=mantle" >Detail By Dimension</a></li>' + '\n' + 
+					'<li id="phtml_6" class="treeitem '+isLeafSelected("deliveryForDim.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=deliveryForDim.xcdf&template=mantle" >Detail for Dimension Value</a></li>' + '\n' + 
+					'</ul>' + '\n' + 
+				'</li>' + '\n' + 
+				'<li id="phtml_1_3" class="'+tnOrderFullfillment+'"><a href="#" >Order Fulfillment</a>' + '\n' +
+					'<ul>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("outOrdersKPIDash.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FKPIDashboards&action=outOrdersKPIDash.xcdf&template=mantle" >KPI by Period</a></li>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("outOrdersMap.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FMaps&action=outOrdersMap.xcdf&template=mantle" >KPI City Map</a></li>' + '\n' + 
+					'<li id="phtml_2" class="treeitem '+isLeafSelected("outOrdersDimDash.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSODimensions&action=outOrdersDimDash.xcdf&template=mantle" >Compare Dimensions</a></li>' + '\n' + 
+					'<li id="phtml_7" class="treeitem '+isLeafSelected("outOrdersByDim.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=outOrdersByDim.xcdf&template=mantle" >Detail by Dimension</a></li>' + '\n' + 
+					'<li id="phtml_4" class="treeitem '+isLeafSelected("outOrdersForDim.xcdf", "")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=outOrdersForDim.xcdf&template=mantle" >Detail for Dimension Value</a></li>' + '\n' + 
+					'</ul>' + '\n' + 
+				'</li>' + '\n' + 
+			'</ul>' + '\n' + 
+		'</li>' + '\n' ;
+
+//-------------------------------------------------------
+//   Setup Tree Nodes to be open for Finance Dashboard
+//-------------------------------------------------------
+
+var tnFinance = 'closed';
+var tnProfitability = 'closed';
+var tnCashFlow = 'closed';
+var tnAssetsLiabilities = 'closed';
+var tnBudgetsComparison = 'closed';
+
+if (action == "top.xcdf" )
+{
+  tnFinance = 'open';
+}
+
+if (action == "incomeDashboard.xcdf" )
+{
+  tnFinance = 'open';
+  tnProfitability = 'open';
+}
+
+if (action == "KPIPivot.xcdf" )
+{
+  tnFinance = 'open';
+}
+
+if (action == "cashDashboard.xcdf" )
+{
+  tnFinance = 'open';
+  tnCashFlow = 'open';
+}
+
+var tnProfitabilityRandE = 'closed';
+var tnProfitabilityIncome = 'closed';
+var tnProfitabilityMargins = 'closed';
+
+if (action == "KPIPivot.xcdf")
+{
+
+  if ((seriesCategory == "Amount,+Revenue+(IS)") || (seriesCategory == "Amount,+Cost+of+Goods+Sold+(IS)") || (seriesCategory == "Amount,+Operating+Expenses+(IS)"))
+  {
+      tnProfitability = 'open';
+      tnProfitabilityRandE = 'open';
+  }
+  
+  if ((seriesCategory == "Amount,+Gross+Income+(IS)") || (seriesCategory == "Amount,+Operating+Income+(IS)") || (seriesCategory == "Amount,+Net+Income+(IS)"))
+  {
+        tnProfitability = 'open';
+        tnProfitabilityIncome = 'open';
+  }
+  
+  if ((seriesCategory == "Percentage,+Gross+Margin") || (seriesCategory == "Percentage,+Operating+Margin") || (seriesCategory == "Percentage,+Net+Margin"))
+  {
+      tnProfitability = 'open';
+      tnProfitabilityMargins = 'open';
+  }
+
+}
+
+var tnCashFlowActivities = 'closed';
+var tnCashFlowCash = 'closed';
+var tnCashFlowEfficiency = 'closed';
+
+if (action == "KPIPivot.xcdf")
+{
+
+  if ((seriesCategory == "Amount,+Net+Income+(IS)") || (seriesCategory == "Amount,+Operating+Activities+(CF)") || (seriesCategory == "Amount,+Financing+Activities+(CF)") || (seriesCategory == "Amount,+Investing+Activities+(CF)"))
+  {
+      tnCashFlow = 'open';
+      tnCashFlowActivities = 'open';
+  }
+  
+  if ((seriesCategory == "Amount,+Net+Cash+Flow+(CF)") || (seriesCategory == "Amount,+Free+Cash+Flow"))
+  {
+        tnCashFlow = 'open';
+        tnCashFlowCash = 'open';
+  }
+  
+  if ((seriesCategory == "Days,+Sales+Outstanding") || (seriesCategory == "Days,+Payable+Outstanding") || (seriesCategory == "Days,+In+Inventory") || (seriesCategory == "Days,+Cash+Conversion+Cycle"))
+  {
+      tnCashFlow = 'open';
+      tnCashFlowEfficiency = 'open';
+  }
+
+}
+
+if (action == "liabilityAssetDashboard.xcdf" )
+{
+  tnFinance = 'open';  
+  tnAssetsLiabilities = 'open';
+}
+
+var tnAssetsLiabilitiesDebt = 'closed';
+var tnAssetsLiabilitiesAandL = 'closed';
+var tnAssetsLiabilitiesReturns = 'closed';
+
+if (action == "KPIPivot.xcdf")
+{
+
+  if ((seriesCategory == "Ratio,+Debt+to+Equity") || (seriesCategory == "Ratio,+Total+Debt"))
+  {
+      tnAssetsLiabilities = 'open';
+      tnAssetsLiabilitiesDebt = 'open';
+  }
+  
+  if ((seriesCategory == "Ratio,+Current") || (seriesCategory == "Ratio,+Quick"))
+  {
+      tnAssetsLiabilities = 'open';
+      tnAssetsLiabilitiesAandL = 'open';
+  }
+  
+  if ((seriesCategory == "Ratio,+Return+on+Assets") || (seriesCategory == "Ratio,+Return+on+Equity"))
+  {
+      tnAssetsLiabilities = 'open';
+      tnAssetsLiabilitiesReturns = 'open';
+  }
+
+}
+
+if (action == "budgetDashboard.xcdf" )
+{
+  tnFinance = 'open';
+  tnBudgetsComparison = 'open';
+}
+
+var tnBudgetsComparisonRevenue = 'closed';
+var tnBudgetsComparisonExpense = 'closed';
+var tnBudgetsComparisonCash = 'closed';
+
+if (action == "budgetPivot.xcdf" )
+{
+  tnFinance = 'open';
+  tnBudgetsComparison = 'open';
+
+  if ((seriesCategory == "Amount,+Sales+Income") || (seriesCategory == "Amount,+Other+Income"))
+  {
+        tnBudgetsComparisonRevenue = 'open';
+  }
+
+  if ((seriesCategory == "Amount,+Cost+of+Goods+Sold+(IS)") || (seriesCategory == "Amount,+Operating+Expenses"))
+  {
+      tnBudgetsComparisonExpense = 'open';
+  }
+
+  if ((seriesCategory == "Amount,+Net+Cash+Flow+(CF)") || (seriesCategory == "Days,+Cash+Conversion+Cycle"))
+  {
+      tnBudgetsComparisonCash = 'open';
+  }
+}
+
+//------------End of Finance Node Setup----------------//
+
+var treehtml_finance =
+		'<li id="phtml_1" class="'+tnFinance+'"><a href="#">Financial</a>' + '\n' +
+			'<ul>' + '\n' + 
+			'<li id="phtml_2" class="treeitem '+isLeafSelected("top.xcdf", "")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLDashboards&action=top.xcdf&template=mantle" >Dashboard</a></li>' + '\n' +
+				'<li id="phtml_2" class="'+tnProfitability+'"><a href="#" >Profitability</a>' + '\n' +
+					'<ul>' + '\n' + 
+					'<li id="phtml_2_1" class="treeitem '+isLeafSelected("incomeDashboard.xcdf", "")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLDashboards&action=incomeDashboard.xcdf&template=mantle" >Dashboard</a></li>' + '\n' + 
+					'<li id="phtml_2_1_1" class="'+tnProfitabilityRandE+'"><a href="#" >Revenue and Expenses</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_1_1_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Revenue+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Revenue+(IS)" >Revenue</a></li>' + '\n' + 
+						'<li id="phtml_2_1_1_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Cost+of+Goods+Sold+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Cost+of+Goods+Sold+(IS)" >Cost of Goods Sold</a></li>' + '\n' + 
+						'<li id="phtml_2_1_1_3" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Operating+Expenses+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Operating+Expenses+(IS)" >Operating Expenses</a></li>' + '\n' + 
+						'</ul>' + '\n' +
+					'</li>' + '\n' + 
+					'<li id="phtml_2_1_2" class="'+tnProfitabilityIncome+'"><a href="#" >Income</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_1_2_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Gross+Income+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Gross+Income+(IS)" >Gross Income</a></li>' + '\n' + 
+						'<li id="phtml_2_1_2_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Operating+Income+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Operating+Income+(IS)" >Operating Income</a></li>' + '\n' + 
+						'<li id="phtml_2_1_2_3" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Net+Income+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Net+Income+(IS)" >Net Income</a></li>' + '\n' + 
+						'</ul>' + '\n' +
+					'</li>' + '\n' + 
+					'<li id="phtml_2_1_3" class="'+tnProfitabilityMargins+'"><a href="#" >Margins</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_1_3_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Percentage,+Gross+Margin")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Percentage,+Gross+Margin" >Gross Margin</a></li>' + '\n' + 
+						'<li id="phtml_2_1_3_3" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Percentage,+Operating+Margin")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Percentage,+Operating+Margin" >Operating Margin</a></li>' + '\n' + 
+						'<li id="phtml_2_1_3_3" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Percentage,+Net+Margin")+'"><a href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Percentage,+Net+Margin" >Net Margin</a></li>' + '\n' + 
+						'</ul>' + '\n' +
+					'</li>' + '\n' + 
+					'</ul>' + '\n' +
+				'</li>' + '\n' + 
+				'<li id="phtml_2_2" class="'+tnCashFlow+'"><a href="#" >Cash Flow</a>' + '\n' +
+					'<ul>' + '\n' + 
+					'<li id="phtml_2_2_1" class="treeitem ' +isLeafSelected("cashDashboard.xcdf", "")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLDashboards&action=cashDashboard.xcdf&template=mantle" >Dashboard</a></li>' + '\n' + 
+					'<li id="phtml_2_2_2" class="'+tnCashFlowActivities+'"><a href="#" >Cash Flow Activities</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_2_2_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Net+Income+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Net+Income+(IS)" >Net Income</a></li>' + '\n' + 
+						'<li id="phtml_2_2_2_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Operating+Activities+(CF)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Operating+Activities+(CF)" >Operating Activities</a></li>' + '\n' + 
+						'<li id="phtml_2_2_2_3" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Financing+Activities+(CF)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Financing+Activities+(CF)" >Financing Activities</a></li>' + '\n' + 
+						'<li id="phtml_2_2_2_4" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Investing+Activities+(CF)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Investing+Activities+(CF)" >Investing Activities</a></li>' + '\n' + 
+						'</ul>' + '\n' +
+					'</li>' + '\n' + 
+					'<li id="phtml_2_2_3" class="'+tnCashFlowCash+'"><a href="#" >Cash</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_2_3_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Net+Cash+Flow+(CF)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Net+Cash+Flow+(CF)" >Net Cash Flow</a></li>' + '\n' + 
+						'<li id="phtml_2_2_3_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Amount,+Free+Cash+Flow")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Amount,+Free+Cash+Flow" >Free Cash Flow</a></li>' + '\n' + 
+						'</ul>' + '\n' + 
+					'</li>' + '\n' + 
+					'<li id="phtml_2_2_4" class="'+tnCashFlowEfficiency+'"><a href="#" >Efficiency</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_2_4_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Days,+Sales+Outstanding")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Days,+Sales+Outstanding" >Days Sales Outstanding</a></li>' + '\n' + 
+						'<li id="phtml_2_2_4_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Days,+Payable+Outstanding")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Days,+Payable+Outstanding" >Days Payable Outstanding</a></li>' + '\n' + 
+						'<li id="phtml_2_2_4_3" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Days,+In+Inventory")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Days,+In+Inventory" >Days In Inventory</a></li>' + '\n' + 
+						'<li id="phtml_2_2_4_4" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Days,+Cash+Conversion+Cycle")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Days,+Cash+Conversion+Cycle" >Cash Conversion Cycle</a></li>' + '\n' + 
+						'</ul>' + '\n' +
+					'</li>' + '\n' + 
+					'</ul>' + '\n' +
+				'</li>' + '\n' + 
+				'<li id="phtml_2_3" class="'+tnAssetsLiabilities+'"><a href="#" >Assets & Liabilities</a>' + '\n' +
+					'<ul>' + '\n' + 
+					'<li id="phtml_2_3_1" class="treeitem '+isLeafSelected("liabilityAssetDashboard.xcdf", "")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLDashboards&action=liabilityAssetDashboard.xcdf&template=mantle" >Dashboard</a></li>' + '\n' + 
+					'<li id="phtml_2_3_2" class="'+tnAssetsLiabilitiesDebt+'"><a href="#" >Debt</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_3_2_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Ratio,+Debt+to+Equity")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Ratio,+Debt+to+Equity" >Debt to Equity Ratio</a></li>' + '\n' + 
+						'<li id="phtml_2_3_2_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Ratio,+Total+Debt")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Ratio,+Total+Debt" >Total Debt Ratio</a></li>' + '\n' + 
+						'</ul>' + '\n' + 
+					'</li>' + '\n' + 
+					'<li id="phtml_2_3_3" class="'+tnAssetsLiabilitiesAandL+'"><a href="#" >Assets, Liabilities</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_3_3_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Ratio,+Current")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Ratio,+Current" >Current Ratio</a></li>' + '\n' + 
+						'<li id="phtml_2_3_3_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Ratio,+Quick")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Ratio,+Quick" >Quick Ratio</a></li>' + '\n' + 
+						'</ul>' + '\n' + 
+					'</li>' + '\n' + 
+					'<li id="phtml_2_3_4" class="'+tnAssetsLiabilitiesReturns+'"><a href="#" >Returns</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_3_4_1" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Ratio,+Return+on+Assets")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Ratio,+Return+on+Assets" >Return on Assets Ratio</a></li>' + '\n' + 
+						'<li id="phtml_2_3_4_2" class="treeitem '+isLeafSelected("KPIPivot.xcdf", "Ratio,+Return+on+Equity")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=KPIPivot.xcdf&template=mantle&seriesCategory=Ratio,+Return+on+Equity" >Return on Equity Ratio</a></li>' + '\n' + 
+						'</ul>' + '\n' + 
+					'</li>' + '\n' + 
+					'</ul>' + '\n' +
+				'</li>' + '\n' + 
+				'<li id="phtml_2_4" class="'+tnBudgetsComparison+'"><a href="#" >Budget Comparison</a>' + '\n' +
+					'<ul>' + '\n' + 
+					'<li id="phtml_2_4_1" class="treeitem '+isLeafSelected("budgetDashboard.xcdf", "")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLDashboards&action=budgetDashboard.xcdf&template=mantle" >Dashboard</a></li>' + '\n' + 
+					'<li id="phtml_2_4_2" class="'+tnBudgetsComparisonRevenue+'"><a href="#" >Revenue</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_4_2_1" class="treeitem '+isLeafSelected("budgetPivot.xcdf", "Amount,+Sales+Income")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=budgetPivot.xcdf&template=mantle&seriesCategory=Amount,+Sales+Income" >Sales Income</a></li>' + '\n' + 
+						'<li id="phtml_2_4_2_2" class="treeitem '+isLeafSelected("budgetPivot.xcdf", "Amount,+Other+Income")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=budgetPivot.xcdf&template=mantle&seriesCategory=Amount,+Other+Income" >Other Income</a></li>' + '\n' + 
+						'</ul>' + '\n' + 
+					'</li>' + '\n' + 
+					'<li id="phtml_2_4_3" class="'+tnBudgetsComparisonExpense+'"><a href="#" >Expense</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_4_3_1" class="treeitem '+isLeafSelected("budgetPivot.xcdf", "Amount,+Cost+of+Goods+Sold+(IS)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=budgetPivot.xcdf&template=mantle&seriesCategory=Amount,+Cost+of+Goods+Sold+(IS)" >Cost of Goods Sold</a></li>' + '\n' + 
+						'<li id="phtml_2_4_3_2" class="treeitem '+isLeafSelected("budgetPivot.xcdf", "Amount,+Operating+Expenses")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=budgetPivot.xcdf&template=mantle&seriesCategory=Amount,+Operating+Expenses" >Operating Expenses</a></li>' + '\n' + 
+						'</ul>' + '\n' + 
+					'</li>' + '\n' + 
+					'<li id="phtml_2_4_4" class="'+tnBudgetsComparisonCash+'"><a href="#" >Cash</a>' + '\n' +
+						'<ul>' + '\n' + 
+						'<li id="phtml_2_4_4_1" class="treeitem '+isLeafSelected("budgetPivot.xcdf", "Amount,+Net+Cash+Flow+(CF)")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=budgetPivot.xcdf&template=mantle&seriesCategory=Amount,+Net+Cash+Flow+(CF)" >Net Cash Flow</a></li>' + '\n' + 
+						'<li id="phtml_2_4_4_2" class="treeitem '+isLeafSelected("budgetPivot.xcdf", "Days,+Cash+Conversion+Cycle")+'"><a   href="RenderXCDF?solution=erpbi-reports&path=%2FGLPivots&action=budgetPivot.xcdf&template=mantle&seriesCategory=Days,+Cash+Conversion+Cycle" >Cash Conversion Cycle</a></li>' + '\n' + 
+						'</ul>' + '\n' + 
+					'</li>' + '\n' + 
+					'</ul>' + '\n' +
+				'</li>' + '\n' + 
+			'</ul>' + '\n' + 
+		'</li>' + '\n';
+var treehtml_footer = '</ul>';
+
+var treehtml = treehtml_header + treehtml_sales + treehtml_finance + treehtml_footer;
+
+document.write(treehtml);

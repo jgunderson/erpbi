@@ -1,0 +1,41 @@
+product_nk;product_name;type;class;category
+BPAINT1;Blue Paint Type Paint 1, BPAINT1;Purchased;TOYS-COMP;CLASSIC-METAL
+BRCPFN1;Breeder Hubcaps And Fenders, BRCPFN1;Breeder;TOYS-OTHER;Unspecified
+BTRUCK1;Blue Tough Truck, BTRUCK1;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+CBODY1;Car Body Type 1, CBODY1;Purchased;TOYS-COMP;CLASSIC-METAL
+CBUMP;Chromed Bumper, CBUMP;Manufactured;TOYS-COMP;CLASSIC-METAL
+CHROMING;Outside Process - Chroming, CHROMING;Outside Process;TOYS-OTHER;Unspecified
+COLLECTORS-LINE;Collectors Product Family, COLLECTORS-LINE;Planning;TOYS-OTHER;Unspecified
+CTRUCK1;Custom Tough Truck Type 1, CTRUCK1;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+DTRUCK1;Diamond Special Edition Truck, DTRUCK1;Purchased;TOYS-TRUCKS;CLASSIC-METAL
+FEN1;Fender Type 1, FEN1;Co-Product;TOYS-COMP;CLASSIC-METAL
+HOTEL;Hotel travel expense, HOTEL;Reference;SERVICES;SERVICES
+HUB1;Hubcap Type 1, HUB1;Co-Product;TOYS-COMP;CLASSIC-METAL
+KCAR1;Kit Car Type 1, KCAR1;Kit;TOYS-CARS;CLASSIC-METAL
+MILEAGE;Automobile mileage - travel expense, MILEAGE;Reference;SERVICES;SERVICES
+PHKIT;Truck Kit Type 1, PHKIT;Phantom;TOYS-TRUCKS;Unspecified
+PROFSVCS;Professional Services, PROFSVCS;Reference;SERVICES;SERVICES
+RBUMP1;Tough Truck Body Type 1, RBUMP1;Purchased;TOYS-COMP;CLASSIC-METAL
+REPAIRT1;Repair Type 1 - Truck , REPAIRT1;Manufactured;TOYS-REPAIR;CLASSIC-METAL
+RPAINT1;Red Paint Type Paint 1, RPAINT1;Purchased;TOYS-COMP;CLASSIC-METAL
+RTRUCK1;Red Tough Truck, RTRUCK1;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+SHEET1;Sheet Metal Type 1, SHEET1;Purchased;TOYS-COMP;Unspecified
+SHSCRAP1;Scrap Sheet Metal, SHSCRAP1;By-Product;TOYS-OTHER;CLASSIC-METAL
+STOCKCAR1;Classic Race Car With Logo, STOCKCAR1;Manufactured;TOYS-CARS;CLASSIC-METAL
+STRUCK1;Collectors Autographed Signed, STRUCK1;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+TBODY1;Tough Truck Body Type 1, TBODY1;Purchased;TOYS-COMP;CLASSIC-METAL
+TBOX1;Product Box Type 1, TBOX1;Purchased;TOYS-COMP;CLASSIC-METAL
+TBOX2;Product Box Type 2, TBOX2;Purchased;TOYS-COMP;CLASSIC-METAL
+TCOAT-G;Gloss Coat Finish, TCOAT-G;Purchased;TOYS-COMP;Unspecified
+TDECAL-F;FASCAR Racing Decal, TDECAL-F;Purchased;TOYS-COMP;Unspecified
+TDECAL-P;PUSCH Racing Decal, TDECAL-P;Purchased;TOYS-COMP;Unspecified
+TINSERT1;Packaging Insert Type 1, TINSERT1;Purchased;TOYS-COMP;CLASSIC-METAL
+TKIT1;Truck Kit Type 1, TKIT1;Manufactured;TOYS-COMP;Unspecified
+TSUB1;Packaging Subassembly Type 1, TSUB1;Manufactured;TOYS-COMP;Unspecified
+TSUB2;Packaging Subassembly Type 2, TSUB2;Manufactured;TOYS-COMP;Unspecified
+TWHEEL1;Truck Wheel Type 1, TWHEEL1;Purchased;TOYS-COMP;CLASSIC-METAL
+WPAINT1;White Paint Type Paint 1, WPAINT1;Purchased;TOYS-COMP;CLASSIC-METAL
+WTRUCK1;White Tough Truck, WTRUCK1;Manufactured;TOYS-TRUCKS;CLASSIC-METAL
+YPAINT1;Yellow Paint 1, YPAINT1;Purchased;TOYS-COMP;CLASSIC-METAL
+YPAINT2;Yellow Neon Paint 2, YPAINT2;Purchased;TOYS-COMP;CLASSIC-METAL
+YTRUCK1;Yellow Tough Truck, YTRUCK1;Manufactured;TOYS-TRUCKS;CLASSIC-METAL

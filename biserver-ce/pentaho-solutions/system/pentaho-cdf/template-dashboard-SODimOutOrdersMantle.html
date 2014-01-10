@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <title>Sales Order Fulfillment Dimension Dashboard</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="description" content="My Site" />
+   <meta name="keywords" content="key, words" />  
+   <meta name="Distribution" content="Global" />
+   <meta name="Robots" content="index,follow" />
+
+    <link rel="stylesheet" type="text/css" href="erpbi/styles/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="erpbi/styles/stylemenu.css"/>
+    <link rel="stylesheet" type="text/css" href="erpbi/scripts/jstree/tree_component.css" />
+    <script type="text/javascript" src="erpbi/scripts/jstree/css.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/jstree/tree_component.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/jstree/loadtree.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/util/urlParm.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/util/currentYear.js"></script>
+	<script type="text/javascript" src="erpbi/scripts/cdf/setupVars.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/util/ymd.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/dim/CO.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+yearPeriodSelector = 
+{
+  name: "yearPeriodSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "SODashboards",
+  action: "yearPeriodSelect.xaction",
+  listeners:[],
+  parameters:[],
+  parameter:"Dashboards.storage.yearPeriod",
+  htmlObject: "yearPeriodSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){},
+  postChange: function(){Dashboards.saveStorage();}
+}
+
+var dimOneCodeHier;
+var dimOneNameHier;
+var	dimOneNameProp;
+var dimOneKeyProp;
+
+dimSelector = 
+{
+  name: "dimSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "SOPivots",
+  action: "dimensionSelect.xaction",
+  parameters:[],
+  parameter:"Dashboards.storage.dimOne",
+  htmlObject: "dimSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){
+
+  	var info = getDimInfo(Dashboards.storage.dimOne);
+ 	dimOneCodeHier = info.CodeHier;
+   	dimOneNameHier = info.NameHier;
+   	dimOneNameProp = info.NameProp;
+   	dimOneKeyProp = info.KeyProp;
+    Dashboards.saveStorage();
+  },
+  postChange: function(){
+
+  	var info = getDimInfo(Dashboards.storage.dimOne);
+  	dimOneCodeHier = info.CodeHier;
+   	dimOneNameHier = info.NameHier;
+   	dimOneNameProp = info.NameProp;
+   	dimOneKeyProp = info.KeyProp;
+    Dashboards.saveStorage();
+ }
+}
+
+KPISelector = 
+{
+  name: "KPISelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "KPIDashboards",
+  action: "outOrdersKPISelect.xaction",
+  parameters:[],
+  parameter:"Dashboards.storage.kpi",
+  htmlObject: "KPISelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){},
+  postChange: function(){Dashboards.saveStorage();}
+}
+
+//
+// Get the lowest year and save it for charts that show the previous year.
+// Tried to use the CDF type:queryComponent but it does not support SQL,
+// only MDX.  Arrg! 
+//
+Dashboards.storage.lastYear = "";
+
+var lastYearXAction = 
+{
+  	name: "lastYearXAction",
+  	type: "xaction",
+  	solution: "erpbi-reports",
+  	path: "GLDashboards",
+  	action: "lastYearQuery.xaction",
+  	executeAtStart: true,
+	postExecution: function(){
+		var content = document.getElementById("lastYearID");
+		Dashboards.storage.lastYear = content.innerHTML.substring(14,18);
+		Dashboards.saveStorage();
+	}
+}
+
+var extractDateXAction = 
+{
+  	name: "extractDateXAction",
+  	type: "xaction",
+  	solution: "erpbi-reports",
+  	path: "SODashboards",
+  	action: "extractDateQuery.xaction",
+  	//  Would like to be able to pass a parameter to the the
+  	//  query to specify the datamart.   But parameters don't
+  	//  work with xaction.
+  	executeAtStart: true,
+   	htmlObject: "extractDate",
+   	postExecution: function(){
+		var content = document.getElementById("extractDate");
+		var dateString = content.innerHTML.substring(15,27);
+		var mySpan = document.createTextNode(dateString);
+		content.parentNode.replaceChild(mySpan, content);
+	}
+}
+</script>
+
+
+</head>
+
+<body >
+
+<div id="headers" >
+
+<div>
+	<div style="float:left; padding: 0px 10px">
+	<a href="http://www.erpbisolutions.com">
+			<img width="120" height="40" align="right" src="erpbi/styles/images/logoblue2.jpg">
+			</a>
+	</div>
+	<div id="logo-text"  >
+		Sales
+	</div>
+</div>
+
+<div id="footer" >
+	<div style="float:left; padding: 0px 10px">
+		<div>Year, Period</div>
+		<div id="yearPeriodSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Dimension</div>
+		<div id="dimSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>KPI</div>
+		<div id="KPISelector">Item 1</div>
+	</div>
+	<div style="float:right; padding: 0px 10px">
+		<div><br/></div>
+		<div>Today's Date</div>
+		<div><script language="javascript" type="text/javascript"> document.write( ymd()); </script></div>
+	</div>
+	<div style="float:right; padding: 0px 10px">
+		<div><br/></div>
+		<div>Extract Date</div>
+		<div id="extractDate"></div>
+	</div>
+</div>
+
+</div>
+
+<div id="columns" >
+	<table  >
+		<tr>
+			<td id="explorer" class="demo" >
+				<p></p>
+		    	<script type="text/javascript" src="erpbi/scripts/jstree/htmltree.js"></script>
+			</td>
+		
+			<td id="content">
+				<div class="ui-layout-center"  >
+				{content}
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>
+

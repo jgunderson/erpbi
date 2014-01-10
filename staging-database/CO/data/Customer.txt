@@ -1,0 +1,11 @@
+customer_name;payment_terms;customer_nk;credit_limit
+Tremendous Toys Incorporated, TTOYS; 42;TTOYS;200000.00
+Master Prodiem Toys Retail Customer, XRETAIL; 44;XRETAIL;20000.00
+Vienna Collectables, VCOL; 42;VCOL;20000.00
+Xtreme Toys LTD, XTRM; 42;XTRM;109.00
+Les Jouets De France, FR100; 42;FR100;20000.00
+Los Juguetes De Macendo, ES100; 42;ES100;20000.00
+LosJjuguetes de Macael, ES222; 42;ES222;20000.00
+Giocattoli di Roia, IT100; 42;IT100;20000.00
+New Customer, NEWCUST; 42;NEWCUST;20000.00
+New Customer 2, NEWCUST2; 42;NEWCUST2;20000.00

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+   <title>Sales Order KPI By City</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="description" content="My Site" />
+   <meta name="keywords" content="key, words" />  
+   <meta name="Distribution" content="Global" />
+   <meta name="Robots" content="index,follow" />
+
+    <link rel="stylesheet" type="text/css" href="erpbi/styles/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="erpbi/styles/stylemenu.css"/>
+    <link rel="stylesheet" type="text/css" href="erpbi/scripts/jstree/tree_component.css" />
+    <script type="text/javascript" src="erpbi/scripts/jstree/css.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/jstree/tree_component.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/jstree/loadtree.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/util/urlParm.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/util/currentYear.js"></script>
+    <script type="text/javascript" src="erpbi/scripts/util/ymd.js"></script>
+
+<!--
+**************************** Define common SO selectors
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/SODashboards/SOSelectors.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+KPISelector = 
+{
+  name: "KPISelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "KPIDashboards",
+  action: "orderKPISelect.xaction",
+  parameters:[],
+  parameter:"Dashboards.storage.kpi",
+  htmlObject: "KPISelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){},
+  postChange: function(){Dashboards.saveStorage();}
+}
+
+CityTypeSelector = 
+{
+  name: "CityTypeSelector",
+  type: "select",
+  solution: "erpbi-reports",
+  path: "Maps",
+  action: "cityTypeSelect.xaction",
+  parameters:[],
+  parameter:"Dashboards.storage.cityType",
+  htmlObject: "CityTypeSelector",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){},
+  postChange: function(){Dashboards.saveStorage();}
+}
+
+var extractDateXAction = 
+{
+  	name: "extractDateXAction",
+  	type: "xaction",
+  	solution: "erpbi-reports",
+  	path: "SODashboards",
+  	action: "extractDateQuery.xaction",
+  	//  Would like to be able to pass a parameter to the the
+  	//  query to specify the datamart.   But parameters don't
+  	//  work with xaction.
+  	executeAtStart: true,
+   	htmlObject: "extractDate",
+   	postExecution: function(){
+		var content = document.getElementById("extractDate");
+		var dateString = content.innerHTML.substring(15,27);
+		var mySpan = document.createTextNode(dateString);
+		content.parentNode.replaceChild(mySpan, content);
+	}
+}
+</script>
+
+
+</head>
+
+<body >
+
+<div id="headers" >
+
+<div>
+	<div style="float:left; padding: 0px 10px">
+	<a href="http://www.erpbisolutions.com">
+			<img width="120" height="40" align="right" src="erpbi/styles/images/logoblue2.jpg">
+			</a>
+	</div>
+	<div id="logo-text"  >
+		Sales
+	</div>
+</div>
+
+
+<div id="footer" >
+	<div style="float:left; padding: 0px 10px">
+		<div>Year, Period</div>
+		<div id="yearPeriodSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Customer</div>
+		<div id="custSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Product Class</div>
+		<div id="prodClassSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Product Category</div>
+		<div id="prodCategorySelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Product Code</div>
+		<div id="prodCodeSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>Account Rep</div>
+		<div id="accountRepSelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>KPI</div>
+		<div id="KPISelector">Item 1</div>
+	</div>
+	<div style="float:left; padding: 0px 10px">
+		<div>City Type</div>
+	<div id="CityTypeSelector">Item 1</div>
+	</div>
+	<div style="float:right; padding: 0px 10px">
+		<div><br/></div>
+		<div>Today's Date</div>
+		<div><script language="javascript" type="text/javascript"> document.write( ymd()); </script></div>
+	</div>
+	<div style="float:right; padding: 0px 10px">
+		<div><br/></div>
+		<div>Extract Date</div>
+		<div id="extractDate"></div>
+	</div>
+  </div>
+
+
+<div id="columns" >
+	<table  >
+		<tr>
+			<td id="explorer" class="demo" >
+				<p></p>
+		    	<script type="text/javascript" src="erpbi/scripts/jstree/htmltree.js"></script>
+			</td>
+		
+			<td id="content">
+				<div class="ui-layout-center"  >
+				{content}
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+</body>
+</html>

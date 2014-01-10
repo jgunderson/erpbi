@@ -1,0 +1,1278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>SOExt</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit/>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+         <slaveserver><name>Data Center</name><hostname>localhost</hostname><port>8082</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>Y</master></slaveserver>
+         <slaveserver><name>Cloud</name><hostname>10.5.5.65</hostname><port>8083</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>N</master></slaveserver>
+    </slaveservers>
+    <clusterschemas>
+        <clusterschema>
+          <name>Cloud Schema</name>
+          <base_port>40000</base_port>
+          <sockets_buffer_size>2000</sockets_buffer_size>
+          <sockets_flush_interval>5000</sockets_flush_interval>
+          <sockets_compressed>Y</sockets_compressed>
+          <dynamic>N</dynamic>
+          <slaveservers>
+            <name>Cloud</name>
+            <name>Data Center</name>
+          </slaveservers>
+        </clusterschema>
+    </clusterschemas>
+  <created_user/>
+  <created_date>2011&#47;06&#47;28 15:06:26.065</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2010&#47;11&#47;01 12:42:33.145</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>source</name>
+    <server/>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database/>
+    <port>-1</port>
+    <username>${erpi.source.user}</username>
+    <password>${erpi.source.password}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>${erpi.source.driver}</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>${erpi.source.url}</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>Y</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>-1</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Check cohead duplicates</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>Check shiphead duplicates</from><to>Abort 3</to><enabled>Y</enabled> </hop>  <hop> <from>Check coitem duplicates</from><to>Abort 2</to><enabled>Y</enabled> </hop>  <hop> <from>Delete SOFacts.txt</from><to>Extract Order Transactions</to><enabled>Y</enabled> </hop>  <hop> <from>Delete SODelivFacts.txt</from><to>Extract Shipment Transactions</to><enabled>Y</enabled> </hop>  <hop> <from>Extract Shipment Transactions</from><to>SODelivFacts.txt</to><enabled>Y</enabled> </hop>  <hop> <from>Check shipitem duplicates</from><to>Abort 4</to><enabled>Y</enabled> </hop>  <hop> <from>Extract Order Transactions</from><to>SOFacts.txt</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Abort</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>1</row_threshold>
+      <message>Duplicates extracted for order dimension</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>213</xloc>
+      <yloc>39</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort 2</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>1</row_threshold>
+      <message>Duplicates extracted for orrderlineitem dimension</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>214</xloc>
+      <yloc>121</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort 3</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>1</row_threshold>
+      <message>Duplicates extracted for delivery dimension</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>214</xloc>
+      <yloc>210</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Abort 4</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>1</row_threshold>
+      <message>Duplicates extracted for delivery dimension</message>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>220</xloc>
+      <yloc>297</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check cohead duplicates</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>source</connection>
+    <sql>SELECT COUNT from
+	(SELECT 	
+	cohead_number, count(*) as COUNT
+	FROM cohead
+	WHERE (cohead_orderdate &gt;= &apos;${extractstartdate}&apos;)
+	GROUP BY cohead_number) counts
+WHERE COUNT &gt; 1;
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>66</xloc>
+      <yloc>39</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check coitem duplicates</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>source</connection>
+    <sql>
+SELECT COUNT from
+	(SELECT 
+		CASE WHEN cohead_number = &apos;&apos; THEN &apos;Unspecified&apos;
+			ELSE COALESCE(cohead.cohead_number::character varying, &apos;Unspecified&apos;) END as &quot;ORDER_ID&quot;,
+		formatsolinenumber(coitem.coitem_id)::character varying AS &quot;OrderLineItemId&quot;,
+		cohead_orderdate,
+		count(*) as COUNT
+	FROM cohead, coitem
+	WHERE cohead.cohead_id = coitem.coitem_cohead_id AND
+		cohead_orderdate &gt;= &apos;${extractstartdate}&apos;
+	GROUP BY &quot;ORDER_ID&quot;, &quot;OrderLineItemId&quot;, cohead_orderdate) counts
+WHERE COUNT &gt; 1
+
+
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>65</xloc>
+      <yloc>119</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check shiphead duplicates</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>source</connection>
+    <sql>SELECT COUNT from
+(SELECT shiphead_order_id, 
+	shiphead_number as &quot;DELIVERY_DOC_ID&quot;,
+	cohead_orderdate,
+ 	count(*) as COUNT
+FROM cohead, shiphead
+WHERE cohead.cohead_id = shiphead_order_id AND
+	cohead_orderdate &gt;= &apos;${erpi.start.date}&apos; AND
+	shiphead_shipdate &gt;= &apos;${extractstartdate}&apos;
+	GROUP BY shiphead_order_id, &quot;DELIVERY_DOC_ID&quot;, cohead_orderdate) counts
+WHERE COUNT &gt; 1
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>62</xloc>
+      <yloc>211</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Check shipitem duplicates</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>source</connection>
+    <sql>SELECT COUNT from
+	(SELECT shiphead_order_id, 
+		shiphead_number as &quot;DELIVERY_DOC_ID&quot;,
+		shipitem_id AS &quot;DeliveryLineItemId&quot;,
+		cohead_orderdate,
+		count(*) as COUNT
+	FROM cohead, shiphead, shipitem
+	WHERE cohead.cohead_id = shiphead_order_id AND
+		shiphead_id = shipitem_shiphead_id AND
+		cohead_orderdate &gt;= &apos;${erpi.start.date}&apos; AND
+		shiphead_shipdate &gt;= &apos;${extractstartdate}&apos;
+	GROUP BY shiphead_order_id, &quot;DELIVERY_DOC_ID&quot;, &quot;DeliveryLineItemId&quot;, cohead_orderdate) counts
+WHERE COUNT &gt; 1
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>71</xloc>
+      <yloc>294</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Delete SODelivFacts.txt</name>
+    <type>ProcessFiles</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <sourcefilenamefield>${erpi.dir}&#47;ETL&#47;SO&#47;data&#47;SODelivFacts.txt</sourcefilenamefield>
+    <targetfilenamefield/>
+    <operation_type>delete</operation_type>
+    <addresultfilenames>N</addresultfilenames>
+    <overwritetargetfile>N</overwritetargetfile>
+    <createparentfolder>N</createparentfolder>
+    <simulate>Y</simulate>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>60</xloc>
+      <yloc>498</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Delete SOFacts.txt</name>
+    <type>ProcessFiles</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <sourcefilenamefield>${erpi.dir}&#47;ETL&#47;SO&#47;data&#47;SOFacts.txt</sourcefilenamefield>
+    <targetfilenamefield/>
+    <operation_type>delete</operation_type>
+    <addresultfilenames>N</addresultfilenames>
+    <overwritetargetfile>N</overwritetargetfile>
+    <createparentfolder>N</createparentfolder>
+    <simulate>Y</simulate>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>67</xloc>
+      <yloc>410</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Extract Order Transactions</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>source</connection>
+    <sql>select
+	CASE WHEN cohead_number = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(cohead_number, &apos;Unspecified&apos;) END 									as &quot;ID_Document_NK&quot;,
+	CASE WHEN cohead_number = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(cohead_number, &apos;Unspecified&apos;) END 									as &quot;ID_Trans_Doc_NK&quot;, 	
+	(CASE WHEN cohead_number = &apos;&apos; THEN &apos;Unspecified&apos; 
+		ELSE COALESCE(CAST(cohead_number as varchar(30)), &apos;Unspecified&apos;) END) || &apos;-&apos; ||
+	formatsolinenumber(coitem.coitem_id)::character varying									as &quot;Line_NK&quot;,
+	to_char(cohead_orderdate,&apos;MM&#47;DD&#47;YYYY&apos;)													as &quot;Issue_Date&quot;,
+--
+--  We can&apos;t allow null or nonsense promose dates.  An no earlier dates as they may not exist in the dates dimension
+-- 													
+    CASE
+            WHEN coitem_promdate IS NULL THEN to_char(cohead_orderdate,&apos;MM&#47;DD&#47;YYYY&apos;)::text
+            WHEN coitem_promdate &lt; cohead_orderdate THEN to_char(cohead_orderdate,&apos;MM&#47;DD&#47;YYYY&apos;)::text
+            WHEN to_char(coitem_promdate,&apos;MM&#47;DD&#47;YYYY&apos;) = &apos;01&#47;01&#47;2100&apos;::bpchar THEN to_char(cohead_orderdate,&apos;MM&#47;DD&#47;YYYY&apos;)::text
+            ELSE to_char(coitem_promdate,&apos;MM&#47;DD&#47;YYYY&apos;)::text
+    END 																					as &quot;Promise_Date&quot;,
+	--COALESCE(to_char(coitem_promdate,&apos;MM&#47;DD&#47;YYYY&apos;), to_char(cohead_orderdate,&apos;MM&#47;DD&#47;YYYY&apos;)) 	as &quot;Promise_Date&quot;,
+	currtobase(cohead_curr_id, coitem_price, cohead_orderdate) 								as so_baseunitprice,
+	round((coitem_qtyord * currtobase(cohead_curr_id, coitem_custprice, cohead_orderdate)), 2) 	as &quot;Amount&quot;,
+	round((coitem_qtyord * currtobase(cohead_curr_id, coitem_custprice, cohead_orderdate)), 2) 	as &quot;Amount_Local&quot;,
+	round((coitem_qtyord * currtobase(cohead_curr_id, coitem_price, cohead_orderdate)), 2) 	as &quot;Amount_List&quot;,
+	round((coitem_qtyord * currtobase(cohead_curr_id, coitem_price, cohead_orderdate)), 2) 	as &quot;Amount_List_Local&quot;,
+	coitem_qtyord																			as &quot;Quantity_Order&quot;,					    
+	COALESCE(coitem_unitcost, 0)															as &quot;Cost&quot;,
+	cust_number 																			as &quot;Customer&quot;,
+	(SELECT company_number FROM company ORDER BY company_number DESC LIMIT 1)				as &quot;Company&quot;,
+	item_number																				as &quot;Item&quot;,
+	(SELECT curr_abbr FROM curr_symbol WHERE curr_base = TRUE) 								as &quot;Local_Currency&quot;,
+	&apos;Unspecified&apos; 																			as &quot;Division&quot;,
+	&apos;Unspecified&apos; 																			as &quot;Business_Unit&quot;,
+	salesrep_number 																		as &quot;Account_Rep&quot;,
+	&apos;Unspecified&apos; 																			as &quot;Profit_Center&quot;,
+	CASE WHEN cohead_shiptocity = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_shiptocity, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END																					as &quot;Ship_City&quot;,
+	CASE WHEN cohead_shiptostate = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_shiptostate, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END																					as &quot;Ship_Region&quot;,
+	CASE WHEN cohead_shiptocountry = &apos;&apos; THEN &apos;${erpi.defaultcountry}&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_shiptocountry, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;${erpi.defaultcountry}&apos;) 
+		END																					as &quot;Ship_Country&quot;,
+	CASE WHEN cohead_billtocity = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_billtocity, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END																					as &quot;Bill_City&quot;,
+	CASE WHEN cohead_billtostate = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_billtostate, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END							as &quot;Bill_Region&quot;,
+	CASE WHEN cohead_billtocountry = &apos;&apos; THEN &apos;${erpi.defaultcountry}&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_billtocountry, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;${erpi.defaultcountry}&apos;) 
+		END			as &quot;Bill_Country&quot;
+from coitem
+ join cohead on coitem_cohead_id=cohead_id													-- sales order 
+  join custinfo on cust_id=cohead_cust_id													-- customer 
+  join salesrep on salesrep_id=cohead_salesrep_id											-- sales rep
+  join itemsite on itemsite_id=coitem_itemsite_id											-- item inventory site
+  join whsinfo on warehous_id=itemsite_warehous_id											-- warehouse &#47; site
+  join item on item_id=itemsite_item_id
+
+WHERE ((cohead_orderdate &gt;= &apos;${extractstartdate}&apos; OR (cohead_orderdate &gt;= &apos;${erpi.start.date}&apos; AND cohead_lastupdated &gt;= &apos;${extractstartdate}&apos;))
+		AND coitem_status != &apos;X&apos;)
+
+
+
+
+</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>301</xloc>
+      <yloc>410</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Extract Shipment Transactions</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>source</connection>
+    <sql>select
+	CASE WHEN cohead_number = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(cohead_number, &apos;Unspecified&apos;) END 									as &quot;ID_Document_NK&quot;,	
+	shiphead_number			 																as &quot;ID_Trans_Doc_NK&quot;,
+	(CASE WHEN cohead_number = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(shiphead_number, &apos;Unspecified&apos;) END) || &apos;-&apos; || shipitem_id			as &quot;Line_NK&quot;,
+	to_char(shiphead_shipdate,&apos;MM&#47;DD&#47;YYYY&apos;) 												as &quot;Issue_Date&quot;,
+    CASE
+            WHEN coitem_promdate IS NULL THEN to_char(cohead_orderdate,&apos;MM&#47;DD&#47;YYYY&apos;)::text
+            WHEN to_char(coitem_promdate,&apos;MM&#47;DD&#47;YYYY&apos;) = &apos;01&#47;01&#47;2100&apos;::bpchar THEN to_char(cohead_orderdate,&apos;MM&#47;DD&#47;YYYY&apos;)::text
+            ELSE to_char(coitem_promdate,&apos;MM&#47;DD&#47;YYYY&apos;)::text
+    END 																					as &quot;Promise_Date&quot;,
+	currtobase(cohead_curr_id, coitem_price, cohead_orderdate) 								as so_baseunitprice,
+	round((coitem_qtyord * currtobase(cohead_curr_id, coitem_price, cohead_orderdate)), 2) 	as so_baseextprice,  -- ext order amount
+	round((shipitem_qty * currtobase(cohead_curr_id, coitem_custprice, cohead_orderdate)), 2) 	as &quot;Amount_Local&quot;,
+	round((shipitem_qty * currtobase(cohead_curr_id, coitem_custprice, cohead_orderdate)), 2) 	as &quot;Amount&quot;,
+	round((shipitem_qty * currtobase(cohead_curr_id, coitem_price, cohead_orderdate)), 2) 	as &quot;Amount_List&quot;,
+	round((shipitem_qty * currtobase(cohead_curr_id, coitem_price, cohead_orderdate)), 2) 	as &quot;Amount_List_Local&quot;,
+	coitem_qtyord																			as &quot;Quantity_Order&quot;,	
+	round((shipitem_qty * currtobase(cohead_curr_id, coitem_unitcost, cohead_orderdate)), 2) as &quot;Cost&quot;,
+	cust_number 																			as &quot;Customer&quot;,
+	(SELECT company_number FROM company ORDER BY company_number DESC LIMIT 1)				as &quot;Company&quot;,
+	CASE WHEN item_number = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(item_number, &apos;Unspecified&apos;) END 										as &quot;Item&quot;,
+	(SELECT curr_abbr FROM curr_symbol WHERE curr_base = TRUE) 								as &quot;Local_Currency&quot;,
+	&apos;Unspecified&apos; 																			as &quot;Division&quot;,
+	&apos;Unspecified&apos; 																			as &quot;Business_Unit&quot;,
+	salesrep_number 																		as &quot;Account_Rep&quot;,
+	&apos;Unspecified&apos; 																			as &quot;Profit_Center&quot;,
+	CASE WHEN cohead_shiptocity = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_shiptocity, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END																					as &quot;Ship_City&quot;,
+	CASE WHEN cohead_shiptostate = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_shiptostate, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END																					as &quot;Ship_Region&quot;,
+	CASE WHEN cohead_shiptocountry = &apos;&apos; THEN &apos;${erpi.defaultcountry}&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_shiptocountry, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;${erpi.defaultcountry}&apos;) 
+		END																					as &quot;Ship_Country&quot;,
+	CASE WHEN cohead_billtocity = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_billtocity, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END																					as &quot;Bill_City&quot;,
+	CASE WHEN cohead_billtostate = &apos;&apos; THEN &apos;Unspecified&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_billtostate, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;Unspecified&apos;) 
+		END							as &quot;Bill_Region&quot;,
+	CASE WHEN cohead_billtocountry = &apos;&apos; THEN &apos;${erpi.defaultcountry}&apos;
+		ELSE COALESCE(upper(regexp_replace(cohead_billtocountry, E&apos;\r|\n|;&apos;, &apos;&apos;, &apos;g&apos;)), &apos;${erpi.defaultcountry}&apos;) 
+		END			as &quot;Bill_Country&quot;
+from coitem
+ join cohead on coitem_cohead_id=cohead_id													-- sales order 
+  join custinfo on cust_id=cohead_cust_id													-- customer 
+  join salesrep on salesrep_id=cohead_salesrep_id											-- sales rep
+  join itemsite on itemsite_id=coitem_itemsite_id											-- item inventory site
+  join whsinfo on warehous_id=itemsite_warehous_id											-- warehouse &#47; site
+  join item on item_id=itemsite_item_id														-- item master
+  left outer join (
+    select shiphead_number, shipitem_qty, shipitem_id, shipitem_value, shiphead_shipdate, shiphead_order_type, shipitem_orderitem_id, shipitem_invcitem_id
+    from shiphead								-- shipment
+    join shipitem on shipitem_shiphead_id = shiphead_id  			-- shipment item  (NOT line item, more like a issue transaction!)
+  ) as ship on shiphead_order_type=&apos;SO&apos; and shipitem_orderitem_id=coitem_id
+where shiphead_number != &apos;&apos; AND 
+	 (cohead_orderdate &gt;= &apos;${extractstartdate}&apos; AND shiphead_shipdate &gt;= &apos;${extractstartdate}&apos;)</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>287</xloc>
+      <yloc>498</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>SODelivFacts.txt</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>;</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>Y</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${erpi.staging.dir}&#47;SO&#47;data&#47;SODelivFacts</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>ID_Document_NK</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ID_Trans_Doc_NK</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Line_NK</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Issue_Date</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Promise_Date</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount_Local</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount_List</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount_List_Local</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Quantity_Order</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Cost</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Customer</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Company</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Item</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Local_Currency</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Division</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Business_Unit</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Account_Rep</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Profit_Center</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Ship_City</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Ship_Region</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Ship_Country</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Bill_City</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Bill_Region</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Bill_Country</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>490</xloc>
+      <yloc>500</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>SOFacts.txt</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>;</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>Y</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>${erpi.staging.dir}&#47;SO&#47;data&#47;SOFacts</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>ID_Document_NK</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ID_Trans_Doc_NK</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Line_NK</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Issue_Date</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Promise_Date</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount_Local</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount_List</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Amount_List_Local</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Quantity_Order</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Cost</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Customer</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Company</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Item</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Local_Currency</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Division</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Business_Unit</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Account_Rep</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Profit_Center</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Ship_City</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Ship_Region</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Ship_Country</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Bill_City</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Bill_Region</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Bill_Country</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>491</xloc>
+      <yloc>414</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>

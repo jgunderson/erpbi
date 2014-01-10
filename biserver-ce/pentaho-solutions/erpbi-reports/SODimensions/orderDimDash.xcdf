@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Order Dimension Dashboard</title>
+	<description>Order Dimension Dashboard</description>
+	<icon></icon>
+	<template>orderDimTemplate.html</template>
+	<style>SODimOrderMantle</style>
+</cdf>

@@ -1,0 +1,4 @@
+local_currency_nk;local_currency_base
+GBP;
+EUR;
+USD;Y

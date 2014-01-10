@@ -1,0 +1,48 @@
+
+<script language="javascript" type="text/javascript">
+
+var cube = "SOByPeriod";
+var timedim = "Fiscal Period";
+var timedimagg = "[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]";
+
+//
+//  We have to set Dashboards.storage.kpi here as the KPI
+//  depends on the cube
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Balance, Orders Unfulfilled";}
+if (Dashboards.storage.kpi != "Amount, Delivery Gross" && 
+	Dashboards.storage.kpi != "Amount, Cost Gross" && 
+	Dashboards.storage.kpi != "Amount, Order Gross" && 
+	Dashboards.storage.kpi != "Balance, Orders Unfulfilled" && 
+	Dashboards.storage.kpi != "Days, Order to Delivery" && 
+	Dashboards.storage.kpi != "Count, Orders" &&
+	Dashboards.storage.kpi != "Interest, O2D Impact")
+{Dashboards.storage.kpi = "Balance, Orders Unfulfilled";}
+Dashboards.saveStorage();
+
+//
+//  Set the url template function for line chart and bar chart
+//
+function openByDimWindow(seriesCategory){
+	window.open("RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=outOrdersByDim.xcdf&template=mantle&seriesCategory=" + seriesCategory);
+};
+
+//
+//  Set the title
+//
+var kpiTitle = "</i> for Unfulfilled Orders in <i>";
+var hyperlinkPivot = "SOPivotsoutOrdersForDim";
+var hyperlinkWkDash ="";
+
+</script>
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>		
+	
+<!-- Define charts and render -->
+
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/content.js"></script>
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/outordrcategoryhtml.js"></script>	
+

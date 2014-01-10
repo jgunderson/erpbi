@@ -1,0 +1,161 @@
+<!--
+***************************** Settings for this dashboard 
+  -->
+  
+<script language="javascript" type="text/javascript">
+//
+// Set Column Names for Content Charts
+//
+var col1_Title ="<b>Orders</b>";
+var col2_Title = "<b>Deliveries</b>";
+var col3_Title = "<b>Unfulfilled</b>";
+
+//
+// Set Top List titles
+//
+var top1_Title = "<b>Order Gross, Top Customers</b>";
+var top2_Title = "<b>Profit, Top Customers</b>";
+var top3_Title = "<b>Orders Unfulfilled, Top Customers</b>";
+
+
+var cubeO = "SOOrder";
+var timedimO = "Order Date.Calendar";
+var kpiO = "Amount, Order Gross";
+
+
+var cubeD = "SODelivery";
+var timedimD = "Delivery Date.Calendar";
+var kpiD = "Amount, Profit Gross";
+
+
+var cubeF = "SOByPeriod";
+var timedimF = "Fiscal Period";
+var kpiF = "Balance, Orders Unfulfilled";
+
+var hyperlinkOrdrDash = "orderKPIDash.xcdf";
+var hyperlinkDeliDash= "deliveryKPIDash.xcdf";
+var hyperlinkOOrdDash = "outOrdersKPIDash.xcdf";
+var hyperlinkOrdWkDash ="orderKPIDashWeek.xcdf";
+var hyperlinkDelWkDash ="deliveryKPIDashWeek.xcdf";
+
+//var hyperlinkDash = "KPIPivot.xcdf";
+//
+// Set title for Content
+//
+var finTitle = "Orders for <i>";
+</script>
+
+<!--
+**************************** Set all parameters
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!--
+**************************** Set up queries for content charts.  Last 2 digits are coordinates of chart.
+  -->
+<script language="javascript" type="text/javascript">
+
+ function queryOrderC(){
+	return  "WITH MEMBER [Measures].[Order Gross] as 'IIf(IsEmpty([Measures].[Amount, Order Gross]), 0.000, [Measures].[Amount, Order Gross])'"
+			+ " MEMBER Measures.[prevKPI] AS ([Measures].[Amount, Order Gross] , ParallelPeriod([Order Date.Calendar].[" + Dashboards.storage.yearPeriod.slice(0,4) + "]))" 
+			+ " MEMBER [Measures].[Order Gross Previous Year] AS iif(Measures.[prevKPI] = 0 or Measures.[prevKPI] = NULL or IsEmpty(Measures.[prevKPI]), 0.000, Measures.[prevKPI] )" 
+			+ " select NON EMPTY {[Measures].[Order Gross], [Measures].[Order Gross Previous Year]} ON COLUMNS,"
+			+ " LastPeriods(12, [Order Date.Calendar].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS"
+			+ " from [SOOrder]"
+			+ " where ("
+					+ " ([Customer.Customer Code].[" + Dashboards.storage.customer + "],"
+					+ " [Product.Product by Class].[" + Dashboards.storage.productClass + "],"
+					+ " [Product.Product by Category].[" + Dashboards.storage.productCategory + "],"
+					+ " [Account Rep.Account Reps by Code].[" + Dashboards.storage.accountRep + "],"
+					+ " [Ship City.Ship Region].[" + Dashboards.storage.shipRegion + "],"
+					+ " [Product.Product Code].[" + Dashboards.storage.productCode+ "]))";
+		}
+		
+ function queryDeliveriesC(){
+	return  "WITH MEMBER [Measures].[Profit] as 'IIf(IsEmpty([Measures].[Amount, Profit Gross]), 0.000, [Measures].[Amount, Profit Gross])'"
+			+ " MEMBER Measures.[prevKPIP] AS ([Measures].[Amount, Profit Gross] , ParallelPeriod([Delivery Date.Calendar].[" + Dashboards.storage.yearPeriod.slice(0,4) + "]))" 
+			+ " MEMBER [Measures].[Profit Previous Year] AS iif(Measures.[prevKPIP] = 0 or Measures.[prevKPIP] = NULL or IsEmpty(Measures.[prevKPIP]), 0.000, Measures.[prevKPIP] )" 
+			+ " select NON EMPTY {[Measures].[Profit], [Measures].[Profit Previous Year]} ON COLUMNS,"
+			+ " LastPeriods(12, [Delivery Date.Calendar].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS"
+			+ " from [SODelivery]"
+			+ " where ("
+					+ " ([Customer.Customer Code].[" + Dashboards.storage.customer + "],"
+					+ " [Product.Product by Class].[" + Dashboards.storage.productClass + "],"
+					+ " [Product.Product by Category].[" + Dashboards.storage.productCategory + "],"
+					+ " [Account Rep.Account Reps by Code].[" + Dashboards.storage.accountRep + "],"
+					+ " [Ship City.Ship Region].[" + Dashboards.storage.shipRegion + "],"
+					+ " [Product.Product Code].[" + Dashboards.storage.productCode+ "]))";
+		}
+	
+ function queryUnfulfilledC(){
+	return  "WITH MEMBER [Measures].[Orders Unfulfilled] as 'IIf(IsEmpty([Measures].[Balance, Orders Unfulfilled]), 0.000, [Measures].[Balance, Orders Unfulfilled])'"
+			+ " MEMBER Measures.[prevKPI] AS ([Measures].[Balance, Orders Unfulfilled] , ParallelPeriod([Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "]))" 
+			+ " MEMBER [Measures].[Orders Unfulfilled Previous Year] AS iif(Measures.[prevKPI] = 0 or Measures.[prevKPI] = NULL or IsEmpty(Measures.[prevKPI]), 0.000, Measures.[prevKPI] )" 
+			+ " select NON EMPTY {[Measures].[Orders Unfulfilled], [Measures].[Orders Unfulfilled Previous Year]} ON COLUMNS,"
+			+ " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS"
+			+ " from [SOByPeriod]"
+			+ " where ("
+					+ " ([Customer.Customer Code].[" + Dashboards.storage.customer + "],"
+					+ " [Product.Product by Class].[" + Dashboards.storage.productClass + "],"
+					+ " [Product.Product by Category].[" + Dashboards.storage.productCategory + "],"
+					+ " [Account Rep.Account Reps by Code].[" + Dashboards.storage.accountRep + "],"
+					+ " [Ship City.Ship Region].[" + Dashboards.storage.shipRegion + "],"
+					+ " [Product.Product Code].[" + Dashboards.storage.productCode+ "]))";
+		}		
+		
+function queryOrderChangeDial(){
+			var query =   'WITH MEMBER [Measures].[prevperiod] AS ParallelPeriod([Order Date.Calendar].[Year], 1, '
+						+ '[Order Date.Calendar].[' + Dashboards.storage.yearPeriod.slice(0,4) + '].[' + Dashboards.storage.yearPeriod.substr(6) +'])'
+						+ ' MEMBER [Measures].[prevamount] AS iif([Measures].[prevperiod] = 0 or [Measures].[prevperiod] = NULL or IsEmpty([Measures].[prevperiod] ),'
+						+ '[Order Date.Calendar].[' + Dashboards.storage.yearPeriod.slice(0,4) + '].[' + Dashboards.storage.yearPeriod.substr(6) +'],'
+						+ '[Measures].[prevperiod])'
+						+ ' MEMBER [Measures].[percent] AS (([Measures].[Amount, Order Gross] / [Measures].[prevamount])*100), FORMAT_STRING = "#,###.00"'
+						+ ' SELECT NON EMPTY ([Measures].[percent]) ON COLUMNS,'
+						+ ' ([Order Date.Calendar].[' + Dashboards.storage.yearPeriod.slice(0,4) + '].[' + Dashboards.storage.yearPeriod.substr(6) + ']) ON ROWS'
+						+ ' from [SOOrder]' 
+						+ ' where ([Customer.Customer Code].[' + Dashboards.storage.customer + '],'
+						+ '[Product.Product by Class].[' + Dashboards.storage.productClass + '],'
+						+ " [Product.Product by Category].[" + Dashboards.storage.productCategory + "],"
+						+ " [Account Rep.Account Reps by Code].[" + Dashboards.storage.accountRep + "],"
+						+ " [Ship City.Ship Region].[" + Dashboards.storage.shipRegion + "],"
+						+ '[Product.Product Code].[' + Dashboards.storage.productCode + '])';
+			return query;
+		}
+		
+function queryProfitDial(){
+			var query =  "select NON EMPTY ([Measures].[Percentage, Gross Margin]) ON COLUMNS,"
+						+ " ([Delivery Date].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS"
+						+ " from [SODelivery]" 
+						+ " where ([Customer.Customer Code].[" + Dashboards.storage.customer + "],"
+						+ "[Product.Product by Class].[" + Dashboards.storage.productClass + "],"
+						+ " [Product.Product by Category].[" + Dashboards.storage.productCategory + "],"
+						+ " [Account Rep.Account Reps by Code].[" + Dashboards.storage.accountRep + "],"
+						+ " [Ship City.Ship Region].[" + Dashboards.storage.shipRegion + "],"
+						+ "[Product.Product Code].[" + Dashboards.storage.productCode + "])";
+			return query;
+		}
+function queryO2DDial(){
+			var query =  "select NON EMPTY ([Measures].[Days, Order to Delivery]) ON COLUMNS,"
+						+ " ([Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS"
+						+ " from [SOByPeriod]" 
+						+ " where ([Customer.Customer Code].[" + Dashboards.storage.customer + "],"
+						+ "[Product.Product by Class].[" + Dashboards.storage.productClass + "],"
+						+ " [Product.Product by Category].[" + Dashboards.storage.productCategory + "],"
+						+ " [Account Rep.Account Reps by Code].[" + Dashboards.storage.accountRep + "],"
+						+ " [Ship City.Ship Region].[" + Dashboards.storage.shipRegion + "],"
+						+ "[Product.Product Code].[" + Dashboards.storage.productCode + "])";
+			return query;
+		}
+		
+</script>
+
+<!--
+**************************** Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/SODashboards/socategorycontent.js"></script>
+
+<!--
+**************************** Generate the content table
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/SODashboards/socategoryhtml.js"></script>		
+

@@ -1,0 +1,255 @@
+<script language="javascript" type="text/javascript">
+//
+// The series name clicked was placed in a parameter by contentcategory.js.  Get the series
+// and construct the measures for the title and pivot query.
+//
+
+var queryMeasure = "";
+var seriesCalc = "";
+var series = urlParm("seriesCategory");
+
+</script>
+
+<!--
+**************************** Set all parameters
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!--
+**************************** Generate Content
+  -->
+
+<script language="javascript" type="text/javascript">
+switch(series)
+{
+  	case "Amount, Sales Income Budget":
+  		series = "Amount, Sales Income";
+  	break;
+	case "Amount, Other Income Budget":
+		series = "Amount, Other Income";
+	break;
+	case "Amount, Cost of Goods Sold Budget (IS)":
+		series = "Amount, Cost of Goods Sold (IS)";
+	break;
+	case "Amount, Operating Expenses Budget":
+		series = "Amount, Operating Expenses";
+	break;
+	case "Amount, Net Cash Flow Budget (CF)":
+		series = "Amount, Net Cash Flow (CF)";
+	break;
+	case "Days, Cash Conversion Cycle Budget":
+		series = "Days, Cash Conversion Cycle";
+ }
+	  	
+switch(series)
+{
+  	case "Amount, Sales Income":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Sales Income] AS [Measures].[Amount, Sales Income]" +
+						" MEMBER [Measures].[Sales Income Budget] AS [Measures].[Amount, Sales Income Budget]" +
+						" MEMBER [Measures].[Variance] AS ([Measures].[Sales Income] - [Measures].[Sales Income Budget]) " +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Sales Income], [Measures].[Sales Income Budget], [Measures].[Variance]}";
+		seriesCalc = "";
+		break;
+	case "Amount, Other Income":
+		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Other Income] AS [Measures].[Amount, Other Income]" +
+						" MEMBER [Measures].[Other Income Budget] AS [Measures].[Amount, Other Income Budget]" +
+						" MEMBER [Measures].[Variance] AS ([Measures].[Other Income] - [Measures].[Other Income Budget]) " +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Other Income], [Measures].[Other Income Budget], [Measures].[Variance]}";
+		seriesCalc = "";
+		break;
+	case "Amount, Cost of Goods Sold (IS)":
+		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Cost of Goods Sold] AS [Measures].[Amount, Cost of Goods Sold (IS)]" +
+						" MEMBER [Measures].[Cost of Goods Sold Budget] AS [Measures].[Amount, Cost of Goods Sold Budget (IS)]" +
+						" MEMBER [Measures].[Variance] AS ([Measures].[Cost of Goods Sold] - [Measures].[Cost of Goods Sold Budget]) " +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Cost of Goods Sold], [Measures].[Cost of Goods Sold Budget], [Measures].[Variance]}";
+		seriesCalc = "";
+		break;
+	case "Amount, Operating Expenses":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Operating Expenses] AS [Measures].[Amount, Operating Expenses]" +
+						" MEMBER [Measures].[Operating Expenses Budget] AS [Measures].[Amount, Operating Expenses Budget]" +
+						" MEMBER [Measures].[Variance] AS ([Measures].[Operating Expenses] - [Measures].[Operating Expenses Budget]) " +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Operating Expenses], [Measures].[Operating Expenses Budget], [Measures].[Variance]}";
+		seriesCalc = "";
+		break;
+	case "Amount, Net Cash Flow (CF)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Net Cash Flow] AS [Measures].[Amount, Net Cash Flow (CF)]" +
+						" MEMBER [Measures].[Net Cash Flow Budget] AS [Measures].[Amount, Net Cash Flow Budget (CF)]" +
+						" MEMBER [Measures].[Variance] AS ([Measures].[Net Cash Flow] - [Measures].[Net Cash Flow Budget]) " +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Net Cash Flow], [Measures].[Net Cash Flow Budget], [Measures].[Variance] }";
+		seriesCalc = "";
+		break;
+	case "Days, Cash Conversion Cycle":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Cash Conversion Cycle] AS [Measures].[Days, Cash Conversion Cycle]" +
+						" MEMBER [Measures].[Cash Conversion Cycle Budget] AS [Measures].[Days, Cash Conversion Cycle Budget]" +
+						" MEMBER [Measures].[Variance] AS ([Measures].[Cash Conversion Cycle] - [Measures].[Cash Conversion Cycle Budget]) " +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Cash Conversion Cycle], [Measures].[Cash Conversion Cycle Budget], [Measures].[Variance]}";
+		seriesCalc = "";
+		break;
+
+	default:
+		seriesCalc = "";
+  		alert ("measure not yet defined in budgetTemplate.html");
+}
+
+var dashTitle = 
+{
+	name: "dashTitle",
+	type: "textComponent",
+  	listeners:[	"Dashboards.storage.yearPeriod", 
+  				"Dashboards.storage.company", 
+  				"Dashboards.storage.profitCenter"], 
+	expression: function(){return "Budget Comparison for <i>" + series + "</i> for <i>" + Dashboards.storage.yearPeriod + "</i><br>" +
+								"Company: <i>" + Dashboards.storage.company + "</i>,  Profit Center: <i>" + Dashboards.storage.profitCenter + "</i>";
+						  },
+	htmlObject: "dashTitle",
+	executeAtStart: true
+};
+
+var KPIBarChartMeta =  { 
+	chart : {
+		width: 350,
+		height: 200,
+		chartType: "BarChart",
+		queryType: 'mdx',
+		jndi: "erpi",
+		title: "",
+		catalog: "solution:admin/ERPI_SO_Schema.xml",
+		backgroundColor: "#EEE9E9",
+		is3d: "true",
+		query: function(){
+			return '  WITH MEMBER Measures.[prevSeries] AS ([Measures].[' + series + '] , ParallelPeriod([Fiscal Period.Fiscal Period CL].[' + Dashboards.storage.yearPeriod.slice(0,4) + ']))' +
+					'    MEMBER [Measures].[prevSeriesAmount] AS iif(Measures.[prevSeries] = 0 or Measures.[prevSeries] = NULL or IsEmpty(Measures.[prevSeries] ),[Measures].[' + series + '], Measures.[prevSeries] )' +
+					'    MEMBER [Measures].[Percent Increase] AS (([Measures].[' + series + '] / [Measures].[prevSeriesAmount])*100 - 100), FORMAT_STRING = "#,###.00"' +
+					' SELECT NON EMPTY {[Measures].[Percent Increase]} ON COLUMNS,' +
+					' LastPeriods(12.0, [Fiscal Period.Fiscal Period CL].[' + Dashboards.storage.yearPeriod.slice(0,4) + '].[' + Dashboards.storage.yearPeriod.substr(6) + ']) ON ROWS' +
+					' FROM [GLFactsByPeriod]' +
+					' WHERE (' +
+					'     [Company].[' + Dashboards.storage.company + '],' +
+					'     [Ledger].[All Ledgers],' +
+					'     [Profit Center].[' + Dashboards.storage.profitCenter + '])';
+		}
+	}
+};
+
+var KPIBarChart = 
+	{
+		name: "KPIBarChart",
+		type: "jFreeChartComponent",
+		chartDefinition: KPIBarChartMeta.chart,
+  		listeners:[	"Dashboards.storage.yearPeriod", 
+  					"Dashboards.storage.company", 
+  					"Dashboards.storage.profitCenter"], 
+  		htmlObject: "kpibarchart",
+		executeAtStart: true,
+	};
+	
+var accountLinks = 
+{
+  name: "accountLinks",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "GLPivots",
+  action: "budgetAccountLinks.prpt",
+  listeners:["Dashboards.storage.yearPeriod", 
+  			"Dashboards.storage.company", 
+  			"Dashboards.storage.profitCenter"], 
+  parameters: [
+  			["YEAR", "Dashboards.storage.yearPeriod.slice(0,4)"],
+  			["COMPANY","Dashboards.storage.company"], 
+  			["PROFITCENTER","Dashboards.storage.profitCenter"],
+  			["KPI","series"]
+   			],
+  htmlObject: "accountLinks",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var KPIPivot = 
+{
+  name: "KPIPivot",
+  type: "jpivot",
+  solution: "erpbi-reports",
+  path: "GLPivots",
+  action: "budget.analysisview.xaction",
+  listeners:[ "Dashboards.storage.profitCenter", 
+  			"Dashboards.storage.company", 
+  			"Dashboards.storage.yearPeriod"
+  			],
+  parameters: [["PROFITCENTER","Dashboards.storage.profitCenter"], 
+  			["COMPANY","Dashboards.storage.company"], 
+  			["YEAR","Dashboards.storage.yearPeriod.slice(0,4)"],
+  			["MEASURES","queryMeasure"]
+  			],
+  iframeHeight: "1100px",
+  iframeWidth: "750px",
+  iframeScrolling: "auto",
+  htmlObject: "KPIPivot",
+  executeAtStart: "true",
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var components = 
+[	
+	yearPeriodSelector,
+	companySelector,
+	profitCenterSelector,
+	KPIBarChart,
+	accountLinks,
+	KPIPivot,
+	extractDateXAction,
+	dashTitle
+];
+
+function load()	{
+	Dashboards.init(components);
+}
+
+loadTree();
+load();
+document.close();
+
+</script>
+
+<!--
+**************************** HTML for content DIV
+  -->
+<div id="dashTitle" class="titles" align="center">
+</div>
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div id="kpibarchart"></div></td>
+					<td valign="top"><div style="height:200px;width:300px;" id="accountLinks"></div></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td class= "titles" valign="top"> 
+						<script language="javascript" type="text/javascript"> 
+						document.write(seriesCalc);
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" bgcolor=#B0C4DE><div id="KPIPivot" ></div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

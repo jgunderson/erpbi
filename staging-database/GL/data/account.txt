@@ -1,0 +1,78 @@
+ACCOUNT_NK;NAME;TYPE;SUBTYPE;CFTYPE
+01-01-1000-01;01-01-1000-01;Asset;Cash Assets;
+01-01-1010-01;01-01-1010-01;Asset;Cash Assets;
+01-01-1020-01;01-01-1020-01;Asset;Cash Assets;
+01-01-1100-01;01-01-1100-01;Asset;Accounts Receivable;Net Receivables
+01-01-1210-01;01-01-1210-01;Asset;Inventory;Inventory
+01-01-1215-01;01-01-1215-01;Asset;Inventory;Inventory
+01-01-1220-01;01-01-1220-01;Asset;Inventory;Inventory
+01-01-1230-01;01-01-1230-01;Asset;Inventory;Inventory
+01-01-1250-01;01-01-1250-01;Asset;Inventory;Inventory
+01-01-1260-01;01-01-1260-01;Asset;Inventory;Inventory
+01-01-1280-01;01-01-1280-01;Asset;Inventory;Inventory
+01-01-1400-01;01-01-1400-01;Asset;Current Assets;Changes in Current Assets
+01-01-1450-01;01-01-1450-01;Asset;Inventory;Inventory
+01-01-1460-01;01-01-1460-01;Asset;Inventory;Inventory
+01-01-1470-01;01-01-1470-01;Asset;Inventory;Inventory
+01-01-1500-01;01-01-1500-01;Asset;Fixed Assets;Property Plant and Equipment
+01-01-1600-01;01-01-1600-01;Asset;Accumulated Depreciation;
+01-01-1930-01;01-01-1930-01;Asset;Inventory;Inventory
+01-01-1950-01;01-01-1950-01;Asset;Inventory;Inventory
+01-01-2000-01;01-01-2000-01;Liability;Accounts Payable;Accounts Payable
+01-01-2210-01;01-01-2210-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2320-01;01-01-2320-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2330-01;01-01-2330-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2360-01;01-01-2360-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2365-01;01-01-2365-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2370-01;01-01-2370-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2440-01;01-01-2440-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2450-01;01-01-2450-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2460-01;01-01-2460-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2470-01;01-01-2470-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2480-01;01-01-2480-01;Liability;Current Liabilities;Change in Current Liability
+01-01-2700-01;01-01-2700-01;Liability;Long Term Liabilities;Long Term Debt
+01-01-3010-01;01-01-3010-01;Equity;Equity do not close;Common Stock and Equity
+01-01-3030-01;01-01-3030-01;Equity;Equity Retained Earnings;Common Stock and Equity
+01-01-3040-01;01-01-3040-01;Equity;Equity do not close;Common Stock and Equity
+01-01-4000-01;01-01-4000-01;Revenue;Sales Income;
+01-01-4005-01;01-01-4005-01;Revenue;Sales Income;
+01-01-4010-01;01-01-4010-01;Revenue;Sales Income;
+01-01-4050-01;01-01-4050-01;Revenue;Other Income;
+01-01-4060-01;01-01-4060-01;Revenue;Other Income;
+01-01-4700-01;01-01-4700-01;Revenue;Sales Income;
+01-01-4800-01;01-01-4800-01;Revenue;Other Income;
+01-01-4810-01;01-01-4810-01;Revenue;Other Income;
+01-01-4900-01;01-01-4900-01;Revenue;Other Income;
+01-01-4950-01;01-01-4950-01;Revenue;Sales Income;
+01-01-5000-01;01-01-5000-01;Expense;Cost of Goods Sold;
+01-01-5710-01;01-01-5710-01;Expense;Cost of Goods Sold;
+01-01-5720-01;01-01-5720-01;Expense;Cost of Goods Sold;
+01-01-6000-01;01-01-6000-01;Expense;Expenses;
+01-01-6020-01;01-01-6020-01;Expense;Expenses;
+01-01-6050-01;01-01-6050-01;Expense;Expenses;
+01-01-6060-01;01-01-6060-01;Expense;Expenses;
+01-01-6070-01;01-01-6070-01;Expense;Expenses;
+01-01-6100-01;01-01-6100-01;Expense;Expenses;
+01-01-6150-01;01-01-6150-01;Expense;Expenses;
+01-01-6200-01;01-01-6200-01;Expense;Expenses;
+01-01-6400-01;01-01-6400-01;Expense;Depreciation Expense;Charges Not Using Cash
+01-01-6550-01;01-01-6550-01;Expense;Expenses;
+01-01-6750-01;01-01-6750-01;Expense;Expenses;
+01-01-8910-01;01-01-8910-01;Expense;Expenses;
+01-01-8920-01;01-01-8920-01;Expense;Expenses;
+01-01-8930-01;01-01-8930-01;Expense;Expenses;
+01-01-8980-01;01-01-8980-01;Expense;Expenses;
+01-01-8990-01;01-01-8990-01;Expense;Expenses;
+01-01-8995-01;01-01-8995-01;Expense;Expenses;
+01-02-1050-01;01-02-1050-01;Asset;Cash Assets;
+01-02-1240-01;01-02-1240-01;Asset;Inventory;Inventory
+01-02-4000-01;01-02-4000-01;Revenue;Sales Income;
+01-02-4002-01;01-02-4002-01;Revenue;Sales Income;
+01-02-4700-01;01-02-4700-01;Revenue;Sales Income;
+01-02-4800-01;01-02-4800-01;Revenue;Other Income;
+01-02-5000-01;01-02-5000-01;Expense;Cost of Goods Sold;
+01-02-5710-01;01-02-5710-01;Expense;Cost of Goods Sold;
+01-02-5720-01;01-02-5720-01;Expense;Cost of Goods Sold;
+01-02-8910-01;01-02-8910-01;Expense;Expenses;
+01-02-8920-01;01-02-8920-01;Expense;Expenses;
+01-02-8940-01;01-02-8940-01;Expense;Expenses;

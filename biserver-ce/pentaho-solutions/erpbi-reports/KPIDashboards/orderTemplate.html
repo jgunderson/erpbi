@@ -1,0 +1,45 @@
+<!--
+***************************** Settings for this dashboard
+  -->
+
+<script language="javascript" type="text/javascript">
+var cube = "SOOrder";
+var timedim = "Order Date.Calendar";
+var timedimagg = "[last12]";
+
+//
+//  We have to set Dashboards.storage.kpi here as the KPI depends
+//  on the cube
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Amount, Order Gross";}
+if (Dashboards.storage.kpi != "Amount, Order Gross" && Dashboards.storage.kpi != "Count, Orders" && Dashboards.storage.kpi != "Average, Order Gross" )
+	{Dashboards.storage.kpi = "Amount, Order Gross";}
+Dashboards.saveStorage();
+
+//
+//  Set the url template function for line chart and bar chart
+//
+function openByDimWindow(seriesCategory){
+	window.open("RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=orderByDim.xcdf&template=mantle&seriesCategory=" + seriesCategory);
+};
+
+//
+//  Set the title
+//
+var kpiTitle = "</i> for Orders in <i>";
+var hyperlinkPivot = "SOPivotsorderForDim";
+var hyperlinkWkDash ="orderKPIDashWeek.xcdf";
+
+</script>
+
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!-- Define charts and render -->
+
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/content.js"></script>
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/categoryhtml.js"></script>	
+

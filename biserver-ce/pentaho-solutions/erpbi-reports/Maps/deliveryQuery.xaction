@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<action-sequence> 
+  <name>LineChart3.xaction</name>
+  <title>Delivery Query</title>
+  <version>1</version>
+  <logging-level>TRACE</logging-level>
+  <documentation> 
+    <author/>  
+    <description>Delivery Query</description>  
+    <help/>  
+    <result-type/>  
+    <icon/> 
+  </documentation>
+
+  <inputs> 
+    <YEAR type="string"> 
+      <sources> 
+        <request>YEAR</request> 
+      </sources>  
+      <default-value><![CDATA[2007]]></default-value> 
+    </YEAR>  
+    <CUSTOMER type="string"> 
+      <sources> 
+        <request>CUSTOMER</request> 
+      </sources>  
+      <default-value><![CDATA[All Customers by Code]]></default-value> 
+    </CUSTOMER>  
+    <PRODUCTCLASS type="string"> 
+      <sources> 
+        <request>PRODUCTCLASS</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Class]]></default-value> 
+    </PRODUCTCLASS>  
+    <PRODUCTCODE type="string"> 
+      <sources> 
+        <request>PRODUCTCODE</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Code]]></default-value> 
+    </PRODUCTCODE>  
+    <PERIOD type="string"> 
+      <sources> 
+        <request>PERIOD</request> 
+      </sources>  
+      <default-value><![CDATA[12]]></default-value> 
+    </PERIOD>  
+    <KPI type="string"> 
+      <sources> 
+        <request>KPI</request> 
+      </sources>  
+      <default-value><![CDATA[Amount, Order Gross]]></default-value> 
+    </KPI>  
+    <TIMEDIM type="string"> 
+      <sources> 
+        <request>TIMEDIM</request> 
+      </sources>  
+      <default-value><![CDATA[Delivery Date.Calendar]]></default-value> 
+    </TIMEDIM>  
+    <CUBE type="string"> 
+      <sources> 
+        <request>CUBE</request> 
+      </sources>  
+      <default-value><![CDATA[SODelivery]]></default-value> 
+    </CUBE>  
+    <CITYTYPE type="string"> 
+      <sources> 
+        <request>CITYTYPE</request> 
+      </sources>  
+      <default-value><![CDATA[Ship City]]></default-value> 
+    </CITYTYPE>  
+    <PRODUCTCATEGORY type="string"> 
+      <sources> 
+        <request>PRODUCTCATEGORY</request> 
+      </sources>  
+      <default-value><![CDATA[All Products by Category]]></default-value> 
+    </PRODUCTCATEGORY>  
+    <ACCOUNTREP type="string"> 
+      <sources> 
+        <request>ACCOUNTREP</request> 
+      </sources>  
+      <default-value><![CDATA[All Account Reps by Code]]></default-value> 
+    </ACCOUNTREP> 
+  </inputs>
+
+  <outputs> 
+    <!--query_result/-->  
+    <results type="result-set"/> 
+  </outputs>
+
+  <resources> 
+    <catalog> 
+      <solution-file> 
+        <location>\..\admin\ERPI_SO_Schema.xml</location>  
+        <mime-type>text/plain</mime-type> 
+      </solution-file> 
+    </catalog> 
+  </resources>
+  
+  <actions> 
+    <action-definition> 
+      <component-name>MDXLookupRule</component-name>
+      <action-type>OLAP</action-type>
+      <action-inputs> 
+        <CUSTOMER type="string"/>  
+        <PRODUCTCODE type="string"/>  
+        <YEAR type="string"/>  
+        <CUBE type="string"/>  
+        <KPI type="string"/>  
+        <PRODUCTCLASS type="string"/>  
+        <TIMEDIM type="string"/>  
+        <CITYTYPE type="string"/>  
+        <PERIOD type="string"/>  
+        <PRODUCTCATEGORY type="string"/>  
+        <ACCOUNTREP type="string"/> 
+      </action-inputs>
+      <action-resources> 
+        <catalog type="resource"/> 
+      </action-resources>
+      <action-outputs> 
+        <query-results type="result-set" mapping="query_result"/> 
+      </action-outputs>
+      <component-definition> 
+        <jndi><![CDATA[erpi]]></jndi>  
+        <location><![CDATA[mondrian]]></location>  
+        <query><![CDATA[WITH 
+
+MEMBER Measures.[Longitude] AS 
+' iif ([Measures].[{KPI}] is empty, null, [{CITYTYPE}].[City Name].CurrentMember.Properties("Longitude"))',
+format_string="###.0000000"
+     
+MEMBER Measures.[Latitude] AS 
+' iif ([Measures].[{KPI}] is empty, null, [{CITYTYPE}].[City Name].CurrentMember.Properties("Latitude"))',
+format_string="###.0000000"
+
+MEMBER [Measures].[Name] AS 
+' iif ([Measures].[{KPI}] is empty, null, [{CITYTYPE}].[City  Name].CurrentMember.Properties("Name"))',
+ format_string = "###.0000000"
+
+
+select 
+
+NON EMPTY { [Measures].[Latitude],
+		[Measures].[Longitude],
+		[Measures].[Name],
+		[Measures].[{KPI}]
+	  } ON COLUMNS,
+NON EMPTY {
+    		{[{CITYTYPE}].[City Name].Members}
+	  }    ON ROWS  
+
+from [{CUBE}]
+where 
+(
+	[Customer.Customer Code].[{CUSTOMER}],
+	[Product.Product by Class].[{PRODUCTCLASS}],
+      	[Product.Product Code].[{PRODUCTCODE}],
+	[Product.Product by Category].[{PRODUCTCATEGORY}],
+       [Account Rep.Account Reps by Code].[{ACCOUNTREP}],
+      	[{TIMEDIM}].[{YEAR}].[{PERIOD}]
+)]]></query> 
+      </component-definition> 
+    </action-definition>
+  
+    <action-definition> 
+      <component-name>JavascriptRule</component-name>
+      <action-type>JavaScript</action-type>
+      <action-inputs> 
+        <query_result type="result-set"/> 
+      </action-inputs>
+      <action-outputs> 
+        <results type="result-set"/> 
+      </action-outputs>
+      <component-definition> 
+        <script><![CDATA[var results = new JavaScriptResultSet();
+results.setColumnHeaders( 'id', 'lat', 'log', 'localidade', 'value' );
+var i = 0;
+for ( i = 0 ; i < query_result.getRowCount() ; i++ )
+{
+   results.addRow( new Array(
+	i,
+	query_result.getValueAt(i, 0),
+	query_result.getValueAt(i, 1),
+	query_result.getValueAt(i, 2),
+	query_result.getValueAt(i, 3)));
+}]]></script> 
+      </component-definition> 
+    </action-definition>
+ 
+  </actions> 
+</action-sequence>

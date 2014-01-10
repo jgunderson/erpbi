@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Income Dashboard</title>
+	<description>Dashboard</description>
+	<icon></icon>
+	<template>incomeTemplate.html</template>
+	<style>GLCategoryMantle</style>
+</cdf>

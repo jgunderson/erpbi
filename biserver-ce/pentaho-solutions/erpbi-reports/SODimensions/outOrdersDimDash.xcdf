@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Order Fulfillment Dimension Dashboard</title>
+	<description>Order Fulfillment Dimension Dashboard</description>
+	<icon></icon>
+	<template>outOrdersDimTemplate.html</template>
+	<style>SODimOutOrdersMantle</style>
+</cdf>

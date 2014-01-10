@@ -1,0 +1,56 @@
+<!--
+***************************** Settings for this dashboard
+  -->
+
+<script language="javascript" type="text/javascript">
+
+var cube = "SOByPeriod";
+var timedim = "Fiscal Period.Fiscal Period CL";
+//
+//  We have to set Dashboards.storage.kpi here as the KPI
+//  depends on the cube
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Balance, Orders Unfulfilled";}
+if (Dashboards.storage.kpi != "Amount, Delivery Gross" && 
+	Dashboards.storage.kpi != "Amount, Cost Gross" && 
+	Dashboards.storage.kpi != "Amount, Order Gross" && 
+	Dashboards.storage.kpi != "Balance, Orders Unfulfilled" && 
+	Dashboards.storage.kpi != "Days, Order to Delivery" && 
+	Dashboards.storage.kpi != "Count, Orders" &&
+	Dashboards.storage.kpi != "Interest, O2D Impact")
+{Dashboards.storage.kpi = "Balance, Orders Unfulfilled";}
+Dashboards.saveStorage();
+
+//
+// Set the aggregate to use for the trailing 12 periods.  Note that the Aggregate function works with sums 
+// and counts but it does not work with calculated measures.
+//
+var timedimaggregate = "[period]";
+
+//
+//  Set the title, report for pie chart links and report for week link
+//
+var kpiTitle = "</i> for Unfulfilled Orders in 12 trailing periods from <i>";
+var hyperlinkByDim ="outOrdersByDim.xcdf";
+
+
+//
+//  Define the hyperlink for bar charts
+//
+function openForDimWindow(parm){
+	window.open("RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=outOrdersForDim.xcdf&template=mantle" + parm );
+};
+
+</script>
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/SODimensions/dimCategoryhtml.js"></script>	
+<!--
+  -- Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/SODimensions/dimContent.js"></script>
+

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Cash Flow Dashboard</title>
+	<description>Cash Flow Dashboard</description>
+	<icon></icon>
+	<template>cashTemplate.html</template>
+	<style>GLCategoryMantle</style>
+</cdf>

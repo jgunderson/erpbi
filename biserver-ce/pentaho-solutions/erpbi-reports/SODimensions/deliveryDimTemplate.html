@@ -1,0 +1,62 @@
+<!--
+***************************** Settings for this dashboard
+  -->
+
+<script language="javascript" type="text/javascript">
+var cube = "SODelivery";
+var timedim = "Delivery Date.Calendar";
+
+var cube = "SODelivery";
+var timedim = "Delivery Date.Calendar";
+//
+//  We have to set Dashboards.storage.kpi here as the KPIs depend on 
+//  on the cube.  
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Amount, Delivery Gross";}
+if (Dashboards.storage.kpi != "Amount, Delivery Gross" && 
+	Dashboards.storage.kpi != "Amount, Cost Gross" && 
+	Dashboards.storage.kpi != "Amount, Profit Gross" &&
+	Dashboards.storage.kpi != "Average, Delivery Gross" && 
+	Dashboards.storage.kpi != "Average, Cost Gross" && 
+	Dashboards.storage.kpi != "Average, Profit Gross" && 
+	Dashboards.storage.kpi != "Count, Deliveries" &&
+	Dashboards.storage.kpi != "Count, Orders" &&
+	Dashboards.storage.kpi != "Ratio, Gross Profit Margin")
+{Dashboards.storage.kpi = "Amount, Delivery Gross";}
+Dashboards.saveStorage();
+
+//
+// Set the aggregate to use for the trailing 12 periods.  Note that the Aggregate function works with sums 
+// and counts but it does not work with calculated measures.
+//
+var timedimaggregate = "[last12]";
+
+//
+//  Set the title, report for pie chart links and report for week link
+//
+var kpiTitle = "</i> for Deliveries in 12 trailing periods from <i>";
+var hyperlinkByDim ="deliveryByDim.xcdf";
+var hyperlinkOrdrWkDash ="deliveryKPIDashWeek.xcdf";
+
+//
+//  Define the hyperlink for bar charts
+//
+function openForDimWindow(parm){
+	window.open("RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=deliveryForDim.xcdf&template=mantle" + parm );
+};
+
+</script>
+
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/SODimensions/dimCategoryhtml.js"></script>	
+<!--
+  -- Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/SODimensions/dimContent.js"></script>
+

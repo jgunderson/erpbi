@@ -1,0 +1,79 @@
+<!--
+***************************** Settings for this dashboard
+  -->
+  
+<script language="javascript" type="text/javascript">
+//
+// Set Column Names for Content Charts
+//
+var column1 = "Revenue, Expenses";
+var column2 = "Income";
+var column3 = "Margins";
+//
+// Set the dashboard name to be called from hyperlinks
+//
+var hyperlinkDash = "KPIPivot.xcdf";
+//
+// Set title for Content
+//
+var finTitle = "Profitability for <i>";
+</script>
+
+<!--
+**************************** Set all parameters
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!--
+**************************** Set up queries for content charts.  Last 2 digits are coordinates of chart.
+  -->
+<script language="javascript" type="text/javascript">
+
+function query1(theKPI)	{
+	return "SELECT NON EMPTY {[Measures].[" + theKPI + "]} ON COLUMNS," +
+            " ([Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query2(theKPI)	{
+	return "SELECT NON EMPTY {[Measures].[" + theKPI + "]} ON COLUMNS," +
+            " ([Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+ function query3(theKPI, theKPITarget){
+	return  "WITH MEMBER [Measures].[KPI] as 'IIf(IsEmpty([Measures].[" + theKPI + "]), 0.000, [Measures].[" + theKPI + "])'"
+			+ " MEMBER Measures.[prevKPI] AS ([Measures].[" + theKPI + "] , ParallelPeriod([Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "]))" 
+			+ " MEMBER [Measures].[Previous Year KPI] AS iif(Measures.[prevKPI] = 0 or Measures.[prevKPI] = NULL or IsEmpty(Measures.[prevKPI]), 0.000, Measures.[prevKPI] )" 
+			+ " MEMBER [Measures].[Target] AS " + theKPITarget
+			+ " select NON EMPTY {[Measures].[KPI], [Measures].[Previous Year KPI], [Measures].[Target]} ON COLUMNS,"
+			+ " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS"
+			+ " from [GLAccountByPeriod]"
+			+ " where ("
+      		+ "       [Company].[" + Dashboards.storage.company + "],"
+      		+ "       [Ledger].[All Ledgers],"
+      		+ "       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+		}
+
+
+
+</script>
+
+<!--
+**************************** Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/GLDashboards/topcontent.js"></script>	
+
+<!--
+**************************** Generate the content table
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/GLDashboards/tophtml.js"></script>	
+

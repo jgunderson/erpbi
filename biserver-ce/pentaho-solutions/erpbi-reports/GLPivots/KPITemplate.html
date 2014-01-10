@@ -1,0 +1,468 @@
+<script language="javascript" type="text/javascript"> 
+//
+// The series name clicked was placed in a parameter by contentcategory.js.  Get the series
+// and construct the measures for the title and pivot query.
+//
+
+var queryMeasure = "";
+var seriesCalc = "";
+var series = urlParm("seriesCategory");
+
+</script>
+
+<!--
+**************************** Set all parameters
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!--
+**************************** Generate Content
+  -->
+<script language="javascript" type="text/javascript">
+switch(series)
+{
+	case "Amount, Cost of Goods Sold (IS)":
+  		queryMeasure = 	" WITH " + 
+						" MEMBER [Measures].[Cost of Goods Sold] AS [Measures].[Amount, Cost of Goods Sold (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Cost of Goods Sold]}";
+		seriesCalc = "Cost of Goods Sold";
+  		break;
+  	case "Amount, Gross Income (IS)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Gross Income] AS [Measures].[Amount, Gross Income (IS)]" +
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" MEMBER [Measures].[Cost of Goods Sold] AS [Measures].[Amount, Cost of Goods Sold (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Gross Income], [Measures].[Revenue], [Measures].[Cost of Goods Sold]}";
+		seriesCalc = "Gross Income  =  Revenue - Cost of Goods Sold";
+		break;
+  	case "Amount, Net Income (IS)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Net Income] AS [Measures].[Amount, Net Income (IS)]" +
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" MEMBER [Measures].[Expenses] AS [Measures].[Amount, Expenses (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Net Income], [Measures].[Revenue], [Measures].[Expenses]}";
+		seriesCalc = "Net Income  =  Revenue - Expenses";
+		break;
+  	case "Amount, Operating Expenses (IS)":
+  		queryMeasure = 	" WITH " + 
+						" MEMBER [Measures].[Operating Expenses] AS [Measures].[Amount, Operating Expenses (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Operating Expenses]}";
+		seriesCalc = "Operating Expenses";
+  		break;	
+	case "Amount, Revenue (IS)":
+  		queryMeasure = 	" WITH " + 
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Revenue]}";
+		seriesCalc = "Revenue";
+  		break;
+  	case "Amount, Operating Income (IS)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Oper Income] AS [Measures].[Amount, Operating Income (IS)]" +
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" MEMBER [Measures].[Cost of Goods Sold] AS [Measures].[Amount, Cost of Goods Sold (IS)]" +
+						" MEMBER [Measures].[Oper Expense] AS [Measures].[Amount, Operating Expenses (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Oper Income], [Measures].[Revenue], [Measures].[Cost of Goods Sold], [Measures].[Oper Expense] }";
+  		seriesCalc = "Operating Income  =  Revenue - Cost of Goods Sold - Operating Expenses";
+  		break;
+  	case "Percentage, Gross Margin":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Gross Margin] AS [Measures].[Percentage, Gross Margin]" +
+						" MEMBER [Measures].[Gross Income] AS [Measures].[Amount, Gross Income (IS)]" +
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Gross Margin], [Measures].[Gross Income], [Measures].[Revenue]}";
+  		seriesCalc = "Gross Margin  =  Gross Income / Revenue * 100";
+  		break;
+  	case "Percentage, Net Margin":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Net Margin] AS [Measures].[Percentage, Net Margin]" +
+						" MEMBER [Measures].[Net Income] AS [Measures].[Amount, Net Income (IS)]" +
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Net Margin], [Measures].[Net Income], [Measures].[Revenue]}";
+  		seriesCalc = "Net Margin  =  Net Income / Revenue * 100";
+  		break;
+  	case "Percentage, Operating Margin":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Oper Margin] AS [Measures].[Percentage, Operating Margin]" +
+						" MEMBER [Measures].[Oper Expense] AS [Measures].[Amount, Operating Expenses (IS)]" +
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Oper Margin], [Measures].[Oper Expense], [Measures].[Revenue]}";
+  		seriesCalc = "Operating Margin  =  Operating Expenses / Revenue * 100";
+  		break; 
+
+  	case "Amount, Operating Activities (CF)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Oper Activities] AS [Measures].[Amount, Operating Activities (CF)]" +
+						" MEMBER [Measures].[Charges Not Cash] AS [Measures].[Amount, Charges Not Using Cash (CF)]" +
+						" MEMBER [Measures].[Change Current Assets] AS [Measures].[Amount, Changes in Current Assets (CF)]" +
+						" MEMBER [Measures].[Change Receivables] AS [Measures].[Amount, Changes in Receivables (CF)]" +
+						" MEMBER [Measures].[Change Inventory] AS [Measures].[Amount, Changes in Inventory (CF)]" +
+						" MEMBER [Measures].[Change Current Liability] AS [Measures].[Amount, Change in Current Liability (CF)]" +
+						" MEMBER [Measures].[Change Payables] AS [Measures].[Amount, Changes in Accounts Payable (CF)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Oper Activities], " +
+						" [Measures].[Charges Not Cash], " +
+						" [Measures].[Change Current Assets], " +
+						" [Measures].[Change Receivables], " +
+						" [Measures].[Change Inventory], " +
+						" [Measures].[Change Current Liability], " +
+						" [Measures].[Change Payables]}";
+  		seriesCalc = "Operating Activities = Charges Not Cash + Change Current Assets - Change Receivables - Change Inventory + Change Current Liability + Change Payables";
+  		break;  
+
+  	case "Amount, Investing Activities (CF)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Investing Activities] AS [Measures].[Amount, Investing Activities (CF)]" +
+						" MEMBER [Measures].[Changes in Property Plant and Equipment] AS [Measures].[Amount, Changes in Property Plant and Equipment (CF)]" +
+						" MEMBER [Measures].[Changes in Other Assets] AS [Measures].[Amount, Changes in Other Assets (CF)]" + 
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Investing Activities], [Measures].[Changes in Property Plant and Equipment], [Measures].[Changes in Other Assets]}";
+  		seriesCalc = "Investing Activities  =  Changes in Property Plant and Equipment + Changes in Other Assets";
+  		break; 
+ 
+  	case "Amount, Financing Activities (CF)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Financing Activities] AS [Measures].[Amount, Financing Activities (CF)]" +
+						" MEMBER [Measures].[Changes in Long Term Debt] AS [Measures].[Amount, Changes in Long Term Debt (CF)]" +
+						" MEMBER [Measures].[Changes in Common Stock and Equity] AS [Measures].[Amount, Changes in Common Stock and Equity (CF)]" + 
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Financing Activities], [Measures].[Changes in Long Term Debt], [Measures].[Changes in Common Stock and Equity]}";
+  		seriesCalc = "Financing Activities  =  Changes in Long Term Debt + Changes in Common Stock and Equity";
+  		break; 
+  		
+  	case "Amount, Net Cash Flow (CF)":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Net Cash Flow] AS [Measures].[Amount, Net Cash Flow (CF)]" +
+						" MEMBER [Measures].[Net Income] AS [Measures].[Amount, Net Income (IS)]" +
+						" MEMBER [Measures].[Operating Activities] AS [Measures].[Amount, Operating Activities (CF)]" +
+						" MEMBER [Measures].[Investing Activities] AS [Measures].[Amount, Investing Activities (CF)]" +
+						" MEMBER [Measures].[Financing Activities] AS [Measures].[Amount, Financing Activities (CF)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Net Cash Flow], [Measures].[Net Income], [Measures].[Operating Activities]," +
+						" [Measures].[Investing Activities], [Measures].[Financing Activities]}";
+  		seriesCalc = "Net Cash Flow = Net Income + Operating Activities + Investing Activities + Financing Activities";
+  		break;
+
+  	case "Amount, Free Cash Flow":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Free Cash Flow] AS [Measures].[Amount, Free Cash Flow]" +
+						" MEMBER [Measures].[Net Income] AS [Measures].[Amount, Net Income (IS)]" +
+						" MEMBER [Measures].[Operating Activities] AS [Measures].[Amount, Operating Activities (CF)]" +
+						" MEMBER [Measures].[Changes in Property Plant and Equipment] AS [Measures].[Amount, Changes in Property Plant and Equipment (CF)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Free Cash Flow], [Measures].[Net Income], [Measures].[Operating Activities]," +
+						" [Measures].[Changes in Property Plant and Equipment]}";
+  		seriesCalc = "Free Cash Flow = Net Income + Operating Activities - Changes in Property Plant and Equipment";
+  		break;
+
+  	case "Days, In Inventory":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Days In Inventory] AS [Measures].[Days, In Inventory]" +
+						" MEMBER [Measures].[Inventory] AS [Measures].[Amount, Inventory (CF)]" +
+						" MEMBER [Measures].[Cost of Goods Sold] AS [Measures].[Amount, Cost of Goods Sold (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Days In Inventory], [Measures].[Inventory], [Measures].[Cost of Goods Sold]}";
+ 		seriesCalc = "Days In Inventory = Inventory / Cost of Goods Sold * (30 or 360 days)";
+  		break;
+
+  	case "Days, Sales Outstanding":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Days Sales Outstanding] AS [Measures].[Days, Sales Outstanding]" +
+						" MEMBER [Measures].[Receivables] AS [Measures].[Amount, Net Receivables (CF)]" +
+						" MEMBER [Measures].[Revenue] AS [Measures].[Amount, Revenue (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Days Sales Outstanding], [Measures].[Receivables], [Measures].[Revenue]}";
+ 		seriesCalc = "Days Sales Outstanding = Receivables / Revenue * (30 or 360 days)";
+  		break;
+
+  	case "Days, Payable Outstanding":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Days Payable Outstanding] AS [Measures].[Days, Payable Outstanding]" +
+						" MEMBER [Measures].[Accounts Payable] AS [Measures].[Amount, Accounts Payable (CF)]" +
+						" MEMBER [Measures].[Cost of Goods Sold] AS [Measures].[Amount, Cost of Goods Sold (IS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Days Payable Outstanding], [Measures].[Accounts Payable], [Measures].[Cost of Goods Sold]}";
+ 		seriesCalc = "Days Payable Outstanding = Accounts Payable / Cost of Goods Sold * (30 or 360 days)";
+  		break;
+ 
+   	case "Days, Cash Conversion Cycle":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Cash Conversion Cycle] AS [Measures].[Days, Cash Conversion Cycle]" +
+						" MEMBER [Measures].[Days In Inventory] AS [Measures].[Days, In Inventory]" +
+						" MEMBER [Measures].[Days Sales Outstanding] AS [Measures].[Days, Sales Outstanding]" +
+						" MEMBER [Measures].[Days Payable Outstanding] AS [Measures].[Days, Payable Outstanding]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Cash Conversion Cycle], [Measures].[Days In Inventory], [Measures].[Days Sales Outstanding]," +
+						" [Measures].[Days Payable Outstanding]}";
+ 		seriesCalc = "Cash Conversion Cycle = Days In Inventory + Days Sales Outstanding - Days Payable Oustanding";
+  		break; 
+  		
+   	case "Ratio, Debt to Equity":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Debt to Equity Ratio] AS [Measures].[Ratio, Debt to Equity]" +
+						" MEMBER [Measures].[Liabilities] AS [Measures].[Amount, Liabilities (BS)]" +
+						" MEMBER [Measures].[Owner's Equity] AS [Measures].[Amount, Owner's Equity (BS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Debt to Equity Ratio], [Measures].[Liabilities], [Measures].[Owner's Equity]}";
+ 		seriesCalc = "Debt to Equity Ratio = Liabilities / Owner's Equity";
+  		break; 		
+ 
+    case "Ratio, Total Debt":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Total Debt Ratio] AS [Measures].[Ratio, Total Debt]" +
+						" MEMBER [Measures].[Assets] AS [Measures].[Amount, Assets (BS)]" +
+						" MEMBER [Measures].[Liabilities] AS [Measures].[Amount, Liabilities (BS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Total Debt Ratio], [Measures].[Assets], [Measures].[Liabilities]}";
+ 		seriesCalc = "Total Debt Ratio = Assets / Liabilities";
+  		break; 
+ 
+     case "Ratio, Current":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Current Ratio] AS [Measures].[Ratio, Current]" +
+						" MEMBER [Measures].[Current Assets] AS [Measures].[Amount, Current Assets (CF)]" +
+						" MEMBER [Measures].[Current Liability] AS [Measures].[Amount, Current Liability (CF)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Current Ratio], [Measures].[Current Assets], [Measures].[Current Liability]}";
+ 		seriesCalc = "Current Ratio = Current Assets / Current Liability";
+  		break; 
+
+     case "Ratio, Quick":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Quick Ratio] AS [Measures].[Ratio, Quick]" +
+						" MEMBER [Measures].[Current Assets] AS [Measures].[Amount, Current Assets (CF)]" +
+						" MEMBER [Measures].[Inventory] AS [Measures].[Amount, Inventory (CF)]" +
+						" MEMBER [Measures].[Current Liability] AS [Measures].[Amount, Current Liability (CF)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Quick Ratio], [Measures].[Current Assets], [Measures].[Inventory], [Measures].[Current Liability]}";
+ 		seriesCalc = "Quick Ratio = (Current Assets - Inventory) / Current Liability";
+  		break; 
+
+     case "Ratio, Return on Assets":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Return on Assets Ratio] AS [Measures].[Ratio, Return on Assets]" +
+						" MEMBER [Measures].[Net Income] AS [Measures].[Amount, Net Income (IS)]" +
+						" MEMBER [Measures].[Assets] AS [Measures].[Amount, Assets (BS)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Return on Assets Ratio], [Measures].[Net Income], [Measures].[Assets]}";
+ 		seriesCalc = "Return on Assets Ratio = Net Income / Assets";
+  		break; 
+
+
+     case "Ratio, Return on Equity":
+  		queryMeasure = 	" WITH " + 
+  						" MEMBER [Measures].[Return on Equity Ratio] AS [Measures].[Ratio, Return on Equity]" +
+						" MEMBER [Measures].[Net Income] AS [Measures].[Amount, Net Income (IS)]" +
+						" MEMBER [Measures].[Common Stock and Equity] AS [Measures].[Amount, Common Stock and Equity (CF)]" +
+						" SELECT" + 
+						" NON EMPTY {[Measures].[Return on Equity Ratio], [Measures].[Net Income], [Measures].[Common Stock and Equity]}";
+ 		seriesCalc = "Return on Equity Ratio = Net Income / Common Stock and Equity";
+  		break; 
+
+	default:
+  		alert ("measure not yet defined in KPITemplate.html");
+}
+
+var dashTitle = 
+{
+	name: "dashTitle",
+	type: "textComponent",
+  	listeners:[	"Dashboards.storage.yearPeriod", 
+  				"Dashboards.storage.company", 
+  				"Dashboards.storage.profitCenter"], 
+	expression: function(){return series + " for <i>" + Dashboards.storage.yearPeriod + "</i><br>" +
+								"Company: <i>" + Dashboards.storage.company + "</i>,  Profit Center: <i>" + Dashboards.storage.profitCenter + "</i>";
+						  },
+	htmlObject: "dashTitle",
+	executeAtStart: true
+};
+
+var KPIBarChartMeta =  { 
+	chart : {
+		width: 320,
+		height: 250,
+		chartType: "BarChart",
+		queryType: 'mdx',
+		jndi: "erpi",
+		title: function() {
+			var theYear = Dashboards.storage.yearPeriod.slice(0,4);
+			if ( theYear > Dashboards.storage.lastYear)
+				{theYear = theYear - 1;}
+			return "Increase in same period in " + theYear;
+		},
+		catalog: "solution:admin/ERPI_SO_Schema.xml",
+		backgroundColor: "#EEE9E9",
+		is3d: "true",
+		query: function(){
+			return '  WITH MEMBER Measures.[prevSeries] AS ([Measures].[' + series + '] , ParallelPeriod([Fiscal Period.Fiscal Period CL].[' + Dashboards.storage.yearPeriod.slice(0,4) + ']))' +
+					'    MEMBER [Measures].[prevSeriesAmount] AS iif(Measures.[prevSeries] = 0 or Measures.[prevSeries] = NULL or IsEmpty(Measures.[prevSeries] ),[Measures].[' + series + '], Measures.[prevSeries] )' +
+					'    MEMBER [Measures].[Percent Increase] AS (([Measures].[' + series + '] / [Measures].[prevSeriesAmount])*100 - 100), FORMAT_STRING = "#,###.00"' +
+					' SELECT NON EMPTY {[Measures].[Percent Increase]} ON COLUMNS,' +
+					' LastPeriods(12.0, [Fiscal Period.Fiscal Period CL].[' + Dashboards.storage.yearPeriod.slice(0,4) + '].[' + Dashboards.storage.yearPeriod.substr(6) + ']) ON ROWS' +
+					' FROM [GLAccountByPeriod]' +
+					' WHERE (' +
+					'     [Company].[' + Dashboards.storage.company + '],' +
+					'     [Ledger].[All Ledgers],' +
+					'     [Profit Center].[' + Dashboards.storage.profitCenter + '])';
+		}
+	}
+};
+
+var KPIBarChart = 
+	{
+		name: "KPIBarChart",
+		type: "jFreeChartComponent",
+		chartDefinition: KPIBarChartMeta.chart,
+  		listeners:[	"Dashboards.storage.yearPeriod", 
+  					"Dashboards.storage.company", 
+  					"Dashboards.storage.profitCenter"], 
+  		htmlObject: "kpibarchart",
+		executeAtStart: true,
+	};
+	
+var KPIPieMeta =  { 
+	chart : {
+		width: 400,
+		height: 250,
+		chartType: "PieChart",
+		queryType: 'mdx',
+		jndi: cdfJNDI,
+		title: function() {
+			return series + " by Profit Center";
+		},
+		catalog: cdfCatalog,
+		backgroundColor: cdfBackgroundWhite,
+		is3d: "true",
+		seriesName: "seriesCategory",
+		urlTemplate: "javascript:openWindow('{seriesCategory}')",
+		query: function(){
+			return "SELECT NON EMPTY {[Measures].[" + series + "]} ON COLUMNS," +
+  				" NON EMPTY {[Profit Center].Children} ON ROWS" +
+  				" from [GLAccountByPeriod]" +
+  				" WHERE ([Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) +"]," +
+  				"       [Company].[" + Dashboards.storage.company + "]," +
+      			"       [Ledger].[All Ledgers])";
+			}
+	}
+};
+
+var KPIPie = 
+	{
+		name: "KPIPie",
+		type: "jFreeChartComponent",
+		chartDefinition: KPIPieMeta.chart,
+  		listeners:[	"Dashboards.storage.yearPeriod", 
+  					"Dashboards.storage.company", 
+  					"Dashboards.storage.profitCenter"], 
+  		htmlObject: "kpipie",
+		executeAtStart: true,
+	};
+	
+var accountLinks = 
+{
+  name: "accountLinks",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "GLPivots",
+  action: "accountLinks.prpt",
+  listeners:["Dashboards.storage.yearPeriod", 
+  			"Dashboards.storage.company", 
+  			"Dashboards.storage.profitCenter"], 
+  parameters: [
+  			["YEAR", "Dashboards.storage.yearPeriod.slice(0,4)"],
+  			["COMPANY","Dashboards.storage.company"], 
+  			["PROFITCENTER","Dashboards.storage.profitCenter"],
+  			["KPI","series"]
+   			],
+  htmlObject: "accountLinks",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var KPIPivot = 
+{
+  name: "KPIPivot",
+  type: "jpivot",
+  solution: "erpbi-reports",
+  path: "GLPivots",
+  action: "KPI.analysisview.xaction",
+  listeners:[ "Dashboards.storage.profitCenter", 
+  			"Dashboards.storage.company", 
+  			"Dashboards.storage.yearPeriod"
+  			],
+  parameters: [["PROFITCENTER","Dashboards.storage.profitCenter"], 
+  			["COMPANY","Dashboards.storage.company"], 
+  			["YEAR","Dashboards.storage.yearPeriod.slice(0,4)"],
+  			["MEASURES","queryMeasure"]
+  			],
+  iframeHeight: "1100px",
+  iframeWidth: "1000px",
+  iframeScrolling: "auto",
+  htmlObject: "KPIPivot",
+  executeAtStart: "true",
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+var components = 
+[	
+	yearPeriodSelector,
+	companySelector,
+	profitCenterSelector,
+	KPIBarChart,
+	KPIPie,
+	accountLinks,
+	KPIPivot,
+	extractDateXAction,
+	dashTitle
+];
+
+function load()	{
+	Dashboards.init(components);
+}
+
+loadTree();
+load();
+document.close();
+
+</script>
+
+<!--
+**************************** HTML for content DIV
+  -->
+<div id="dashTitle" class="titles" align="center">
+</div>
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div id="kpibarchart"></div></td>
+					<td valign="top"><div id="kpipie"></div></td>
+					<td valign="top"><div style="height:250px;width:300px;" id="accountLinks"></div></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td class= "titles" valign="top"> 
+						<script language="javascript" type="text/javascript"> 
+						document.write(seriesCalc);
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" bgcolor=#B0C4DE><div id="KPIPivot" ></div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>

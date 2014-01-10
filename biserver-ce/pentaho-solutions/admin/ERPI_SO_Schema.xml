@@ -1,0 +1,2726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+	Copyright 2012 Jeff Gunderson
+	Licensed under the GNU Public License, Version 3.0
+-->
+<!DOCTYPE erpi_entitites [
+<!ENTITY PaymentTerms "Payment Terms">
+<!ENTITY CreditLimit "Credit Limit">
+<!ENTITY DebitAmount "Amount, Debit">
+<!ENTITY CreditAmount "Amount, Credit">
+<!ENTITY BalanceAmount "Amount, Balance">
+<!ENTITY TransactionDate "Date, Transaction">
+<!ENTITY ActivityAmount "Amount, Activity">
+<!ENTITY VarianceAmount "Amount, Variance">
+<!ENTITY AssetsAmount "Amount, Assets (BS)">
+<!ENTITY LiabilitiesAmount "Amount, Liabilities (BS)">
+<!ENTITY OwnersEquityAmount "Amount, Owner's Equity (BS)">
+<!ENTITY RevenueAmount "Amount, Revenue (IS)">
+<!ENTITY ChangesRevenueAmount "Amount, Changes in Revenue (IS)">
+<!ENTITY ExpensesAmount "Amount, Expenses (IS)">
+<!ENTITY NetIncomeAmount "Amount, Net Income (IS)">
+<!ENTITY GrossIncomeAmount "Amount, Gross Income (IS)">
+<!ENTITY NCFAmount "Amount, Net Cash Flow (CF)">
+<!ENTITY FCFAmount "Amount, Free Cash Flow">
+<!ENTITY FinancingAmount "Amount, Financing Activities (CF)">
+<!ENTITY InvestingActivitiesAmount "Amount, Investing Activities (CF)">
+<!ENTITY OperatingActivitiesAmount "Amount, Operating Activities (CF)">
+<!ENTITY CSEAmount "Amount, Common Stock and Equity (CF)">
+<!ENTITY ChangesCSEAmount "Amount, Changes in Common Stock and Equity (CF)">
+<!ENTITY ChangesLongTermDebtAmount "Amount, Changes in Long Term Debt (CF)">
+<!ENTITY ChangesOtherAssetsAmount "Amount, Changes in Other Assets (CF)">
+<!ENTITY ChangesPPEAmount "Amount, Changes in Property Plant and Equipment (CF)">
+<!ENTITY AccountsPayableAmount "Amount, Accounts Payable (CF)">
+<!ENTITY ChangesAccountsPayableAmount "Amount, Changes in Accounts Payable (CF)">
+<!ENTITY ChangeLiabilityAmount "Amount, Change in Current Liability (CF)">
+<!ENTITY LiabilityAmount "Amount, Current Liability (CF)">
+<!ENTITY InventoryAmount "Amount, Inventory (CF)">
+<!ENTITY ChangesInventoryAmount "Amount, Changes in Inventory (CF)">
+<!ENTITY NetReceivablesAmount "Amount, Net Receivables (CF)">
+<!ENTITY ChangesReceivablesAmount "Amount, Changes in Receivables (CF)">
+<!ENTITY ChangesAssetsAmount "Amount, Changes in Current Assets (CF)">
+<!ENTITY CurrentAssetsAmount "Amount, Current Assets (CF)">
+<!ENTITY ChargesAmount "Amount, Charges Not Using Cash (CF)">
+<!ENTITY OwnersEquityAmount "Amount, Owner's Equity (BS)">
+<!ENTITY COGSAmount "Amount, Cost of Goods Sold (IS)">
+<!ENTITY ChangesCOGSAmount "Amount, Changes in Cost of Goods Sold (IS)">
+<!ENTITY DepreciationAmount "Amount, Depreciation (IS)">
+<!ENTITY OperatingExpensesAmount "Amount, Operating Expenses (IS)">
+<!ENTITY OperatingIncomeAmount "Amount, Operating Income (IS)">
+<!ENTITY NetMarginPercentage "Percentage, Net Margin" >
+<!ENTITY GrossMarginPercentage "Percentage, Gross Margin" >
+<!ENTITY OperatingMarginPercentage "Percentage, Operating Margin" >
+<!ENTITY SalesIncomeAmount "Amount, Sales Income">
+<!ENTITY SalesIncomeBudgetAmount "Amount, Sales Income Budget">
+<!ENTITY OtherIncomeAmount "Amount, Other Income (CF)">
+<!ENTITY OtherIncomeBudgetAmount "Amount, Other Income Budget (CF)">
+
+<!ENTITY DaysInInventory "Days, In Inventory" >
+<!ENTITY DaysSalesOutstanding "Days, Sales Outstanding" >
+<!ENTITY DaysPayableOutstanding "Days, Payable Outstanding" >
+<!ENTITY DaysCCC "Days, Cash Conversion Cycle" >
+
+<!ENTITY ratioDebtEquity "Ratio, Debt to Equity" >
+<!ENTITY ratioTotalDebt "Ratio, Total Debt" >
+<!ENTITY ratioCurrent "Ratio, Current" >
+<!ENTITY ratioQuick "Ratio, Quick" >
+<!ENTITY ratioReturnAssets "Ratio, Return on Assets" >
+<!ENTITY ratioReturnEquity "Ratio, Return on Equity" >
+
+<!ENTITY RevenueBudgetAmount "Amount, Revenue Budget (IS)">
+<!ENTITY ChangesRevenueBudgetAmount "Amount, Changes in Revenue Budget (IS)">
+<!ENTITY ExpensesBudgetAmount "Amount, Expenses Budget (IS)">
+<!ENTITY NetIncomeBudgetAmount "Amount, Net Income Budget (IS)">
+<!ENTITY FinancingBudgetAmount "Amount, Financing Activities Budget (CF)">
+<!ENTITY InvestingActivitiesBudgetAmount "Amount, Investing Activities Budget (CF)">
+<!ENTITY OperatingActivitiesBudgetAmount "Amount, Operating Activities Budget (CF)">
+<!ENTITY CSEBudgetAmount "Amount, Common Stock and Equity Budget (CF)">
+<!ENTITY ChangesCSEBudgetAmount "Amount, Changes in Common Stock and Equity Budget (CF)">
+<!ENTITY ChangesLongTermDebtBudgetAmount "Amount, Changes in Long Term Debt Budget (CF)">
+<!ENTITY ChangesOtherAssetsBudgetAmount "Amount, Changes in Other Assets Budget (CF)">
+<!ENTITY ChangesPPEBudgetAmount "Amount, Changes in Property Plant and Equipment Budget (CF)">
+<!ENTITY AccountsPayableBudgetAmount "Amount, Accounts Payable Budget (CF)">
+<!ENTITY ChangesAccountsPayableBudgetAmount "Amount, Changes in Accounts Payable Budget (CF)">
+<!ENTITY ChangeLiabilityBudgetAmount "Amount, Change in Current Liability Budget (CF)">
+<!ENTITY LiabilityBudgetAmount "Amount, Current Liability Budget (CF)">
+<!ENTITY InventoryBudgetAmount "Amount, Inventory Budget (CF)">
+<!ENTITY ChangesInventoryBudgetAmount "Amount, Changes in Inventory Budget (CF)">
+<!ENTITY NetReceivablesBudgetAmount "Amount, Net Receivables Budget (CF)">
+<!ENTITY ChangesReceivablesBudgetAmount "Amount, Changes in Receivables Budget (CF)">
+<!ENTITY ChangesAssetsBudgetAmount "Amount, Changes in Current Assets Budget (CF)">
+<!ENTITY CurrentAssetsBudgetAmount "Amount, Current Assets Budget (CF)">
+<!ENTITY ChargesBudgetAmount "Amount, Charges Not Using Cash Budget (CF)">
+<!ENTITY OwnersEquityBudgetAmount "Amount, Owner's Equity Budget (BS)">
+<!ENTITY COGSBudgetAmount "Amount, Cost of Goods Sold Budget (IS)">
+<!ENTITY ChangesCOGSBudgetAmount "Amount, Changes in Cost of Goods Sold Budget (IS)">
+<!ENTITY OperatingExpensesBudgetAmount "Amount, Operating Expenses Budget (IS)">
+<!ENTITY OperatingIncomeBudgetAmount "Amount, Operating Income Budget (IS)">
+<!ENTITY BudgetAmount "Amount, Budget" >
+<!ENTITY ActivityBudgetAmount "Amount, Activity Budget" >
+<!ENTITY NCFBudgetAmount "Amount, Net Cash Flow Budget (CF)">
+
+<!ENTITY DaysInInventoryBudget "Days, In Inventory Budget" >
+<!ENTITY DaysSalesOutstandingBudget "Days, Sales Outstanding Budget" >
+<!ENTITY DaysPayableOutstandingBudget "Days, Payable Outstanding Budget" >
+<!ENTITY DaysCCCBudget "Days, Cash Conversion Cycle Budget" >
+
+<!ENTITY Company "Company">
+<!ENTITY CompanyAll "All Companies by Name">
+<!ENTITY CompanyByName "Company by Name">
+<!ENTITY CompanyName "Company Name">
+<!ENTITY CompanyKey "Company Key">
+<!ENTITY CompanyCodeAll "All Companies by Code">
+<!ENTITY CompanyByCode "Company by Code">
+<!ENTITY CompanyCode "Company Code">
+<!ENTITY CompanyCount "Count, Company">
+
+<!ENTITY CityBill "Bill City">
+<!ENTITY CityBillAll "All Bill Cities">
+<!ENTITY CityBillByRegionByCountry "Bill Cities by Region by Country">
+<!ENTITY CityBillName "Bill City Name">
+<!ENTITY CityShip "Ship City">
+<!ENTITY CityShipAll "All Ship Cities">
+<!ENTITY CityShipByRegionByCountry "Ship Cities by Region by Country">
+<!ENTITY CityShipName "Ship City Name">
+<!ENTITY CityCountryName "Country Name">
+<!ENTITY CityRegionCode "Region Code">
+<!ENTITY CityName "City Name">
+<!ENTITY CityLogitude "Logitude">
+<!ENTITY CityLatitude "Latitude">
+
+<!ENTITY RegionBill "Bill Region">
+<!ENTITY RegionBillAll "All Bill Regions">
+<!ENTITY RegionShip "Ship Region">
+<!ENTITY RegionShipAll "All Ship Regions">
+<!ENTITY RegionName "Region Name">
+
+<!ENTITY BusinessUnit "Business Unit">
+<!ENTITY BusinessUnitAll "All Business Units by Name">
+<!ENTITY BusinessUnitByName "Business Unit by Name">
+<!ENTITY BusinessUnitName "Business Unit Name">
+<!ENTITY BusinessUnitKey "Business Unit Key">
+<!ENTITY BusinessUnitCodeAll "All Business Units by Code">
+<!ENTITY BusinessUnitByCode "Business Unit by Code">
+<!ENTITY BusinessUnitCode "Business Unit Code">
+<!ENTITY BusinessUnitCount "Count, Business Unit">
+
+<!ENTITY ProfitCenter "Profit Center">
+<!ENTITY ProfitCenterAll "All Profit Centers by Name">
+<!ENTITY ProfitCenterByName "Profit Center by Name">
+<!ENTITY ProfitCenterName "Profit Center Name">
+<!ENTITY ProfitCenterKey "Profit Center Key">
+<!ENTITY ProfitCenterCodeAll "All Profit Centers by Code">
+<!ENTITY ProfitCenterByCode "Profit Center by Code">
+<!ENTITY ProfitCenterCode "Profit Center Code">
+<!ENTITY ProfitCenterCount "Count, Profit Center">
+
+<!ENTITY Product "Product">
+<!ENTITY ProductAll "All Products by Name">
+<!ENTITY ProductByName "Product by Name">
+<!ENTITY ProductName "Product Name">
+<!ENTITY ProductKey "Product Key">
+<!ENTITY ProductCodeAll "All Products by Code">
+<!ENTITY ProductByCode "Product by Code">
+<!ENTITY ProductCode "Product Code">
+<!ENTITY ProductCategoryAll "All Products by Category">
+<!ENTITY ProductByCategory "Product by Category">
+<!ENTITY ProductCategory "Product Category">
+<!ENTITY ProductClassAll "All Products by Class">
+<!ENTITY ProductByClass "Product by Class">
+<!ENTITY ProductClass "Product Class">
+<!ENTITY ProductTypeAll "All Products by Type">
+<!ENTITY ProductByType "Product by Type">
+<!ENTITY ProductType "Product Type">
+<!ENTITY ProductCategoryCodeAll "All Products by Category by Code">
+<!ENTITY ProductByCategoryCode "Product by Category by Code">
+<!ENTITY ProductClassCodeAll "All Products by Class by Code">
+<!ENTITY ProductByClassCode "Product by Class by Code">
+<!ENTITY ProductTypeCodeAll "All Products by Type by Code">
+<!ENTITY ProductByTypeCode "Product by Type by Code">
+<!ENTITY ProductCount "Count, Products">
+
+<!ENTITY Division "Division">
+<!ENTITY DivisionAll "All Divisions by Name">
+<!ENTITY DivisionByName "Division by Name">
+<!ENTITY DivisionName "Division Name">
+<!ENTITY DivisionKey "Division Key">
+<!ENTITY DivisionCodeAll "All Divisions by Code">
+<!ENTITY DivisionByCode "Division by Code">
+<!ENTITY DivisionCode "Division Code">
+<!ENTITY DivisionCount "Count, Divisions">
+
+<!ENTITY Customer "Customer">
+<!ENTITY CustomerAll "All Customers by Name">
+<!ENTITY CustomerByName "Customer by Name">
+<!ENTITY CustomerName "Customer Name">
+<!ENTITY CustomerKey "Customer Key">
+<!ENTITY CustomerCodeAll "All Customers by Code">
+<!ENTITY CustomerByCode "Customer by Code">
+<!ENTITY CustomerCode "Customer Code">
+<!ENTITY CustomerCount "Count, Customers">
+
+
+<!ENTITY AccountRepAll "All Account Reps by Name">
+<!ENTITY AccountRepByName "Account Rep by Name">
+<!ENTITY AccountRepName "Account Rep Name">
+<!ENTITY AccountRepKey "Account Rep Key">
+<!ENTITY AccountRepCodeAll "All Account Reps by Code">
+<!ENTITY AccountRepByCode "Account Rep by Code">
+<!ENTITY AccountRepCode "Account Rep Code">
+<!ENTITY AccountRepCount "Count, Account Reps">
+<!ENTITY AccountRep "Account Rep">
+
+<!ENTITY Account "GL Account">
+<!ENTITY AccountAll "All GL Accounts by Name">
+<!ENTITY AccountByName "GL Account by Name">
+<!ENTITY AccountName "GL Account Name">
+<!ENTITY AccountKey "GL Account Key">
+<!ENTITY AccountNumberAll "All GL Accounts by Number">
+<!ENTITY AccountByNumber "GL Account by Number">
+<!ENTITY AccountNumber "GL Account Number">
+<!ENTITY AccountTypeSubtypeAll "All GL Accounts by Type by Subtype">
+<!ENTITY AccountByTypeSubtype "GL Account by Type by Subtype">
+<!ENTITY AccountType "GL Account Type">
+<!ENTITY AccountSubtype "GL Account Subtype">
+<!ENTITY AccountCFTypeAll "All GL Accounts by Cash Flow Type">
+<!ENTITY AccountByCFType "GL Account by Cash Flow Type">
+<!ENTITY AccountCFType "GL Account Cash Flow Type">
+
+<!ENTITY Budget "Budget" >
+<!ENTITY BudgetDoc "Budget Document" >
+<!ENTITY BudgetDocAll "All Budget Documents" >
+<!ENTITY BudgetDocByKey "Budget Document By Key" >
+<!ENTITY BudgetDocKey "Budget Document Key" >
+<!ENTITY BudgetAll "All Budgets" >
+<!ENTITY BudgetByName "Budget By Name" >
+<!ENTITY BudgetName "Budget Name" >
+<!ENTITY BudgetKey "Budget Key" >
+<!ENTITY BudgetByCode "Budget By Code" >
+<!ENTITY BudgetCodeAll "All Budgets By Code" >
+<!ENTITY BudgetCode "Budget Code" >
+
+<!ENTITY JournalDoc "GL Journal Doc">
+<!ENTITY JournalDocAll "All GL Journal Doc by Name">
+<!ENTITY JournalDocByKey "GL Journal Doc by Key">
+<!ENTITY JournalDocKey "GL Journal Doc Key">
+
+<!ENTITY JournalDocLine "GL Journal Doc Line">
+<!ENTITY JournalDocLineAll "All GL Journal Doc Lines">
+<!ENTITY JournalDocLineByDoc "GL Journal Line by Doc">
+<!ENTITY JournalDocLineKey "GL Journal Doc Line Key">
+
+<!ENTITY Ledger "Ledger">
+<!ENTITY LedgerAll "All Ledgers by Key">
+<!ENTITY LedgerByKey "Ledger by Key">
+<!ENTITY LedgerKey "Ledger Key">
+
+<!ENTITY Order "Order">
+<!ENTITY OrderByKey "Orders by Key">
+<!ENTITY OrderKey "Order Key">
+<!ENTITY OrderKeyAll "All Orders by Key">
+<!ENTITY OrderCount "Count, Orders">
+<!ENTITY OrderAmount "Amount, Order Gross">
+<!ENTITY OrderAmountList "Amount, Order Gross List">
+<!ENTITY OrderAmountQuantity "Amount, Order Quantity">
+<!ENTITY OrderDiscount "Amount, Order Discount">
+<!ENTITY OrderAverage "Average, Order Gross">
+<!ENTITY OrderDate "Date, Order">
+<!ENTITY OrderPromise "Date, Promise">
+
+<!ENTITY OrderLine "Order Line">
+<!ENTITY OrderLineByOrder "OrderLine by Order">
+<!ENTITY OrderLineKey "OrderLine Key">
+<!ENTITY OrderLineAll "All Order Lines by Order">
+
+<!ENTITY Delivery "Delivery">
+<!ENTITY DeliveryByKey "Deliveries by Key">
+<!ENTITY DeliveryKey "Delivery Key">
+<!ENTITY DeliveryKeyAll "All Deliveries by Key">
+<!ENTITY DeliveryCount "Count, Deliveries">
+<!ENTITY DeliveryAmount "Amount, Delivery Gross">
+<!ENTITY DeliveryAmountList "Amount, Delivery Gross List">
+<!ENTITY DeliveryDiscount "Amount, Delivery Discount">
+<!ENTITY DeliveryCostAmount "Amount, Cost Gross">
+
+<!ENTITY DeliveryLine "Delivery Line">
+<!ENTITY DeliveryLineByDelivery "Delivery Line by Delivery">
+<!ENTITY DeliveryLineKey "Delivery Line Key">
+<!ENTITY DeliveryLineAll "All Delivery Lines by Delivery">
+<!ENTITY DeliveryDate "Date, Delivery">
+<!ENTITY DeliveryPromise "Date, Promise">
+<!ENTITY DeliveryProfit "Amount, Profit Gross">
+<!ENTITY DeliveryMargin "Percentage, Gross Margin">
+<!ENTITY DeliveryAverage "Average, Delivery Gross">
+<!ENTITY DeliveryCostAverage "Average, Cost Gross">
+<!ENTITY DeliveryProfitAverage "Average, Profit Gross">
+
+<!ENTITY FiscalPeriod "Fiscal Period">
+<!ENTITY FiscalPeriodCL "Fiscal Period CL">
+<!ENTITY FiscalYear "Fiscal Year">
+<!ENTITY FiscalVariant "Fiscal Variant">
+<!ENTITY FiscalDate "Date">
+<!ENTITY FiscalDaysBegin "Days Begin Date">
+<!ENTITY FiscalDays " Date">
+<!ENTITY FiscalPeriodKey "Fiscal Period Key">
+
+<!ENTITY DatesAllYears "All Years">
+
+<!ENTITY SOOrder "Sales Orders">
+<!ENTITY SODelivery "Sales Deliveries">
+<!ENTITY SOPeriod "Sales By Period">
+
+<!ENTITY SalesDaysO2D "Days, Order to Delivery">
+<!ENTITY SalesImpactO2D "Interest, O2D Impact">
+<!ENTITY SalesUnfulfilledOrder "Balance, Orders Unfulfilled">
+<!ENTITY SalesProfit "Amount, Profit Gross">
+
+<!ENTITY GLAccount "GL Account Transactions">
+<!ENTITY GLAccountbyPeriod "GL Account By Period">
+<!ENTITY GLBudgetbyPeriod "GL Budget By Period">
+<!ENTITY GLFactsbyPeriod "GL Facts By Period">
+]>
+
+<Schema name="ERPI">
+  <Parameter name="APRValue" type="Numeric" modifiable="false" defaultValue=".065">
+  </Parameter>
+
+  <Dimension highCardinality="false" name="Company" caption="&Company;">
+    <Hierarchy hasAll="true" allMemberName="All Companies" allMemberCaption="&CompanyAll;" primaryKey="COMPANY_K" caption="&CompanyByName;">
+      <Table name="COMPANY" schema="ERPI">
+      </Table>
+      <Level name="Company Name" caption="&CompanyName;" column="COMPANY_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Company Key" caption="&CompanyKey;" column="COMPANY_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Company Code" hasAll="true" allMemberName="All Companies by Code" allMemberCaption="&CompanyCodeAll;" primaryKey="COMPANY_K" caption="&CompanyByCode;">
+      <Table name="COMPANY" schema="ERPI">
+      </Table>
+      <Level name="Company Code" caption="&CompanyCode;" column="COMPANY_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Company Code" caption="&CompanyKey;" column="COMPANY_NK" type="String">
+        </Property>
+        <Property name="Company Name" caption="&CompanyName;" column="COMPANY_NAME" type="String">
+        </Property>
+      </Level>
+      <Level name="Company Name" caption="&CompanyName;" column="COMPANY_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension> 
+  <Dimension highCardinality="false" name="Business Unit" caption ="&BusinessUnit;">
+    <Hierarchy hasAll="true" allMemberName="All Business Units" allMemberCaption="&BusinessUnitAll;" primaryKey="BUSINESS_UNIT_K" caption="Business Units by Name">
+      <Table name="BUSINESS_UNIT" schema="ERPI">
+      </Table>
+      <Level name="Business Unit" caption="&BusinessUnitName;" column="BUSINESS_UNIT" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Business Unit Key" column="BUSINESS_UNIT_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Business Unit Code" hasAll="true" allMemberCaption="&BusinessUnitCodeAll;" allMemberName="All Business Units by Code" primaryKey="BUSINESS_UNIT_K" caption="&BusinessUnitByCode;">
+      <Table name="BUSINESS_UNIT" schema="ERPI">
+      </Table>
+      <Level name="Business Unit Code" caption="&BusinessUnitCode;" column="BUSINESS_UNIT_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Business Unit Key" caption="&BusinessUnitKey;" column="BUSINESS_UNIT_K" type="String">
+        </Property>
+      </Level>
+      <Level name="Business Unit" caption= "&BusinessUnitName;" column="BUSINESS_UNIT" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Business Unit Key" caption="&BusinessUnitKey;" column="BUSINESS_UNIT_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Profit Center" caption="&ProfitCenter;">
+    <Hierarchy hasAll="true" allMemberName="All Profit Centers" allMemberCaption="&ProfitCenterAll;" primaryKey="PROFIT_CENTER_K" caption="&ProfitCenterByName;">
+      <Table name="PROFIT_CENTER" schema="ERPI">
+      </Table>
+      <Level name="Profit Center" caption="&ProfitCenterName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Profit Center Key" caption="&ProfitCenterKey;" column="PROFIT_CENTER_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Profit Centers by Code" hasAll="true" allMemberCaption="&ProfitCenterCodeAll;" allMemberName="All Profit Centers by Code" primaryKey="PROFIT_CENTER_K" caption="Profit Centers by Code">
+      <Table name="PROFIT_CENTER" schema="ERPI">
+      </Table>
+      <Level name="Profit Center Code" caption="&ProfitCenterCode;" column="PROFIT_CENTER_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Profit Center Key" column="PROFIT_CENTER_K" type="String">
+        </Property>
+      </Level>
+      <Level name="Profit Center" caption="&ProfitCenterName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Profit Center Key" column="PROFIT_CENTER_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Product" caption="&Product;">
+    <Hierarchy hasAll="true" allMemberName="All Products" allMemberCaption="&ProductAll;" primaryKey="PRODUCT_K" caption="&ProductByName;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Product Code" hasAll="true" allMemberName="All Products by Code" allMemberCaption="&ProductCodeAll;" primaryKey="PRODUCT_K" caption="&ProductByCode;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Product Code" caption="&ProductCode;" column="PRODUCT_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Product Code" caption="&ProductKey;" column="PRODUCT_NK" type="String">
+        </Property>
+        <Property name="Product Name" caption="&ProductName;" column="PRODUCT_NAME" type="String">
+        </Property>
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Product by Category" allMemberCaption="&ProductCategoryAll;" hasAll="true" allMemberName="All Products by Category" primaryKey="PRODUCT_K" caption="&ProductByCategory;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Category" caption="&ProductCategory;" column="CATEGORY" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Category Name" column="CATEGORY" type="String">
+        </Property>
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Products by Category by Code" allMemberCaption="&ProductCategoryCodeAll;" hasAll="true" allMemberName="All Products by Category by Code" primaryKey="PRODUCT_K" caption="&ProductByCategoryCode;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Category" caption="&ProductCategory;" column="CATEGORY" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product Code" caption="&ProductCode;" column="PRODUCT_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+
+    <Hierarchy name="Product by Class" allMemberCatpion="&ProductClassAll;" hasAll="true" allMemberName="All Products by Class" primaryKey="PRODUCT_K" caption="&ProductByClass;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Class" caption="&ProductClass;" column="CLASS" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Class Name" column="CLASS" type="String">
+        </Property>      
+	</Level>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Products by Class by Code" allMemberCaption="&ProductClassCodeAll;" hasAll="true" allMemberName="All Products by Class by Code" primaryKey="PRODUCT_K" caption="&ProductByClassCode;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Class" caption="&ProductClass;" column="CLASS" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product Code" caption="&ProductCode;" column="PRODUCT_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+
+    <Hierarchy name="Product by Type" allMemberCatpion="&ProductTypeAll;" hasAll="true" allMemberName="All Products by Type" primaryKey="PRODUCT_K" caption="&ProductByType;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Type" caption="&ProductType;" column="TYPE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Type Name" column="TYPE" type="String">
+        </Property>
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Products by Type by Code" allMemberCatpion="&ProductTypeCodeAll;" hasAll="true" allMemberName="All Products by Type by Code" primaryKey="PRODUCT_K" caption="&ProductByTypeCode;">
+      <Table name="PRODUCT" schema="ERPI">
+      </Table>
+      <Level name="Type" caption="&ProductType;" column="TYPE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product Code" caption="&ProductCode;" column="PRODUCT_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Product" caption="&ProductName;" column="PRODUCT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension highCardinality="false" name="Account" caption="&Account;">
+    <Hierarchy hasAll="true" allMemberName="All Accounts" allMemberCaption="&AccountAll;" primaryKey="ACCOUNT_K" caption="&AccountByName;">
+      <Table name="GL_ACCOUNT" schema="ERPI">
+      </Table>
+      <Level name="Account" caption="&AccountName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Key" column="ACCOUNT_K" caption="&AccountKey;" type="String">
+        </Property>
+        <Property name="Account Name" caption="&AccountName;" column="NAME" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Account Number" hasAll="true" allMemberName="All Accounts by Number" allMemberCaption="&AccountNumberAll;" primaryKey="ACCOUNT_K" caption="&AccountByNumber;">
+      <Table name="GL_ACCOUNT" schema="ERPI">
+      </Table>
+      <Level name="Account Number" caption="&AccountNumber;" column="ACCOUNT_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Key" column="ACCOUNT_K" caption="&AccountKey;" type="String">
+        </Property>
+        <Property name="Account Name" caption="&AccountName;" column="NAME" type="String">
+        </Property>
+      </Level>
+      <Level name="Account" caption="&AccountName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Key" column="ACCOUNT_K" caption="&AccountKey;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+
+    <Hierarchy name="Accounts by Type by Subtype" allMemberCaption="&AccountTypeSubtypeAll;" hasAll="true" allMemberName="All Accounts by Type by Subtype" primaryKey="ACCOUNT_K" caption="&AccountByTypeSubtype;">
+      <Table name="GL_ACCOUNT" schema="ERPI">
+      </Table>
+      <Level name="Type" caption="&AccountType;" column="TYPE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Subtype" caption="&AccountSubtype;" column="SUBTYPE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Account" caption="&AccountName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Key" column="ACCOUNT_K" caption="&AccountKey;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+
+    <Hierarchy name="Accounts by CFType" allMemberCaption="&AccountCFTypeAll;" hasAll="true" allMemberName="All Accounts by CFType" primaryKey="ACCOUNT_K" caption="&AccountByCFType;">
+      <Table name="GL_ACCOUNT" schema="ERPI">
+      </Table>
+      <Level name="CFType" caption="&AccountCFType;" column="CFTYPE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Account" caption="&AccountName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Key" column="ACCOUNT_K" caption="&AccountKey;" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension highCardinality="false" name="Division" caption="&Division;">
+    <Hierarchy hasAll="true" allMemberCaption="&DivisionAll;" allMemberName="All Divisions" primaryKey="DIVISION_K" caption="&DivisionByName;">
+      <Table name="DIVISION" schema="ERPI">
+      </Table>
+      <Level name="Division" caption="&DivisionName;" column="DIVISION_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Division Key" caption="&DivisionKey;" column="DIVISION_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Division Code" allMemberCaption="&DivisionCodeAll;" hasAll="true" allMemberName="All Divisions by Code" primaryKey="DIVISION_K" caption="&DivisionByCode;">
+      <Table name="DIVISION" schema="ERPI">
+      </Table>
+      <Level name="Division Code" catpion="&DivisionCode;" column="DIVISION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Division Key" caption="&DivisionKey;" column="DIVISION_K" type="String">
+        </Property>
+      </Level>
+      <Level name="Division" caption="&DivisionName;" column="DIVISION_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Division Key" caption="&DivisionKey;" column="DIVISION_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Customer" catpion="&Customer;">
+    <Hierarchy hasAll="true" allMemberCaption="&CustomerAll;" allMemberName="All Customers" primaryKey="CUSTOMER_K" caption="&CustomerByName;">
+      <Table name="CUSTOMER" schema="ERPI">
+      </Table>
+      <Level name="Customer Name" caption="&CustomerName;" column="CUSTOMER_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Payment Terms" caption="&PaymentTerms;" column="PAYMENT_TERMS" type="String">
+        </Property>
+        <Property name="Credit Limit" caption="&CreditLimit;" column="CREDIT_LIMIT" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Customer Code" allMemberCatpion="&CustomerCodeAll;" hasAll="true" allMemberName="All Customers by Code" primaryKey="CUSTOMER_K" caption="&CustomerByCode;">
+      <Table name="CUSTOMER" schema="ERPI">
+      </Table>
+      <Level name="Customer Code" catpion="&CustomerCode;" column="CUSTOMER_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Customer Name" caption="&CustomerName;" column="CUSTOMER_NAME" type="String">
+        </Property>
+        <Property name="Payment Terms" caption="&PaymentTerms;" column="PAYMENT_TERMS" type="String">
+        </Property>
+        <Property name="Credit Limit" caption="&CreditLimit;" column="CREDIT_LIMIT" type="String">
+        </Property>
+        <Property name="Customer Code" caption="&CustomerKey;" column="CUSTOMER_NK" type="String">
+        </Property>
+      </Level>
+      <Level name="Customer Name" caption="&CustomerName;" column="CUSTOMER_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Payment Terms" caption="&PaymentTerms;" column="PAYMENT_TERMS" type="String">
+        </Property>
+        <Property name="Credit Limit" caption="&CreditLimit;" column="CREDIT_LIMIT" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension highCardinality="false" name="Account Rep" caption="&AccountRep;">
+    <Hierarchy hasAll="true" allMemberCaption="&AccountRepAll;" allMemberName="All Account Reps" primaryKey="ACCOUNT_REP_K" caption="&AccountRepByName;">
+      <Table name="ACCOUNT_REP" schema="ERPI">
+      </Table>
+      <Level name="Account Rep Name" caption="&AccountRepName;" column="ACCOUNT_REP_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+    <Hierarchy hasAll="true" name="Account Reps by Code" allMemberCaption="&AccountRepCodeAll;" allMemberName="All Account Reps by Code" primaryKey="ACCOUNT_REP_K" caption="&AccountRepByCode;">
+      <Table name="ACCOUNT_REP" schema="ERPI">
+      </Table>
+      <Level name="Account Rep Code" caption="&AccountRepCode;" column="ACCOUNT_REP_NO" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Account Rep Code" caption="&AccountRepKey;" column="ACCOUNT_REP_NO" type="String">
+        </Property>
+        <Property name="Account Rep Name" caption="&AccountRepName;" column="ACCOUNT_REP_NAME" type="String">
+        </Property>
+      </Level>
+      <Level name="Account Rep Name" caption="&AccountRepName;" column="ACCOUNT_REP_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="TimeDimension" highCardinality="false" name="Fiscal Period" caption="&FiscalPeriod;">
+    <Hierarchy name="Fiscal Period CL" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="FISCAL_PERIOD_K" caption="&FiscalPeriodCL;">
+      <Table name="FISCAL_PERIODS_CL" schema="ERPI">
+      </Table>
+      <Level name="Fiscal Year" caption="&FiscalYear;" column="FISCAL_YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never">
+        <Property name="Fiscal Variant" caption="&FiscalVariant;" column="FISCAL_VARIANT" type="String">
+        </Property>
+      </Level>
+      <Level name="Fiscal Period" caption="&FiscalPeriod;" column="FISCAL_PERIOD" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never">
+        <Property name="Fiscal Variant" caption="&FiscalVariant;" column="FISCAL_VARIANT" type="String">
+        </Property>
+        <Property name="Date" caption="&FiscalDate;" column="END_DATE" type="String">
+        </Property>
+        <Property name="Days Date" caption="&FiscalDays;" column="END_DAYS_DATE" type="Numeric">
+        </Property>
+        <Property name="JBegin Days Date" caption="&FiscalDaysBegin;" column="BEGIN_DAYS_DATE" type="Numeric">
+        </Property>
+        <Property name="Fiscal Period Key" caption="&FiscalPeriodKey;" column="FISCAL_PERIOD_K" type="Numeric">
+        </Property>
+        <Property name="Fiscal Year" caption="&FiscalYear;" column="FISCAL_YEAR" type="Numeric">
+        </Property>
+        <Property name="Fiscal Period" caption="&FiscalPeriod;" column="FISCAL_PERIOD" type="Numeric">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Cube name="SOOrder" cache="true" enabled="true" caption="&SOOrder;">
+    <Table name="SALES_ORDER_FACTS" schema="ERPI">
+			<AggName name="AGG_NOITEM_SALES_ORDER_FACTS" schema="ERPI">
+				<AggFactCount column="FACT_COUNT">
+				</AggFactCount>
+				<AggForeignKey factColumn="COMPANY_K" aggColumn="COMPANY_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="CUSTOMER_K" aggColumn="CUSTOMER_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="DIVISION_K" aggColumn="DIVISION_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="BUSINESS_UNIT_K" aggColumn="BUSINESS_UNIT_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="PROFIT_CENTER_K" aggColumn="PROFIT_CENTER_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="ACCOUNT_REP_K" aggColumn="ACCOUNT_REP_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="BILL_CITY_K" aggColumn="BILL_CITY_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="SHIP_CITY_K" aggColumn="SHIP_CITY_K">
+				</AggForeignKey>
+				<AggMeasure column="AMOUNT" name="[Measures].[Amount, Order Gross]">
+				</AggMeasure>
+				<AggMeasure column="AMOUNT_LIST" name="[Measures].[Amount, Order Gross List]">
+				</AggMeasure>
+				<AggMeasure column="QUANTITY_ORDER" name="[Measures].[Amount, Order Quantity]">
+				</AggMeasure>
+				<AggMeasure column="ID_DOCUMENT_NK" name="[Measures].[Count, Orders]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_ORDER_DATE" name="[Measures].[Days Order Date]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_PROMISE_DATE" name="[Measures].[Days Promise Date]">
+				</AggMeasure>
+				<AggLevel column="ORDERDATE_YEAR" name="[Order Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="ORDERDATE_PERIOD" name="[Order Date.Calendar].[Period]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_YEAR" name="[Promise Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_PERIOD" name="[Promise Date.Calendar].[Period]">
+				</AggLevel>
+			</AggName>
+			<AggName name="AGG_NOCUST_SALES_ORDER_FACTS" schema="ERPI">
+				<AggFactCount column="FACT_COUNT">
+				</AggFactCount>
+				<AggForeignKey factColumn="COMPANY_K" aggColumn="COMPANY_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="ITEM_K" aggColumn="ITEM_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="DIVISION_K" aggColumn="DIVISION_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="BUSINESS_UNIT_K" aggColumn="BUSINESS_UNIT_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="PROFIT_CENTER_K" aggColumn="PROFIT_CENTER_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="ACCOUNT_REP_K" aggColumn="ACCOUNT_REP_K">
+				</AggForeignKey>
+				<AggMeasure column="AMOUNT" name="[Measures].[Amount, Order Gross]">
+				</AggMeasure>
+				<AggMeasure column="AMOUNT_LIST" name="[Measures].[Amount, Order Gross List]">
+				</AggMeasure>
+				<AggMeasure column="QUANTITY_ORDER" name="[Measures].[Amount, Order Quantity]">
+				</AggMeasure>
+				<AggMeasure column="ID_DOCUMENT_NK" name="[Measures].[Count, Orders]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_ORDER_DATE" name="[Measures].[Days Order Date]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_PROMISE_DATE" name="[Measures].[Days Promise Date]">
+				</AggMeasure>
+				<AggLevel column="ORDERDATE_YEAR" name="[Order Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="ORDERDATE_PERIOD" name="[Order Date.Calendar].[Period]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_YEAR" name="[Promise Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_PERIOD" name="[Promise Date.Calendar].[Period]">
+				</AggLevel>
+			</AggName>
+    </Table>
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="COMPANY_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Division" name="Division" caption="&Division;" foreignKey="DIVISION_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Business Unit" name="Business Unit" caption="&BusinessUnit;"  foreignKey="BUSINESS_UNIT_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Customer" name="Customer" caption="&Customer;"  foreignKey="CUSTOMER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Profit Center" name="Profit Center" caption="&ProfitCenter;" foreignKey="PROFIT_CENTER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account Rep" name="Account Rep" caption="&AccountRep;"  foreignKey="ACCOUNT_REP_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" caption="&Product;" name="Product" foreignKey="ITEM_K">
+    </DimensionUsage>
+  <Dimension type="StandardDimension" highCardinality="false" name="Order" caption="&Order;">
+    <Hierarchy hasAll="true" allMemberCaption="&OrderKeyAll;" allMemberName="All Orders" primaryKey="ORDER_K" caption ="&OrderByKey;">
+      <Level name="Order"  caption="&OrderKey;" column="ID_TRANS_DOC_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Order Line Item" caption="&OrderLineKey;" column="LINE_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Dimension type="TimeDimension" foreignKey="ISSUE_DATE_K" highCardinality="false" name="Order Date">
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="ISSUE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="PERIOD" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="PERIOD" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["ISSUE_DATE"."THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Calendar Weeks" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="ISSUE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Week" column="WEEK" type="Numeric" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never" caption="Week">
+          <Property name="Week" column="WEEK" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["ISSUE_DATE"."THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" foreignKey="PROMISE_DATE_K" highCardinality="false" name="Promise Date" >
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="PROMISE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="PERIOD" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="PERIOD" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["PROMISE_DATE"."THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Calendar Weeks" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="PROMISE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Week" column="WEEK" type="Numeric" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never" caption="Week">
+          <Property name="Week" column="WEEK" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["PROMISE_DATE"."THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+
+
+  <Dimension name="Bill City" caption="&CityBill;" foreignKey="BILL_CITY_K" highCardinality="false" >
+    <Hierarchy hasAll="true" allMemberCaption="&CityBillAll;" allMemberName="All Bill Cities" primaryKey="GEO_DATA_K" caption="&CityBillByRegionByCountry;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Country Name" caption="&CityCountryName;" column="COUNTRY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">country</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="City Name" caption="&CityName;" column="CITY_ACCENT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Longitude" caption="&CityLogitude;" column="LONGITUDE" type="Numeric">
+        </Property>
+        <Property name="Latitude" caption="&CityLatitude;" column="LATITUDE" type="Numeric">
+        </Property>
+        <Property name="Name" caption="&CityName;" column="CITY_NAME" >
+        </Property>
+        <Property name="Region" caption="&CityRegionCode;" column="REGION_CODE" >
+        </Property>
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">city</Annotation>
+  	</Annotations>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Bill Region" hasAll="true" allMemberCaption="&RegionBillAll;" allMemberName="All Bill Regions" primaryKey="GEO_DATA_K" caption="&RegionBill;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Region Name" caption="&RegionName;" column="REGION_CODE" type="String">
+        </Property>
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations> 
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Ship City" caption="&CityShip;" foreignKey="SHIP_CITY_K" highCardinality="false" >
+    <Hierarchy hasAll="true" allMemberCaption="&CityShipAll;" allMemberName="All Ship Cities" primaryKey="GEO_DATA_K" caption="&CityShipByRegionByCountry;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Country Name" caption="&CityCountryName;" column="COUNTRY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">country</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="City Name" caption="&CityName;" column="CITY_ACCENT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Longitude" caption="&CityLogitude;" column="LONGITUDE" type="Numeric">
+        </Property>
+        <Property name="Latitude" caption="&CityLatitude;" column="LATITUDE" type="Numeric">
+        </Property>
+        <Property name="Name" caption="&CityName;" column="CITY_NAME" >
+        </Property>
+        <Property name="Region" caption="&CityRegionCode;" column="REGION_CODE" >
+        </Property>
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">city</Annotation>
+  	</Annotations>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Ship Region" hasAll="true" allMemberCaption="&RegionShipAll;" allMemberName="All Ship Regions" primaryKey="GEO_DATA_K" caption="&RegionShip;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Region Name" caption="&RegionName;" column="REGION_CODE" type="String">
+        </Property>
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations> 
+     </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Measure name="Amount, Order Gross" caption="&OrderAmount;" column="AMOUNT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Order Gross List" caption="&OrderAmountList;" column="AMOUNT_LIST" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Order Quantity" caption="&OrderAmountQuantity;" column="QUANTITY_ORDER" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Count, Orders" caption="&OrderCount;"  column="ID_DOCUMENT_NK" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Days Order Date"  column="ISSUE_DATE_K" formatString="########" aggregator="min" visible="false">
+    </Measure>
+    <Measure name="Days Promise Date" column="PROMISE_DATE_K" formatString="########" aggregator="max" visible="false">
+    </Measure>
+
+    <CalculatedMember name="Amount, Order Discount" caption="&OrderDiscount;" dimension="Measures" formatString="#,##0.00" visible="true">
+      <Formula>
+        <![CDATA[
+                [Measures].[Amount, Order Gross List] - [Measures].[Amount, Order Gross] ]]>
+      </Formula>
+    </CalculatedMember>
+
+    <CalculatedMember name="Average, Order Gross" caption="&OrderAverage;" dimension="Measures" formatString="#,##0.00" visible="true">
+      <Formula>
+        <![CDATA[
+                iif([Measures].[Count, Orders] = 0, 0, [Measures].[Amount, Order Gross]/[Measures].[Count, Orders])]]>
+      </Formula>
+    </CalculatedMember>
+
+<!--
+        For dates if we have not date or we are not at the order level, return null
+-->
+    <CalculatedMember name="Date, Order" caption="&OrderDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1 AND [Order].level.ordinal <> 2 , "",
+              iif([Measures].[Days Order Date] is empty,  cast (null as string),
+                iif([Measures].[Days Order Date] = 0, "",
+                getDateString(cast([Measures].[Days Order Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+    <CalculatedMember name="Date, Promise" caption="&OrderPromise;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1 AND [Order].level.ordinal <> 2 , "",
+              iif([Measures].[Days Promise Date] is empty, cast (null as string),
+                iif([Measures].[Days Promise Date] = 0, "",
+                getDateString(cast([Measures].[Days Promise Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+
+  </Cube>
+
+
+  <Cube name="SODelivery" cache="true" enabled="true" caption="&SODelivery;">
+    <Table name="SALES_DELIVERY_FACTS" schema="ERPI">
+	
+			<AggName name="AGG_NOITEM_SALES_DELIVERY_FACTS" schema="ERPI">
+				<AggFactCount column="FACT_COUNT">
+				</AggFactCount>
+				<AggForeignKey factColumn="COMPANY_K" aggColumn="COMPANY_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="CUSTOMER_K" aggColumn="CUSTOMER_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="DIVISION_K" aggColumn="DIVISION_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="BUSINESS_UNIT_K" aggColumn="BUSINESS_UNIT_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="PROFIT_CENTER_K" aggColumn="PROFIT_CENTER_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="ACCOUNT_REP_K" aggColumn="ACCOUNT_REP_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="BILL_CITY_K" aggColumn="BILL_CITY_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="SHIP_CITY_K" aggColumn="SHIP_CITY_K">
+				</AggForeignKey>
+				<AggMeasure column="AMOUNT" name="[Measures].[Amount, Delivery Gross]">
+				</AggMeasure>
+				<AggMeasure column="AMOUNT_LIST" name="[Measures].[Amount, Delivery Gross List]">
+				</AggMeasure>
+				<AggMeasure column="QUANTITY_ORDER" name="[Measures].[Amount, Order Quantity]">
+				</AggMeasure>
+				<AggMeasure column="COST" name="[Measures].[Amount, Cost Gross]">
+				</AggMeasure>
+				<AggMeasure column="ID_DOCUMENT_NK" name="[Measures].[Count, Orders]">
+				</AggMeasure>
+				<AggMeasure column="ID_TRANS_DOC_NK" name="[Measures].[Count, Deliveries]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_DELIVERY_DATE" name="[Measures].[Days Delivery Date]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_PROMISE_DATE" name="[Measures].[Days Promise Date]">
+				</AggMeasure>
+				<AggLevel column="DELIVERYDATE_YEAR" name="[Delivery Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="DELIVERYDATE_PERIOD" name="[Delivery Date.Calendar].[Period]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_YEAR" name="[Promise Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_PERIOD" name="[Promise Date.Calendar].[Period]">
+				</AggLevel>
+			</AggName>	
+			<AggName name="AGG_NOCUST_SALES_DELIVERY_FACTS" schema="ERPI">
+				<AggFactCount column="FACT_COUNT">
+				</AggFactCount>
+				<AggForeignKey factColumn="COMPANY_K" aggColumn="COMPANY_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="ITEM_K" aggColumn="ITEM_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="DIVISION_K" aggColumn="DIVISION_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="BUSINESS_UNIT_K" aggColumn="BUSINESS_UNIT_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="PROFIT_CENTER_K" aggColumn="PROFIT_CENTER_K">
+				</AggForeignKey>
+				<AggForeignKey factColumn="ACCOUNT_REP_K" aggColumn="ACCOUNT_REP_K">
+				</AggForeignKey>
+				<AggMeasure column="AMOUNT" name="[Measures].[Amount, Delivery Gross]">
+				</AggMeasure>
+				<AggMeasure column="AMOUNT_LIST" name="[Measures].[Amount, Delivery Gross List]">
+				</AggMeasure>
+				<AggMeasure column="QUANTITY_ORDER" name="[Measures].[Amount, Order Quantity]">
+				</AggMeasure>
+				<AggMeasure column="COST" name="[Measures].[Amount, Cost Gross]">
+				</AggMeasure>
+				<AggMeasure column="ID_DOCUMENT_NK" name="[Measures].[Count, Orders]">
+				</AggMeasure>
+				<AggMeasure column="ID_TRANS_DOC_NK" name="[Measures].[Count, Deliveries]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_DELIVERY_DATE" name="[Measures].[Days Delivery Date]">
+				</AggMeasure>
+				<AggMeasure column="DAYS_PROMISE_DATE" name="[Measures].[Days Promise Date]">
+				</AggMeasure>
+				<AggLevel column="DELIVERYDATE_YEAR" name="[Delivery Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="DELIVERYDATE_PERIOD" name="[Delivery Date.Calendar].[Period]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_YEAR" name="[Promise Date.Calendar].[Year]">
+				</AggLevel>
+				<AggLevel column="PROMISEDATE_PERIOD" name="[Promise Date.Calendar].[Period]">
+				</AggLevel>
+			</AggName>	
+
+		
+    </Table>
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="COMPANY_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Division" name="Division" caption="&Division;" foreignKey="DIVISION_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Business Unit" name="Business Unit" caption="&BusinessUnit;" foreignKey="BUSINESS_UNIT_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Customer" name="Customer" cpation="&Customer;" foreignKey="CUSTOMER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Profit Center" name="Profit Center" caption="&ProfitCenter;" foreignKey="PROFIT_CENTER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account Rep" name="Account Rep" caption="&AccountRep;" foreignKey="ACCOUNT_REP_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" name="Product" caption="&Product;" foreignKey="ITEM_K">
+    </DimensionUsage>
+  
+  <Dimension type="StandardDimension" highCardinality="false" name="Order" caption="&Order;">
+    <Hierarchy hasAll="true" allMemberCaption="&OrderKeyAll;" allMemberName="All Orders" primaryKey="ORDER_K" caption ="&OrderByKey;">
+      <Level name="Order" caption="&OrderKey;" column="ID_DOCUMENT_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Dimension type="StandardDimension" highCardinality="false" name="Delivery" caption="&Delivery;">
+    <Hierarchy hasAll="true" allMemberCaption="&DeliveryKeyAll;" allMemberName="All Delivery Lines by Delivery"  primaryKey="DELIVERY_DOC_K" caption="&DeliveryByKey;">
+      <Level name="Delivery" caption="&DeliveryKey;" column="ID_TRANS_DOC_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Delivery Line Item" caption="&DeliveryLineKey;" column="LINE_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Dimension type="TimeDimension" foreignKey="ISSUE_DATE_K" highCardinality="false" name="Delivery Date">
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="ISSUE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="PERIOD" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="PERIOD" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Calendar Weeks" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="ISSUE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Week" column="WEEK" type="Numeric" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never" caption="Week">
+          <Property name="Week" column="WEEK" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="TimeDimension" foreignKey="PROMISE_DATE_K" highCardinality="false" name="Promise Date">
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="PROMISE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="PERIOD" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="PERIOD" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Calendar Weeks" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="PROMISE_DATE">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Week" column="WEEK" type="Numeric" uniqueMembers="false" levelType="TimeWeeks" hideMemberIf="Never" caption="Week">
+          <Property name="Week" column="WEEK" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["PROMISE_DATE"."THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+
+  <Dimension name="Bill City" caption="&CityBill;" foreignKey="BILL_CITY_K" highCardinality="false" >
+    <Hierarchy hasAll="true" allMemberCaption="&CityBillAll;" allMemberName="All Bill Cities" primaryKey="GEO_DATA_K" caption="&CityBillByRegionByCountry;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Country Name" caption="&CityCountryName;" column="COUNTRY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">country</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="City Name" caption="&CityName;" column="CITY_ACCENT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Longitude" caption="&CityLogitude;" column="LONGITUDE" type="Numeric">
+        </Property>
+        <Property name="Latitude" caption="&CityLatitude;" column="LATITUDE" type="Numeric">
+        </Property>
+        <Property name="Name" caption="&CityName;" column="CITY_NAME" >
+        </Property>
+        <Property name="Region" caption="&CityRegionCode;" column="REGION_CODE" >
+        </Property>
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">city</Annotation>
+  	</Annotations>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Bill Region" hasAll="true" allMemberCaption="&RegionBillAll;" allMemberName="All Bill Regions" primaryKey="GEO_DATA_K" caption="&RegionBill;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Region Name" caption="&RegionName;" column="REGION_CODE" type="String">
+        </Property> 
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Ship City" caption="&CityShip;" foreignKey="SHIP_CITY_K" highCardinality="false" >
+    <Hierarchy hasAll="true" allMemberCaption="&CityShipAll;" allMemberName="All Ship Cities" primaryKey="GEO_DATA_K" caption="&CityShipByRegionByCountry;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Country Name" caption="&CityCountryName;" column="COUNTRY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">country</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations>
+      </Level>
+      <Level name="City Name" caption="&CityName;" column="CITY_ACCENT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Longitude" caption="&CityLogitude;" column="LONGITUDE" type="Numeric">
+        </Property>
+        <Property name="Latitude" caption="&CityLatitude;" column="LATITUDE" type="Numeric">
+        </Property>
+        <Property name="Name" caption="&CityName;" column="CITY_NAME" >
+        </Property>
+        <Property name="Region" caption="&CityRegionCode;" column="REGION_CODE" >
+        </Property>
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">city</Annotation>
+  	</Annotations>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Ship Region" hasAll="true" allMemberCaption="&RegionShipAll;" allMemberName="All Ship Regions" primaryKey="GEO_DATA_K" caption="&RegionShip;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Region Name" caption="&RegionName;" column="REGION_CODE" type="String">
+        </Property> 
+  	<Annotations>
+    		<Annotation name="Data.Role">Geography</Annotation>
+    		<Annotation name="Geo.Role">state</Annotation>
+  	</Annotations>
+     </Level>
+    </Hierarchy>
+  </Dimension>
+
+
+    <Measure name="Amount, Delivery Gross" caption="&DeliveryAmount;" column="AMOUNT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Delivery Gross List" caption="&DeliveryAmountList;" column="AMOUNT_LIST" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Order Quantity" caption="&OrderAmountQuantity;" column="QUANTITY_ORDER" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Cost Gross" caption="&DeliveryCostAmount;" column="COST" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Count, Orders" caption="&OrderCount;" column="ID_DOCUMENT_NK" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Count, Deliveries" caption="&DeliveryCount;" column="ID_TRANS_DOC_NK" formatString="#,###" aggregator="distinct-count">
+    </Measure>
+    <Measure name="Days Delivery Date" column="ISSUE_DATE_K" formatString="########"  aggregator="min" visible="false">
+    </Measure>
+    <Measure name="Days Promise Date" column="PROMISE_DATE_K" formatString="########"  aggregator="max" visible="false">
+    </Measure>
+
+    <CalculatedMember name="Amount, Delivery Discount" caption="&DeliveryDiscount;" dimension="Measures" formatString="#,##0.00" visible="true">
+      <Formula>
+        <![CDATA[
+                [Measures].[Amount, Delivery Gross List] - [Measures].[Amount, Delivery Gross] ]]>
+      </Formula>
+    </CalculatedMember>
+
+<!--
+        For dates if we have not date or we are not at the order level, return null
+-->
+    <CalculatedMember name="Date, Delivery" caption="&DeliveryDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Delivery].CurrentMember.level.ordinal <> 1 AND [Delivery].level.ordinal <> 2 , "",
+              iif([Measures].[Days Delivery Date] is empty,  cast (null as string),
+                iif([Measures].[Days Delivery Date] = 0, "",
+                getDateString(cast([Measures].[Days Delivery Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+    <CalculatedMember name="Date, Promise" caption="&DeliveryPromise;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Delivery].CurrentMember.level.ordinal <> 1 AND [Delivery].level.ordinal <> 2 , "",
+              iif([Measures].[Days Promise Date] is empty, cast (null as string),
+                iif([Measures].[Days Promise Date] = 0, "",
+                getDateString(cast([Measures].[Days Promise Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+  <CalculatedMember name="Amount, Profit Gross" caption="&DeliveryProfit;" dimension="Measures" visible="true">
+	<Formula>
+        [Measures].[Amount, Delivery Gross] - [Measures].[Amount, Cost Gross]
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+  </CalculatedMember>
+
+   <CalculatedMember name="Percentage, Gross Margin" caption="&DeliveryMargin;" dimension="Measures" visible="true">
+
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Profit Gross] > 0 AND (([Measures].[Amount, Delivery Gross] is empty) OR [Measures].[Amount, Delivery Gross] = 0), 100 
+			, iif([Measures].[Amount, Profit Gross] < 0 AND (([Measures].[Amount, Delivery Gross] is empty) OR [Measures].[Amount, Delivery Gross] = 0), -100 
+				, iif([Measures].[Amount, Profit Gross] is empty AND (NOT ([Measures].[Amount, Delivery Gross] is empty)), 0 
+					, ([Measures].[Amount, Profit Gross] / [Measures].[Amount, Delivery Gross]) * 100) ) )]]>
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="###0.00"/>
+  </CalculatedMember>
+
+    <CalculatedMember name="Average, Delivery Gross" caption="&DeliveryAverage;" dimension="Measures" formatString="#,##0.00" visible="true">
+      <Formula>
+        <![CDATA[
+                iif([Measures].[Count, Deliveries] = 0, 0, [Measures].[Amount, Delivery Gross]/[Measures].[Count, Deliveries])]]>
+      </Formula>
+    </CalculatedMember>
+
+    <CalculatedMember name="Average, Cost Gross" caption="&DeliveryCostAverage;" dimension="Measures" formatString="#,##0.00" visible="true">
+      <Formula>
+        <![CDATA[
+                iif([Measures].[Count, Deliveries] = 0, 0, [Measures].[Amount, Cost Gross]/[Measures].[Count, Deliveries])]]>
+      </Formula>
+    </CalculatedMember>
+
+    <CalculatedMember name="Average, Profit Gross" caption="&DeliveryProfitAverage;" dimension="Measures" formatString="#,##0.00" visible="true">
+      <Formula>
+        <![CDATA[
+                iif([Measures].[Count, Deliveries] = 0, 0, [Measures].[Amount, Profit Gross]/[Measures].[Count, Deliveries])]]>
+      </Formula>
+    </CalculatedMember>
+
+
+  </Cube>
+
+  <Cube name="SOByPeriod" cache="true" enabled="true" caption="&SOPeriod;">
+    <Table name="SO_FACTS_BY_PERIOD" schema="ERPI">
+    </Table>
+    <DimensionUsage source="Company" caption="&Company;" name="Company" foreignKey="COMPANY_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Division" name="Division" caption="&Division;" foreignKey="DIVISION_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Business Unit" name="Business Unit" caption="&BusinessUnit;" foreignKey="BUSINESS_UNIT_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Customer" name="Customer" caption="&Customer;" foreignKey="CUSTOMER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Profit Center" name="Profit Center" caption="&ProfitCenter;" foreignKey="PROFIT_CENTER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account Rep" caption="&AccountRep;" name="Account Rep" foreignKey="ACCOUNT_REP_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Product" caption="&Product;" name="Product" foreignKey="ITEM_K">
+    </DimensionUsage>
+    <DimensionUsage source="Fiscal Period" name="Fiscal Period" caption="&FiscalPeriod;" foreignKey="FISCAL_PERIOD_K" highCardinality="false">
+    </DimensionUsage>
+
+  <Dimension type="StandardDimension" highCardinality="false" name="Order" caption="&Order;">
+    <Hierarchy hasAll="true" allMemberCaption="&OrderKeyAll;" allMemberName="All Orders" primaryKey="ORDER_K" caption ="&OrderByKey;">
+      <Level name="Order" caption="&OrderKey;" column="ID_DOCUMENT_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Bill City" caption="&CityBill;" foreignKey="BILL_CITY_K" highCardinality="false" >
+    <Hierarchy hasAll="true" allMemberCaption="&CityBillAll;" allMemberName="All Bill Cities" primaryKey="GEO_DATA_K" caption="&CityBillByRegionByCountry;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Country Name" caption="&CityCountryName;" column="COUNTRY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="City Name" caption="&CityName;" column="CITY_ACCENT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Longitude" caption="&CityLogitude;" column="LONGITUDE" type="Numeric">
+        </Property>
+        <Property name="Latitude" caption="&CityLatitude;" column="LATITUDE" type="Numeric">
+        </Property>
+        <Property name="Name" caption="&CityName;" column="CITY_NAME" >
+        </Property>
+        <Property name="Region" caption="&CityRegionCode;" column="REGION_CODE" >
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Bill Region" hasAll="true" allMemberCaption="&RegionBillAll;" allMemberName="All Bill Regions" primaryKey="GEO_DATA_K" caption="&RegionBill;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Region Name" caption="&RegionName;" column="REGION_CODE" type="String">
+        </Property> 
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Ship City" caption="&CityShip;" foreignKey="SHIP_CITY_K" highCardinality="false" >
+    <Hierarchy hasAll="true" allMemberCaption="&CityShipAll;" allMemberName="All Ship Cities" primaryKey="GEO_DATA_K" caption="&CityShipByRegionByCountry;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Country Name" caption="&CityCountryName;" column="COUNTRY_NAME" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="City Name" caption="&CityName;" column="CITY_ACCENT_NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Longitude" caption="&CityLogitude;" column="LONGITUDE" type="Numeric">
+        </Property>
+        <Property name="Latitude" caption="&CityLatitude;" column="LATITUDE" type="Numeric">
+        </Property>
+        <Property name="Name" caption="&CityName;" column="CITY_NAME" >
+        </Property>
+        <Property name="Region" caption="&CityRegionCode;" column="REGION_CODE" >
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Ship Region" hasAll="true" allMemberCaption="&RegionShipAll;" allMemberName="All Ship Regions" primaryKey="GEO_DATA_K" caption="&RegionShip;">
+      <Table name="GEO_CITIES_DATA" schema="ERPI">
+      </Table>
+      <Level name="Region Code" caption="&CityRegionCode;" column="REGION_CODE" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Region Name" caption="&RegionName;" column="REGION_CODE" type="String">
+        </Property> 
+     </Level>
+    </Hierarchy>
+  </Dimension>
+
+
+    <Measure name="Count, Orders" caption="&OrderCount;" formatString="#,###" aggregator="distinct-count" visible="true">
+      <MeasureExpression>
+        <SQL dialect="generic">
+          <![CDATA[(case when "SO_FACTS_BY_PERIOD"."ID_DOCUMENT_NK" <> 'Unspecified' then
+                        "SO_FACTS_BY_PERIOD"."ID_DOCUMENT_NK" ELSE NULL END)]]>
+        </SQL>
+      </MeasureExpression>
+    </Measure>
+
+
+    <Measure name="Days Order Date" column="ISSUE_DATE_K" formatString="########"  aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Days Delivery Date" column="DELIVERY_DATE_K" formatString="########"  aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Days End Date" column="ENDDATE" formatString="########"  aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Delivery Sum" column="DELIVERY SUM" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Order Sum" column="ORDER SUM" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Cost Sum" column="COST SUM" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+
+   <CalculatedMember name="O2D Days" caption="&SalesDaysO2D;" dimension="Measures" visible="false">
+      <Formula>
+        <![CDATA[
+           [Measures].[Days End Date] - [Measures].[Days Order Date]
+        ]]>
+      </Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="###"/>
+    </CalculatedMember>
+
+    <CalculatedMember name="Days, Order to Delivery" caption="&SalesDaysO2D;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+		sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Days, Order to Delivery]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+              [Measures].[O2D Days] / [Measures].[Count, Orders],
+        cast(null as numeric)))]]>
+      </Formula>
+    </CalculatedMember>
+
+   <CalculatedMember name="Interest, O2D Impact" caption="&SalesImpactO2D;" dimension="Measures" visible="true">
+	<Formula>
+        [Measures].[Days, Order to Delivery] * ParamRef("APRValue")
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+  </CalculatedMember>
+
+<!--
+        For dates if we have no date or we are not at the order level, return null
+-->
+
+    <CalculatedMember name="Date, Order" caption="&OrderDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1, "",
+              iif([Measures].[Days Order Date] is empty, cast (null as string),
+                iif([Measures].[Days Order Date] = 0, "",
+                getDateString(cast([Measures].[Days Order Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+
+    <CalculatedMember name="Date, Last Delivery" caption="&DeliveryDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Order].CurrentMember.level.ordinal <> 1, "",
+              iif([Measures].[Days Delivery Date] is empty, cast (null as string),
+                iif([Measures].[Days Delivery Date] = 0, "",
+                getDateString(cast([Measures].[Days Delivery Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+
+    <CalculatedMember name="Amount, Delivery Gross" caption="&DeliveryAmount;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Delivery Sum]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Delivery Sum],
+        cast(null as numeric)))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Order Balance"  dimension="Measures" visible="false">
+	<Formula>
+        <![CDATA[
+           iif([Measures].[Delivery Sum] > [Measures].[Order Sum], 0, [Measures].[Order Sum] - [Measures].[Delivery Sum])
+        ]]>
+	</Formula>
+    <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+    </CalculatedMember>
+
+    <CalculatedMember name="Balance, Orders Unfulfilled" caption="&SalesUnfulfilledOrder;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Order Balance]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Order Balance],
+         cast(null as numeric)))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Amount, Order Gross" caption="&OrderAmount;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Order Sum]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Order Sum],
+        cast(null as numeric)))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+    <CalculatedMember name="Amount, Cost Gross" caption="&DeliveryCostAmount;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[iif(1 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 1,
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Cost Sum]),
+		iif(2 > 0 and [Fiscal Period].CurrentMember.level.ordinal = 2,
+            [Measures].[Cost Sum],
+        cast(null as numeric)))]]>
+      </Formula>
+      <CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00">
+      </CalculatedMemberProperty>
+    </CalculatedMember>
+
+  </Cube>
+
+
+
+  <Cube name="GLAccount" cache="true" enabled="true" caption="&GLAccount;">
+    <Table name="GL_ACCOUNT_FACTS" schema="ERPI">
+    </Table>
+
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="COMPANY_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Profit Center" name="Profit Center" caption="&ProfitCenter;" foreignKey="PROFIT_CENTER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account" name="Account" caption="&Account;" foreignKey="ACCOUNT_K" highCardinality="false">
+    </DimensionUsage>
+
+    <Dimension name="Transaction Date" type="TimeDimension" caption="&TransactionDate;" foreignKey="TRANS_DATE_K" highCardinality="false" >
+      <Hierarchy name="Calendar" hasAll="true" allMemberName="All Years" allMemberCaption="&DatesAllYears;" primaryKey="DAYS_DATE" caption="Calendar">
+        <Table name="DATE_DATA_CL" schema="ERPI" alias="TransactionDate">
+        </Table>
+        <Level name="Year" column="YEAR" type="Numeric" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="Year">
+        </Level>
+        <Level name="Period" column="PERIOD" type="Numeric" uniqueMembers="false" levelType="TimeMonths" hideMemberIf="Never" caption="Period">
+          <Property name="Month" column="PERIOD" type="Numeric">
+          </Property>
+        </Level>
+        <Level name="Date" type="Date" uniqueMembers="false" levelType="TimeDays" hideMemberIf="Never" caption="Date">
+          <KeyExpression>
+            <SQL dialect="mssql">
+              <![CDATA[SUBSTRING(CONVERT(CHAR, "THE_DATE", 120), 1, 10)]]>
+            </SQL>
+            <SQL dialect="generic">
+              <![CDATA["TransactionDate"."THE_DATE"]]>
+            </SQL>
+          </KeyExpression>
+          <Property name="Date" column="THE_DATE" type="String">
+          </Property>
+          <Property name="Days Date" column="DAYS_DATE" type="Numeric">
+          </Property>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+
+  <Dimension name="Journal Doc" foreignKey="JOURNAL_DOC_K" type="StandardDimension" highCardinality="false" caption="&JournalDoc;">
+    <Hierarchy hasAll="true" allMemberCaption="&JournalDocAll;" allMemberName="All Journal Docs" primaryKey="JOURNAL_DOC_K" caption ="&JournalDocByKey;">
+      <Level name="Journal Doc Key" caption="&JournalDocKey;" column="JOURNAL_DOC_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+      <Level name="Journal Line Item" caption="&JournalDocLineKey;" column="JOURNAL_LINE_ITEM_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Ledger" type="StandardDimension" highCardinality="false" caption="&Ledger;">
+    <Hierarchy hasAll="true" allMemberCaption="&LedgerAll;" allMemberName="All Ledgers" caption ="&LedgerByKey;">
+      <Level name="Ledger Key" caption="&LedgerKey;" column="LEDGER_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+
+    <Measure name="Amount, Debit" caption="&DebitAmount;" column="DEBIT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Credit" caption="&CreditAmount;" column="CREDIT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Days Transaction Date"  column="TRANS_DATE_K" formatString="########" aggregator="min" visible="false">
+    </Measure>
+
+<!--
+        For dates if we have not date or we are not at the Journal Line level, return null
+-->
+    <CalculatedMember name="Date, Transaction" caption="&TransactionDate;" dimension="Measures" visible="true">
+      <Formula>
+        <![CDATA[
+            iif ([Journal Line Item].CurrentMember.level.ordinal <> 1
+			AND [Journal Line Item].CurrentMember.level.ordinal <> 2
+			AND [Journal Doc].CurrentMember.level.ordinal <> 1, 
+				"",
+              	iif([Measures].[Days Transaction Date] is empty, cast (null as string),
+                		iif([Measures].[Days Transaction Date] = 0, "",
+                		getDateString(cast([Measures].[Days Transaction Date] as string)))))]]>
+      </Formula>
+    </CalculatedMember>
+
+  <CalculatedMember name="Amount, Activity" caption="&ActivityAmount;" dimension="Measures" visible="true">
+	<Formula>
+        [Measures].[Amount, Credit] - [Measures].[Amount, Debit]
+	</Formula>
+  </CalculatedMember>
+</Cube>
+
+<Cube name="GLAccountByPeriod" cache="true" enabled="true" caption="&GLAccountbyPeriod;">
+    <Table name="GL_ACCOUNT_PERIOD_FACTS" schema="ERPI">
+    </Table>
+
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="COMPANY_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Profit Center" name="Profit Center" caption="&ProfitCenter;" foreignKey="PROFIT_CENTER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account" name="Account" caption="&Account;" foreignKey="ACCOUNT_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Fiscal Period" name="Fiscal Period" caption="&FiscalPeriod;" foreignKey="FISCAL_PERIOD_K" highCardinality="false">
+    </DimensionUsage>
+
+
+  <Dimension name="Ledger" type="StandardDimension" highCardinality="false" caption="&Ledger;">
+    <Hierarchy hasAll="true" allMemberCaption="&LedgerAll;" allMemberName="All Ledgers" caption ="&LedgerByKey;">
+      <Level name="Ledger Key" caption="&LedgerKey;" column="LEDGER" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Measure name="Amount, Debit" caption="&DebitAmount;" column="DEBIT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Credit" caption="&CreditAmount;" column="CREDIT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Account Balance" caption="&BalanceAmount;" column="BALANCE" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+
+  	<CalculatedMember name="Amount, Activity" caption="&ActivityAmount;" dimension="Measures" visible="true">
+	<Formula>
+        [Measures].[Amount, Credit] - [Measures].[Amount, Debit]
+	</Formula>
+  	</CalculatedMember>
+
+	<CalculatedMember name="Amount, Balance" caption="&BalanceAmount;" dimension="Measures" visible="true">
+	<Formula> 
+		iif( 1 > 0 AND [Fiscal Period].CurrentMember.level.ordinal = 1, 
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Account Balance]), 
+				iif( 1 > 0 AND [Fiscal Period].CurrentMember.level.ordinal = 2, [Measures].[Account Balance], cast (null as numeric)))
+	</Formula> 
+	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Assets (BS)" caption="&AssetsAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Asset]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Liabilities (BS)" caption="&LiabilitiesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by Type by Subtype].[Liability]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Revenue (IS)" caption="&RevenueAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by Type by Subtype].[Revenue]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Revenue (IS)" caption="&ChangesRevenueAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by Type by Subtype].[Revenue]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Expenses (IS)" caption="&ExpensesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Income (IS)" caption="&NetIncomeAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Revenue (IS)] - [Measures].[Amount, Expenses (IS)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Cost of Goods Sold (IS)" caption="&COGSAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense].[Cost of Goods Sold]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Cost of Goods Sold (IS)" caption="&ChangesCOGSAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense].[Cost of Goods Sold]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Gross Income (IS)" caption="&GrossIncomeAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Revenue (IS)] - [Measures].[Amount, Cost of Goods Sold (IS)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Depreciation (IS)" caption="&DepreciationAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense].[Depreciation Expense]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Operating Expenses (IS)" caption="&OperatingExpensesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Expenses (IS)] - [Measures].[Amount, Cost of Goods Sold (IS)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Operating Income (IS)" caption="&OperatingIncomeAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Revenue (IS)] - [Measures].[Amount, Cost of Goods Sold (IS)] - [Measures].[Amount, Operating Expenses (IS)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Percentage, Gross Margin" caption="&GrossMarginPercentage;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Gross Income (IS)] > 0 AND (([Measures].[Amount, Revenue (IS)] is empty) OR [Measures].[Amount, Revenue (IS)] = 0), 100 
+			, iif([Measures].[Amount, Gross Income (IS)] < 0 AND (([Measures].[Amount, Revenue (IS)] is empty) OR [Measures].[Amount, Revenue (IS)] = 0), -100 
+				, iif([Measures].[Amount, Gross Income (IS)] is empty AND (NOT ([Measures].[Amount, Revenue (IS)] is empty)), 0 
+					, ([Measures].[Amount, Gross Income (IS)] / [Measures].[Amount, Revenue (IS)]) * 100) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Percentage, Operating Margin" caption="&OperatingMarginPercentage;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Operating Expenses (IS)] > 0 AND (([Measures].[Amount, Revenue (IS)] is empty) OR [Measures].[Amount, Revenue (IS)] = 0), 100 
+			, iif([Measures].[Amount, Operating Expenses (IS)] < 0 AND (([Measures].[Amount, Revenue (IS)] is empty) OR [Measures].[Amount, Revenue (IS)] = 0), -100 
+				, iif([Measures].[Amount, Operating Expenses (IS)] is empty AND (NOT ([Measures].[Amount, Revenue (IS)] is empty)), 0
+					, ([Measures].[Amount, Operating Expenses (IS)] / [Measures].[Amount, Revenue (IS)]) * 100) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Percentage, Net Margin" caption="&NetMarginPercentage;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Net Income (IS)] > 0 AND (([Measures].[Amount, Revenue (IS)] is empty) OR [Measures].[Amount, Revenue (IS)] = 0), 100 
+			, iif([Measures].[Amount, Net Income (IS)] < 0 AND (([Measures].[Amount, Revenue (IS)] is empty) OR [Measures].[Amount, Revenue (IS)] = 0), -100 
+				, iif([Measures].[Amount, Net Income (IS)] is empty AND (NOT ([Measures].[Amount, Revenue (IS)] is empty)), 0
+					, ([Measures].[Amount, Net Income (IS)] / [Measures].[Amount, Revenue (IS)]) * 100) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Amount, Owner's Equity (BS)" caption="&OwnersEquityAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Net Income (IS)] + Sum({[Account.Accounts by Type by Subtype].[Equity]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Charges Not Using Cash (CF)" caption="&ChargesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Charges Not Using Cash]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+	<!-- the postbooks cftype is wrongly named - changes in current assets. Its actually the balance -->
+
+  	<CalculatedMember name="Amount, Current Assets (CF)" caption="&CurrentAssetsAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Changes in Current Assets]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Current Assets (CF)" caption="&ChangesAssetsAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Changes in Current Assets]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Receivables (CF)" caption="&NetReceivablesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Net Receivables]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Receivables (CF)" caption="&ChangesReceivablesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Net Receivables]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Inventory (CF)" caption="&InventoryAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Inventory]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Amount, Changes in Inventory (CF)" caption="&ChangesInventoryAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Inventory]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+	<!-- the postbooks cftype is wrongly named - changes in current liability. Its actually the balance -->
+
+  	<CalculatedMember name="Amount, Current Liability (CF)" caption="&LiabilityAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Change in Current Liability]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Change in Current Liability (CF)" caption="&ChangeLiabilityAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Change in Current Liability]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Accounts Payable (CF)" caption="&AccountsPayableAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Accounts Payable]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Accounts Payable (CF)" caption="&ChangesAccountsPayableAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Accounts Payable]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Property Plant and Equipment (CF)" caption="&ChangesPPEAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Property Plant and Equipment]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Other Assets (CF)" caption="&ChangesOtherAssetsAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Other Assets]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Long Term Debt (CF)" caption="&ChangesLongTermDebtAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Long Term Debt]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Amount, Common Stock and Equity (CF)" caption="&CSEAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Common Stock and Equity]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Common Stock and Equity (CF)" caption="&ChangesCSEAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Common Stock and Equity]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Operating Activities (CF)" caption="&OperatingActivitiesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Charges Not Using Cash (CF)] + 
+		[Measures].[Amount, Changes in Current Assets (CF)] - 
+		[Measures].[Amount, Changes in Receivables (CF)] - 
+		[Measures].[Amount, Changes in Inventory (CF)] +
+		[Measures].[Amount, Change in Current Liability (CF)] + 
+		[Measures].[Amount, Changes in Accounts Payable (CF)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Investing Activities (CF)" caption="&InvestingActivitiesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Changes in Property Plant and Equipment (CF)] + 
+		[Measures].[Amount, Changes in Other Assets (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Financing Activities (CF)" caption="&FinancingAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Changes in Long Term Debt (CF)] + 
+		[Measures].[Amount, Changes in Common Stock and Equity (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Cash Flow (CF)" caption="&NCFAmount;" dimension="Measures" visible="true">
+	<Formula>
+        	[Measures].[Amount, Net Income (IS)] +  
+        	[Measures].[Amount, Operating Activities (CF)] + 
+		[Measures].[Amount, Investing Activities (CF)] + 
+		[Measures].[Amount, Financing Activities (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Free Cash Flow" caption="&FCFAmount;" dimension="Measures" visible="true">
+	<Formula>
+        	[Measures].[Amount, Net Income (IS)] +  
+        	[Measures].[Amount, Operating Activities (CF)] - 
+		[Measures].[Amount, Changes in Property Plant and Equipment (CF)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Days in Period" dimension="Measures" visible="false">
+	<Formula> 
+        <![CDATA[
+                iif([Fiscal Period.Fiscal Period CL].CurrentMember.Level.Ordinal = 1, 360, 
+			iif([Fiscal Period.Fiscal Period CL].CurrentMember.Level.Ordinal = 2, 30, cast(null as numeric)))
+	]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Days, In Inventory" caption="&DaysInInventory;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Inventory (CF)] is empty)) AND ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty OR [Measures].[Amount, Changes in Cost of Goods Sold (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Inventory (CF)] is empty OR [Measures].[Amount, Inventory (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty)), 0,
+					[Measures].[Amount, Inventory (CF)] / ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Days, Sales Outstanding" caption="&DaysSalesOutstanding;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Net Receivables (CF)] is empty)) AND ([Measures].[Amount, Changes in Revenue (IS)] is empty OR [Measures].[Amount, Changes in Revenue (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Net Receivables (CF)] is empty OR [Measures].[Amount, Net Receivables (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Revenue (IS)] is empty)), 0,
+					[Measures].[Amount, Net Receivables (CF)] / ([Measures].[Amount, Changes in Revenue (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+ 	<CalculatedMember name="Days, Payable Outstanding" caption="&DaysPayableOutstanding;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Accounts Payable (CF)] is empty)) AND ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty OR [Measures].[Amount, Changes in Cost of Goods Sold (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Accounts Payable (CF)] is empty OR [Measures].[Amount, Accounts Payable (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty)), 0,
+					[Measures].[Amount, Accounts Payable (CF)] / ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+ 	<CalculatedMember name="Days, Cash Conversion Cycle" caption="&DaysCCC;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		[Measures].[Days, In Inventory]
+		+ [Measures].[Days, Sales Outstanding]
+		- [Measures].[Days, Payable Outstanding]
+	]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Ratio, Debt to Equity" caption="&ratioDebtEquity;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Liabilities (BS)] > 0 AND (([Measures].[Amount, Owner's Equity (BS)] is empty) OR [Measures].[Amount, Owner's Equity (BS)] = 0), 1 
+			, iif([Measures].[Amount, Liabilities (BS)] < 0 AND (([Measures].[Amount, Owner's Equity (BS)] is empty) OR [Measures].[Amount, Owner's Equity (BS)] = 0), -1 
+				, iif([Measures].[Amount, Liabilities (BS)] is empty AND (NOT ([Measures].[Amount, Owner's Equity (BS)] is empty)), 0 
+					, ([Measures].[Amount, Liabilities (BS)] / [Measures].[Amount, Owner's Equity (BS)]) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Ratio, Total Debt" caption="&ratioTotalDebt;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Assets (BS)] > 0 AND (([Measures].[Amount, Liabilities (BS)] is empty) OR [Measures].[Amount, Liabilities (BS)] = 0), 1 
+			, iif([Measures].[Amount, Assets (BS)] < 0 AND (([Measures].[Amount, Liabilities (BS)] is empty) OR [Measures].[Amount, Liabilities (BS)] = 0), -1 
+				, iif([Measures].[Amount, Assets (BS)] is empty AND (NOT ([Measures].[Amount, Liabilities (BS)] is empty)), 0 
+					, ([Measures].[Amount, Assets (BS)] / [Measures].[Amount, Liabilities (BS)]) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Ratio, Current" caption="&ratioCurrent;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Current Assets (CF)] > 0 AND (([Measures].[Amount, Current Liability (CF)] is empty) OR [Measures].[Amount, Current Liability (CF)] = 0), 1 
+			, iif([Measures].[Amount, Current Assets (CF)] < 0 AND (([Measures].[Amount, Current Liability (CF)] is empty) OR [Measures].[Amount, Current Liability (CF)] = 0), -1 
+				, iif([Measures].[Amount, Current Assets (CF)] is empty AND (NOT ([Measures].[Amount, Current Liability (CF)] is empty)), 0 
+					, ([Measures].[Amount, Current Assets (CF)] / [Measures].[Amount, Current Liability (CF)]) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Quick Assets" dimension="Measures" visible="false">
+	<Formula> 
+        <![CDATA[
+ 		[Measures].[Amount, Current Assets (CF)] - [Measures].[Amount, Inventory (CF)] ]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Ratio, Quick" caption="&ratioQuick;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Quick Assets] > 0 AND (([Measures].[Amount, Current Liability (CF)] is empty) OR [Measures].[Amount, Current Liability (CF)] = 0), 1 
+			, iif([Measures].[Quick Assets] < 0 AND (([Measures].[Amount, Current Liability (CF)] is empty) OR [Measures].[Amount, Current Liability (CF)] = 0), -1 
+				, iif([Measures].[Quick Assets] is empty AND (NOT ([Measures].[Amount, Current Liability (CF)] is empty)), 0 
+					, ([Measures].[Quick Assets] / [Measures].[Amount, Current Liability (CF)]) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Ratio, Return on Assets" caption="&ratioReturnAssets;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Net Income (IS)] > 0 AND (([Measures].[Amount, Assets (BS)] is empty) OR [Measures].[Amount, Assets (BS)] = 0), 1 
+			, iif([Measures].[Amount, Net Income (IS)] < 0 AND (([Measures].[Amount, Assets (BS)] is empty) OR [Measures].[Amount, Assets (BS)] = 0), -1 
+				, iif([Measures].[Amount, Net Income (IS)] is empty AND (NOT ([Measures].[Amount, Assets (BS)] is empty)), 0 
+					, ([Measures].[Amount, Net Income (IS)] / [Measures].[Amount, Assets (BS)]) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Ratio, Return on Equity" caption="&ratioReturnEquity;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+                iif([Measures].[Amount, Net Income (IS)] > 0 AND (([Measures].[Amount, Common Stock and Equity (CF)] is empty) OR [Measures].[Amount, Common Stock and Equity (CF)] = 0), 1 
+			, iif([Measures].[Amount, Net Income (IS)] < 0 AND (([Measures].[Amount, Common Stock and Equity (CF)] is empty) OR [Measures].[Amount, Common Stock and Equity (CF)] = 0), -1 
+				, iif([Measures].[Amount, Net Income (IS)] is empty AND (NOT ([Measures].[Amount, Common Stock and Equity (CF)] is empty)), 0 
+					, ([Measures].[Amount, Net Income (IS)] / [Measures].[Amount, Common Stock and Equity (CF)]) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+
+
+
+
+</Cube>
+
+<Cube name="GLBudgetByPeriod" cache="true" enabled="true" caption="&GLBudgetbyPeriod;">
+    <Table name="GL_BUDGET_PERIOD_FACTS" schema="ERPI">
+    </Table>
+
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="COMPANY_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Profit Center" name="Profit Center" caption="&ProfitCenter;" foreignKey="PROFIT_CENTER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account" name="Account" caption="&Account;" foreignKey="ACCOUNT_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Fiscal Period" name="Fiscal Period" caption="&FiscalPeriod;" foreignKey="FISCAL_PERIOD_K" highCardinality="false">
+    </DimensionUsage>
+
+  <Dimension name="Budget" foreignKey="BUDGET_K" highCardinality="false" caption="&Budget;">
+    <Hierarchy hasAll="true" allMemberName="All Budgets" allMemberCaption="&BudgetAll;" primaryKey="BUDGET_K" caption="&BudgetByName;">
+      <Table name="GL_BUDGET" schema="ERPI">
+      </Table>
+      <Level name="Budget Name" caption="&BudgetName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Budget Key" caption="&BudgetKey;" column="BUDGET_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Budget Code" hasAll="true" allMemberName="All Budgets by Code" allMemberCaption="&BudgetCodeAll;" primaryKey="BUDGET_K" caption="&BudgetByCode;">
+      <Table name="GL_BUDGET" schema="ERPI">
+      </Table>
+      <Level name="Budget Code" caption="&BudgetCode;" column="BUDGET_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Budget Key" caption="&BudgetKey;" column="BUDGET_K" type="String">
+        </Property>
+      </Level>
+      <Level name="Budget Name" caption="&BudgetName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Budget Key" caption="&BudgetKey;" column="BUDGET_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Budget Doc" foreignKey="BUDGET_DOC_K" type="StandardDimension" highCardinality="false" caption="&BudgetDoc;">
+    <Hierarchy hasAll="true" allMemberCaption="&BudgetDocAll;" allMemberName="All Budget Docs" primaryKey="BUDGET_DOC_K" caption ="&BudgetDocByKey;">
+      <Level name="Budget Doc Key" caption="&BudgetDocKey;" column="BUDGET_DOC_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Ledger" type="StandardDimension" highCardinality="false" caption="&Ledger;">
+    <Hierarchy hasAll="true" allMemberCaption="&LedgerAll;" allMemberName="All Ledgers" caption ="&LedgerByKey;">
+      <Level name="Ledger Key" caption="&LedgerKey;" column="LEDGER_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Measure name="Budget" column="AMOUNT" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+
+	<CalculatedMember name="Amount, Budget" caption="&BudgetAmount;" dimension="Measures" visible="true">
+	<Formula>
+		iif([Fiscal Period].CurrentMember.level.ordinal = 1, 
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Budget]), 
+				iif([Fiscal Period].CurrentMember.level.ordinal = 2, [Measures].[Budget], cast(null as numeric)))
+	</Formula> 
+	</CalculatedMember>
+</Cube>
+
+<Cube name="GLFactsByPeriod" cache="true" enabled="true" caption="&GLFactsbyPeriod;">
+    <Table name="GL_FACTS_BY_PERIOD" schema="ERPI">
+    </Table>
+
+    <DimensionUsage source="Company" name="Company" caption="&Company;"  foreignKey="COMPANY_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Profit Center" name="Profit Center" caption="&ProfitCenter;" foreignKey="PROFIT_CENTER_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Account" name="Account" caption="&Account;" foreignKey="ACCOUNT_K" highCardinality="false">
+    </DimensionUsage>
+    <DimensionUsage source="Fiscal Period" name="Fiscal Period" caption="&FiscalPeriod;" foreignKey="FISCAL_PERIOD_K" highCardinality="false">
+    </DimensionUsage>
+
+  <Dimension name="Budget" foreignKey="BUDGET_K" highCardinality="false" caption="&Budget;">
+    <Hierarchy hasAll="true" allMemberName="All Budgets" allMemberCaption="&BudgetAll;" primaryKey="BUDGET_K" caption="&BudgetByName;">
+      <Table name="GL_BUDGET" schema="ERPI">
+      </Table>
+      <Level name="Budget Name" caption="&BudgetName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Budget Key" caption="&BudgetKey;" column="BUDGET_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+    <Hierarchy name="Budget Code" hasAll="true" allMemberName="All Budgets by Code" allMemberCaption="&BudgetCodeAll;" primaryKey="BUDGET_K" caption="&BudgetByCode;">
+      <Table name="GL_BUDGET" schema="ERPI">
+      </Table>
+      <Level name="Budget Code" caption="&BudgetCode;" column="BUDGET_NK" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Budget Key" caption="&BudgetKey;" column="BUDGET_K" type="String">
+        </Property>
+      </Level>
+      <Level name="Budget Name" caption="&BudgetName;" column="NAME" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        <Property name="Budget Key" caption="&BudgetKey;" column="BUDGET_K" type="String">
+        </Property>
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Budget Doc" foreignKey="BUDGET_DOC_K" type="StandardDimension" highCardinality="false" caption="&BudgetDoc;">
+    <Hierarchy hasAll="true" allMemberCaption="&BudgetDocAll;" allMemberName="All Budget Docs" primaryKey="BUDGET_DOC_K" caption ="&BudgetDocByKey;">
+      <Level name="Budget Doc Key" caption="&BudgetDocKey;" column="BUDGET_DOC_NK" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="Ledger" type="StandardDimension" highCardinality="false" caption="&Ledger;">
+    <Hierarchy hasAll="true" allMemberCaption="&LedgerAll;" allMemberName="All Ledgers" caption ="&LedgerByKey;">
+      <Level name="Ledger Key" caption="&LedgerKey;" column="LEDGER" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+
+    <Measure name="Amount, Debit" caption="&DebitAmount;" column="DEBIT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Amount, Credit" caption="&CreditAmount;" column="CREDIT" formatString="#,##0.00" aggregator="sum">
+    </Measure>
+    <Measure name="Account Balance" column="BALANCE" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+    <Measure name="Account Budget" column="BUDGET_AMOUNT" formatString="#,##0.00" aggregator="sum" visible="false">
+    </Measure>
+
+
+	<CalculatedMember name="Amount, Balance" caption="&BalanceAmount;" dimension="Measures" visible="true">
+	<Formula>
+		iif( 1 > 0 AND [Fiscal Period].CurrentMember.level.ordinal = 1, 
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Account Balance]), 
+				iif( 1 > 0 AND [Fiscal Period].CurrentMember.level.ordinal = 2, [Measures].[Account Balance], cast (null as numeric)))
+	</Formula> 
+	</CalculatedMember>
+
+	<CalculatedMember name="Amount, Budget" caption="&BudgetAmount;" dimension="Measures" visible="true">
+	<Formula>
+		iif( 1 > 0 AND [Fiscal Period].CurrentMember.level.ordinal = 1, 
+			sum(tail(descendants([Fiscal Period].CurrentMember,[Fiscal Period].[Fiscal Period])), [Measures].[Account Budget]), 
+				iif( 1 > 0 AND [Fiscal Period].CurrentMember.level.ordinal = 2, [Measures].[Account Budget], cast (null as numeric)))
+	</Formula> 
+	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Activity" caption="&ActivityAmount;" dimension="Measures" visible="true">
+		<Formula>
+        	[Measures].[Amount, Credit] - [Measures].[Amount, Debit]
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Activity Budget" caption="&ActivityBudgetAmount;" dimension="Measures" visible="true">
+		<Formula>
+        	[Measures].[Amount, Budget] - ([Measures].[Amount, Budget], [Fiscal Period.Fiscal Period CL].CurrentMember.PrevMember)
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Variance" caption="&VarianceAmount;" dimension="Measures" visible="true">
+		<Formula>
+        	[Measures].[Amount, Budget] - [Measures].[Amount, Activity]
+		</Formula>
+    	<CalculatedMemberProperty name="FORMAT_STRING" value="#,##0.00"/>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Revenue (IS)" caption="&RevenueAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by Type by Subtype].[Revenue]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Revenue (IS)" caption="&ChangesRevenueAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by Type by Subtype].[Revenue]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Revenue Budget (IS)" caption="&RevenueBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by Type by Subtype].[Revenue]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Revenue Budget (IS)" caption="&ChangesRevenueBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by Type by Subtype].[Revenue]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Expenses (IS)" caption="&ExpensesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Expenses Budget (IS)" caption="&ExpensesBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Income (IS)" caption="&NetIncomeAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Revenue (IS)] - [Measures].[Amount, Expenses (IS)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Income Budget (IS)" caption="&NetIncomeBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Revenue Budget (IS)] - [Measures].[Amount, Expenses Budget (IS)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Sales Income" caption="&SalesIncomeAmount;" dimension="Measures" visible="true">
+		<Formula> 
+        	 Sum({[Account.Accounts by Type by Subtype].[Revenue].[Sales Income]}, [Measures].[Amount, Balance])
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Sales Income Budget" caption="&SalesIncomeBudgetAmount;" dimension="Measures" visible="true">
+		<Formula> 
+        	 Sum({[Account.Accounts by Type by Subtype].[Revenue].[Sales Income]}, [Measures].[Amount, Budget])
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Other Income" caption="&OtherIncomeAmount;" dimension="Measures" visible="true">
+		<Formula> 
+        	 Sum({[Account.Accounts by Type by Subtype].[Revenue].[Other Income]}, [Measures].[Amount, Balance])
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Other Income Budget" caption="&OtherIncomeBudgetAmount;" dimension="Measures" visible="true">
+		<Formula> 
+        	 Sum({[Account.Accounts by Type by Subtype].[Revenue].[Other Income]}, [Measures].[Amount, Budget])
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Charges Not Using Cash (CF)" caption="&ChargesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Charges Not Using Cash]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Charges Not Using Cash Budget (CF)" caption="&ChargesBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Charges Not Using Cash]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Current Assets (CF)" caption="&ChangesAssetsAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Changes in Current Assets]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Current Assets Budget (CF)" caption="&ChangesAssetsBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Changes in Current Assets]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Receivables (CF)" caption="&ChangesReceivablesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Net Receivables]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Receivables Budget (CF)" caption="&ChangesReceivablesBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Net Receivables]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Inventory (CF)" caption="&InventoryAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Inventory]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Inventory Budget (CF)" caption="&InventoryBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Inventory]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Inventory (CF)" caption="&ChangesInventoryAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Inventory]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Inventory Budget (CF)" caption="&ChangesInventoryBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Inventory]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+	<!-- the postbooks cftype is wrongly named - changes in current liability. Its actually the balance -->
+
+  	<CalculatedMember name="Amount, Change in Current Liability (CF)" caption="&ChangeLiabilityAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Change in Current Liability]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Change in Current Liability Budget (CF)" caption="&ChangeLiabilityBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Change in Current Liability]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Accounts Payable (CF)" caption="&ChangesAccountsPayableAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Accounts Payable]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Accounts Payable Budget (CF)" caption="&ChangesAccountsPayableBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Accounts Payable]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Cost of Goods Sold (IS)" caption="&COGSAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense].[Cost of Goods Sold]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Cost of Goods Sold (IS)" caption="&ChangesCOGSAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense].[Cost of Goods Sold]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Cost of Goods Sold Budget (IS)" caption="&COGSBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense].[Cost of Goods Sold]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Cost of Goods Sold Budget (IS)" caption="&ChangesCOGSBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by Type by Subtype].[Expense].[Cost of Goods Sold]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Operating Expenses" caption="&OperatingExpensesAmount;" dimension="Measures" visible="true">
+		<Formula> 
+        	[Measures].[Amount, Expenses (IS)] - [Measures].[Amount, Cost of Goods Sold (IS)]
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Operating Expenses Budget" caption="&OperatingExpensesBudgetAmount;" dimension="Measures" visible="true">
+		<Formula> 
+        	[Measures].[Amount, Expenses Budget (IS)] - [Measures].[Amount, Cost of Goods Sold Budget (IS)]
+		</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Operating Activities (CF)" caption="&OperatingActivitiesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Charges Not Using Cash (CF)] + 
+		[Measures].[Amount, Changes in Current Assets (CF)] - 
+		[Measures].[Amount, Changes in Receivables (CF)] - 
+		[Measures].[Amount, Changes in Inventory (CF)] +
+		[Measures].[Amount, Change in Current Liability (CF)] + 
+		[Measures].[Amount, Changes in Accounts Payable (CF)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Operating Activities Budget (CF)" caption="&OperatingActivitiesBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Charges Not Using Cash Budget (CF)] + 
+		[Measures].[Amount, Changes in Current Assets Budget (CF)] - 
+		[Measures].[Amount, Changes in Receivables Budget (CF)] - 
+		[Measures].[Amount, Changes in Inventory Budget (CF)] +
+		[Measures].[Amount, Change in Current Liability Budget (CF)] + 
+		[Measures].[Amount, Changes in Accounts Payable Budget (CF)]
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Property Plant and Equipment (CF)" caption="&ChangesPPEAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Property Plant and Equipment]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Property Plant and Equipment Budget (CF)" caption="&ChangesPPEBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Property Plant and Equipment]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Other Assets (CF)" caption="&ChangesOtherAssetsAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Other Assets]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Other Assets Budget (CF)" caption="&ChangesOtherAssetsBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Other Assets]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Other Assets Budget (CF)" caption="&ChangesOtherAssetsBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Other Assets]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Amount, Changes in Long Term Debt (CF)" caption="&ChangesLongTermDebtAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Long Term Debt]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Long Term Debt Budget (CF)" caption="&ChangesLongTermDebtBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Long Term Debt]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Common Stock and Equity (CF)" caption="&CSEAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Common Stock and Equity]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Common Stock and Equity (CF)" caption="&ChangesCSEAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Common Stock and Equity]}, [Measures].[Amount, Activity])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Common Stock and Equity Budget (CF)" caption="&CSEBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Common Stock and Equity]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Changes in Common Stock and Equity Budget (CF)" caption="&ChangesCSEBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Common Stock and Equity]}, [Measures].[Amount, Activity Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Receivables (CF)" caption="&NetReceivablesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Net Receivables]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Receivables Budget (CF)" caption="&NetReceivablesBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	- Sum({[Account.Accounts by CFType].[Net Receivables]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Accounts Payable (CF)" caption="&AccountsPayableAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Accounts Payable]}, [Measures].[Amount, Balance])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Accounts Payable Budget (CF)" caption="&AccountsPayableBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	Sum({[Account.Accounts by CFType].[Accounts Payable]}, [Measures].[Amount, Budget])
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Investing Activities (CF)" caption="&InvestingActivitiesAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Changes in Property Plant and Equipment (CF)] + 
+		[Measures].[Amount, Changes in Other Assets (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Investing Activities Budget (CF)" caption="&InvestingActivitiesBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Changes in Property Plant and Equipment Budget (CF)] + 
+		[Measures].[Amount, Changes in Other Assets Budget (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Amount, Financing Activities (CF)" caption="&FinancingAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Changes in Long Term Debt (CF)] + 
+		[Measures].[Amount, Changes in Common Stock and Equity (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Financing Activities Budget (CF)" caption="&FinancingBudgetAmount;" dimension="Measures" visible="true">
+	<Formula> 
+        	[Measures].[Amount, Changes in Long Term Debt Budget (CF)] + 
+		[Measures].[Amount, Changes in Common Stock and Equity Budget (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Cash Flow (CF)" caption="&NCFAmount;" dimension="Measures" visible="true">
+	<Formula>
+        	[Measures].[Amount, Net Income (IS)] +  
+        	[Measures].[Amount, Operating Activities (CF)] + 
+		[Measures].[Amount, Investing Activities (CF)] + 
+		[Measures].[Amount, Financing Activities (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Amount, Net Cash Flow Budget (CF)" caption="&NCFBudgetAmount;" dimension="Measures" visible="true">
+	<Formula>
+        	[Measures].[Amount, Net Income Budget (IS)] +  
+        	[Measures].[Amount, Operating Activities Budget (CF)] + 
+		[Measures].[Amount, Investing Activities Budget (CF)] + 
+		[Measures].[Amount, Financing Activities Budget (CF)] 
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Days in Period" dimension="Measures" visible="false">
+	<Formula> 
+        <![CDATA[
+                iif([Fiscal Period.Fiscal Period CL].CurrentMember.Level.Ordinal = 1, 360, 
+			iif([Fiscal Period.Fiscal Period CL].CurrentMember.Level.Ordinal = 2, 30, cast(null as numeric)))
+	]]>
+	</Formula>
+  	</CalculatedMember>
+
+
+  	<CalculatedMember name="Days, In Inventory" caption="&DaysInInventory;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Inventory (CF)] is empty)) AND ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty OR [Measures].[Amount, Changes in Cost of Goods Sold (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Inventory (CF)] is empty OR [Measures].[Amount, Inventory (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty)), 0,
+					[Measures].[Amount, Inventory (CF)] / ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Days, In Inventory Budget" caption="&DaysInInventoryBudget;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Inventory Budget (CF)] is empty)) AND ([Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] is empty OR [Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Inventory Budget (CF)] is empty OR [Measures].[Amount, Inventory Budget (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] is empty)), 0,
+					[Measures].[Amount, Inventory Budget (CF)] / ([Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Days, Sales Outstanding" caption="&DaysSalesOutstanding;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Net Receivables (CF)] is empty)) AND ([Measures].[Amount, Changes in Revenue (IS)] is empty OR [Measures].[Amount, Changes in Revenue (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Net Receivables (CF)] is empty OR [Measures].[Amount, Net Receivables (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Revenue (IS)] is empty)), 0,
+					[Measures].[Amount, Net Receivables (CF)] / ([Measures].[Amount, Changes in Revenue (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+  	<CalculatedMember name="Days, Sales Outstanding Budget" caption="&DaysSalesOutstandingBudget;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Net Receivables Budget (CF)] is empty)) AND ([Measures].[Amount, Changes in Revenue Budget (IS)] is empty OR [Measures].[Amount, Changes in Revenue Budget (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Net Receivables Budget (CF)] is empty OR [Measures].[Amount, Net Receivables Budget (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Revenue Budget (IS)] is empty)), 0,
+					[Measures].[Amount, Net Receivables Budget (CF)] / ([Measures].[Amount, Changes in Revenue Budget (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+ 	<CalculatedMember name="Days, Payable Outstanding" caption="&DaysPayableOutstanding;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Accounts Payable (CF)] is empty)) AND ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty OR [Measures].[Amount, Changes in Cost of Goods Sold (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Accounts Payable (CF)] is empty OR [Measures].[Amount, Accounts Payable (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Cost of Goods Sold (IS)] is empty)), 0,
+					[Measures].[Amount, Accounts Payable (CF)] / ([Measures].[Amount, Changes in Cost of Goods Sold (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+ 	<CalculatedMember name="Days, Payable Outstanding Budget" caption="&DaysPayableOutstandingBudget;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		iif([Measures].[Days in Period] is empty, cast(null as numeric),
+			iif( (NOT([Measures].[Amount, Accounts Payable Budget (CF)] is empty)) AND ([Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] is empty OR [Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] = 0) , [Measures].[Days in Period],
+				iif( ([Measures].[Amount, Accounts Payable Budget (CF)] is empty OR [Measures].[Amount, Accounts Payable Budget (CF)] = 0) AND (NOT([Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] is empty)), 0,
+					[Measures].[Amount, Accounts Payable Budget (CF)] / ([Measures].[Amount, Changes in Cost of Goods Sold Budget (IS)] / [Measures].[Days in Period] ) ) ) )]]>
+	</Formula>
+  	</CalculatedMember>
+
+ 	<CalculatedMember name="Days, Cash Conversion Cycle" caption="&DaysCCC;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		[Measures].[Days, In Inventory]
+		+ [Measures].[Days, Sales Outstanding]
+		- [Measures].[Days, Payable Outstanding]
+	]]>
+	</Formula>
+  	</CalculatedMember>
+
+ 	<CalculatedMember name="Days, Cash Conversion Cycle Budget" caption="&DaysCCCBudget;" dimension="Measures" visible="true">
+	<Formula> 
+        <![CDATA[
+		[Measures].[Days, In Inventory Budget]
+		+ [Measures].[Days, Sales Outstanding Budget]
+		- [Measures].[Days, Payable Outstanding Budget]
+	]]>
+	</Formula>
+  	</CalculatedMember>
+
+</Cube>
+
+<Role name="Sales">
+	<SchemaGrant access="none">
+		<CubeGrant cube="SOOrder" access="all"></CubeGrant>
+		<CubeGrant cube="SODelivery" access="all"></CubeGrant>
+		<CubeGrant cube="SOByPeriod" access="all"></CubeGrant>
+	</SchemaGrant>
+</Role>
+<Role name="Financial">
+	<SchemaGrant access="none">
+		<CubeGrant cube="GLAccount" access="all"></CubeGrant>
+		<CubeGrant cube="GLAccountByPeriod" access="all"></CubeGrant>
+		<CubeGrant cube="GLBudgetByPeriod" access="all"></CubeGrant>
+		<CubeGrant cube="GLFactsByPeriod" access="all"></CubeGrant>
+	</SchemaGrant>
+</Role>
+
+<Role name="Authenticated"> 
+  <SchemaGrant access="none"> 
+  </SchemaGrant> 
+ </Role> 
+
+  <UserDefinedFunction name="getDateString" className="com.erpi.mdxudf.GetDateInfo">
+  </UserDefinedFunction>
+</Schema>

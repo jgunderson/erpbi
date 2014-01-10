@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Orders for Dimension Value</title>
+	<author></author>
+	<description>Orders for Dimension Value</description>
+	<icon></icon>
+	<template>orderForDimTemplate.html</template>
+	<style>SODashMantle</style>
+</cdf>

@@ -1,0 +1,127 @@
+<!--
+**************************** Settings for this dashboard
+  -->
+  
+<script language="javascript" type="text/javascript">
+//
+// Set Column Names for Content Charts
+//
+var column1 = "Cash Flow Activities";
+var column2 = "Cash";
+var column3 = "Efficiency";
+//
+// Set the dashboard name to be called from hyperlinks
+//
+var hyperlinkDash = "KPIPivot.xcdf";
+//
+// Set title for Content
+//
+var finTitle = "Cash Flow for <i>";
+</script>
+
+<!--
+**************************** Generate the content table
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/GLDashboards/categoryhtml.js"></script>	
+
+<!--
+**************************** Set all parameters
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!--
+**************************** Set up queries for content charts.  Last 2 digits are coordinates of chart.
+  -->
+<script language="javascript" type="text/javascript">
+
+function query11()	{
+	return "SELECT NON EMPTY {[Measures].[Amount, Net Income (IS)]," +
+            "        [Measures].[Amount, Operating Activities (CF)]," +
+            "        [Measures].[Amount, Financing Activities (CF)]," +
+            "        [Measures].[Amount, Investing Activities (CF)]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query21()	{
+	var theYear = Dashboards.storage.yearPeriod.slice(0,4);
+	if ( theYear > Dashboards.storage.lastYear)
+		{theYear = theYear - 1;}
+	return "SELECT NON EMPTY {[Measures].[Amount, Net Income (IS)]," +
+            "        [Measures].[Amount, Operating Activities (CF)]," +
+            "        [Measures].[Amount, Financing Activities (CF)]," +
+            "        [Measures].[Amount, Investing Activities (CF)]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + theYear + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query12()	{
+	return "SELECT NON EMPTY {[Measures].[Amount, Net Cash Flow (CF)]," +
+			"        [Measures].[Amount, Free Cash Flow]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query22()	{
+	var theYear = Dashboards.storage.yearPeriod.slice(0,4);
+	if ( theYear > Dashboards.storage.lastYear)
+		{theYear = theYear - 1;}
+	return "SELECT NON EMPTY {[Measures].[Amount, Net Cash Flow (CF)]," +
+			"        [Measures].[Amount, Free Cash Flow]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + theYear + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query13()	{
+	return "SELECT NON EMPTY {[Measures].[Days, Sales Outstanding]," +
+			"        [Measures].[Days, Payable Outstanding]," + 
+			"        [Measures].[Days, Cash Conversion Cycle]," + 
+            "        [Measures].[Days, In Inventory]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + Dashboards.storage.yearPeriod.slice(0,4) + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+function query23()	{
+	var theYear = Dashboards.storage.yearPeriod.slice(0,4);
+	if ( theYear > Dashboards.storage.lastYear)
+		{theYear = theYear - 1;}
+	return "SELECT NON EMPTY {[Measures].[Days, Sales Outstanding]," +
+			"        [Measures].[Days, Payable Outstanding]," + 
+			"        [Measures].[Days, Cash Conversion Cycle]," + 
+            "        [Measures].[Days, In Inventory]} ON COLUMNS," +
+            " LastPeriods(12, [Fiscal Period.Fiscal Period CL].[" + theYear + "].[" + Dashboards.storage.yearPeriod.substr(6) + "]) ON ROWS" +
+			" from [GLAccountByPeriod]" +
+			" where (" +
+      		"       [Company].[" + Dashboards.storage.company + "]," +
+      		"       [Ledger].[All Ledgers]," +
+      		"       [Profit Center].[" + Dashboards.storage.profitCenter + "])";
+}
+
+
+</script>
+
+<!--
+**************************** Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/GLDashboards/categorycontent.js"></script>	
+

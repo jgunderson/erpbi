@@ -1,0 +1,179 @@
+<div id="dashTitle" class="titles" align="center">
+</div>
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top">
+					<div id="map" style="width: 1200px; height: 900px; z-index:0;"></div>
+					</td>
+					<td valign="top">
+					<div id="cities" style="width: 170px; height: 900px; z-index:0;"></div>
+					</td>
+				<tr>
+				<tr>
+					<td valign="top">
+					<div id="messages" style="width: 900px; height: 50px; z-index:0;"></div>
+					</td>
+				<tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<script language="javascript" type="text/javascript">
+//
+//  We have to set Dashboards.storage.kpi here as the KPI depends
+//  on the cube
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Amount, Order Gross";}
+if (Dashboards.storage.kpi != "Amount, Order Gross" && Dashboards.storage.kpi != "Count, Orders" && Dashboards.storage.kpi != "Average, Order Gross" )
+	{Dashboards.storage.kpi = "Amount, Order Gross";}
+Dashboards.saveStorage();
+//
+//  Set up for next script
+//
+var bottomThreshold = 10000;
+var topThreshold = 80000;
+var cube = "SOOrder";
+var timedim = "Order Date.Calendar";
+var mapTitle = "</i> for Orders by <i>";
+</script>
+
+<script language="javascript" type="text/javascript">
+//
+// Tried refactoring this into a separate script but maps wouldn't work (??)
+//
+var dashTitle = 
+{
+	name: "dashTitle",
+	type: "textComponent",
+  	listeners:["Dashboards.storage.yearPeriod", 
+  			"Dashboards.storage.customer", 
+  			"Dashboards.storage.productClass", 
+  			"Dashboards.storage.productCode",
+  			"Dashboards.storage.productCode",
+  			"Dashboards.storage.productCategory",
+  			"Dashboards.storage.accountRep", 
+  			"Dashboards.storage.kpi", 
+  			"Dashboards.storage.cityType"
+  			],
+	expression: function(){return "<i><b>" + Dashboards.storage.kpi + mapTitle + Dashboards.storage.cityType + "</i> for <i>"  + Dashboards.storage.yearPeriod + "</i></b><br>" +
+								"Customer: <i>" + Dashboards.storage.customer + "</i>, Account Rep: <i>" + Dashboards.storage.accountRep + "</i><br>" +  
+								"</i>Product Category: <i>" + Dashboards.storage.productCategory + "</i>,  Product Class: <i>" + Dashboards.storage.productClass + "</i>,  Product Code: <i>" + Dashboards.storage.productCode + "</i>";
+						  },
+	htmlObject: "dashTitle",
+	executeAtStart: true
+};
+
+vmap =
+{
+name: "map",
+	  type: "map",
+	  solution: "erpbi-reports",
+	  path: "Maps",
+	  action: "orderQuery.xaction",
+  parameters: 	[["YEAR","Dashboards.storage.yearPeriod.slice(0,4)"],
+  				["PERIOD","Dashboards.storage.yearPeriod.substr(6)"],
+  				["CUSTOMER","Dashboards.storage.customer"],
+  				["PRODUCTCLASS","Dashboards.storage.productClass"],
+  				["PRODUCTCODE","Dashboards.storage.productCode"],
+	    		["PRODUCTCATEGORY","Dashboards.storage.productCategory"],
+	    		["ACCOUNTREP","Dashboards.storage.accountRep"],
+  				["KPI","Dashboards.storage.kpi"],
+  				["CUBE", "cube"],
+    			["TIMEDIM", "timedim"],
+    			["CITYTYPE", "Dashboards.storage.cityType"]
+  				],
+  listeners:["Dashboards.storage.yearPeriod", 
+  			"Dashboards.storage.customer", 
+  			"Dashboards.storage.productClass", 
+  			"Dashboards.storage.productCode",
+  			"Dashboards.storage.productCode",
+  			"Dashboards.storage.productCategory",
+  			"Dashboards.storage.accountRep", 
+  			"Dashboards.storage.kpi", 
+  			"Dashboards.storage.cityType"
+  			],
+	  htmlObject: "map",
+	  messageElementId: "messages",
+	  executeAtStart: true,
+	  initPosLon: -100,
+	  initPosLat: 39.8,
+	  initZoom: 10,
+	  expression: function(){return "var icon=''; icon = markers[0]; icon"},
+	  expression: function(){return "var icon=''; if (value < bottomThreshold){icon = markers[2];} else if (value > topThreshold){icon = markers[0];} else {icon = markers[1];}; icon"},
+	  preExecution:function(){},
+	  postExecution:function(){},
+	  markers: ["erpbi/styles/images/dot-r.png", "erpbi/styles/images/dot-g.png", "erpbi/styles/images/dot-b.png"]
+}
+
+var cities = 
+{
+  name: "cities",
+  type: "prpt",
+  solution: "erpbi-reports",
+  path: "Maps",
+  action: "cities.prpt",
+  parameters: 	[["YEAR","Dashboards.storage.yearPeriod.slice(0,4)"],
+  				["PERIOD","Dashboards.storage.yearPeriod.substr(6)"],
+  				["CUSTOMER","Dashboards.storage.customer"],
+  				["PRODUCTCLASS","Dashboards.storage.productClass"],
+  				["PRODUCTCODE","Dashboards.storage.productCode"],
+	    		["PRODUCTCATEGORY","Dashboards.storage.productCategory"],
+	    		["ACCOUNTREP","Dashboards.storage.accountRep"],
+  				["KPI","Dashboards.storage.kpi"],
+  				["CUBE", "cube"],
+    			["TIMEDIM", "timedim"],
+    			["CITYTYPE", "Dashboards.storage.cityType"]
+  				],
+  listeners:["Dashboards.storage.yearPeriod", 
+  			"Dashboards.storage.customer", 
+  			"Dashboards.storage.productClass", 
+  			"Dashboards.storage.productCode",
+  			"Dashboards.storage.productCode",
+  			"Dashboards.storage.productCategory",
+  			"Dashboards.storage.accountRep", 
+  			"Dashboards.storage.kpi", 
+  			"Dashboards.storage.cityType"
+  			],
+  htmlObject: "cities",
+  executeAtStart: true,
+  preExecution:function(){},
+  postExecution:function(){}
+}
+
+
+var components = 
+[
+	yearPeriodSelector,
+	custSelector,
+	prodClassSelector,
+	prodCodeSelector,
+	prodCategorySelector,
+	accountRepSelector,
+	KPISelector,
+	CityTypeSelector,
+	vmap,
+	cities,
+	extractDateXAction,
+	dashTitle
+];
+
+	function loadDash()
+	{
+		Dashboards.init(components);
+	}
+
+	loadTree();
+	loadDash();
+	document.close();
+</script>
+
+

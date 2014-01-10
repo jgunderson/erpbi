@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdf>
+	<title>Delivery Map</title>
+	<description>Delivery Map</description>
+	<icon></icon>
+	<template>deliveryTemplate.html</template>
+	<style>SOGeoDeliveryMantle</style>
+</cdf>

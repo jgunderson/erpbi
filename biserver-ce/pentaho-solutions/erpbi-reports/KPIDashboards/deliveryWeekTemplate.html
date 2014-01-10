@@ -1,0 +1,45 @@
+<div id="dashTitle" class="titles" align="center">
+</div>
+<table id="board">
+	<tr>
+		<td valign="top"><a id="KPILineC" target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=orderByPeriodByDim.xcdf&template=mantle" ></a></td>
+	</tr>
+</table>
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<script language="javascript" type="text/javascript">
+var cube = "SODelivery";
+var timedim = "Delivery Date.Calendar Weeks";
+
+//
+//  We have to set Dashboards.storage.kpi here as the KPIs depend on 
+//  on the cube.  
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Amount, Delivery Gross";}
+if (Dashboards.storage.kpi != "Amount, Delivery Gross" && 
+	Dashboards.storage.kpi != "Amount, Cost Gross" && 
+	Dashboards.storage.kpi != "Amount, Profit Gross" &&
+	Dashboards.storage.kpi != "Average, Delivery Gross" && 
+	Dashboards.storage.kpi != "Average, Cost Gross" && 
+	Dashboards.storage.kpi != "Average, Profit Gross" && 
+	Dashboards.storage.kpi != "Count, Deliveries" &&
+	Dashboards.storage.kpi != "Count, Orders" &&
+	Dashboards.storage.kpi != "Ratio, Gross Profit Margin")
+{Dashboards.storage.kpi = "Amount, Delivery Gross";}
+Dashboards.saveStorage();
+
+//
+//  Set the title
+//
+var kpiTitle = "</i> for Deliveries ending in <i>";
+</script>
+
+<!--
+  -- Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/contentWeek.js"></script>
+

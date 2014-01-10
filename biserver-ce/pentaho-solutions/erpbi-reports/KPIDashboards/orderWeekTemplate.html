@@ -1,0 +1,37 @@
+<div id="dashTitle" class="titles" align="center">
+</div>
+<table id="board">
+	<tr>
+		<td valign="top"><a id="KPILineC" target="_blank" href="RenderXCDF?solution=erpbi-reports&path=%2FSOPivots&action=orderByPeriodByDim.xcdf&template=mantle" ></a></td>
+	</tr>
+</table>
+
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<script language="javascript" type="text/javascript">
+var cube = "SOOrder";
+var timedim = "Order Date.Calendar Weeks";
+
+//
+//  We have to set Dashboards.storage.kpi here as the KPI depends
+//  on the cube
+//
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = urlParm("kpi");}
+if (Dashboards.storage.kpi == "" || Dashboards.storage.kpi == null )
+	{Dashboards.storage.kpi = "Amount, Order Gross";}
+if (Dashboards.storage.kpi != "Amount, Order Gross" && Dashboards.storage.kpi != "Count, Orders" && Dashboards.storage.kpi != "Average, Order Gross" )
+	{Dashboards.storage.kpi = "Amount, Order Gross";}
+Dashboards.saveStorage();
+
+//
+//  Set the title
+//
+var kpiTitle = "</i> for Orders ending in <i>";
+</script>
+
+<!--
+  -- Define charts and render
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/erpbi-reports/KPIDashboards/contentWeek.js"></script>
+

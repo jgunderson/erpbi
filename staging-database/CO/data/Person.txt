@@ -1,0 +1,5 @@
+person_nk;name;role
+1000;Sam Masters, 1000;ACCOUNT_REP
+ADMIN;Administrator, ADMIN;ACCOUNT_REP
+JSMITH;John Smith, JSMITH;ACCOUNT_REP
+2000;International Rep, 2000;ACCOUNT_REP

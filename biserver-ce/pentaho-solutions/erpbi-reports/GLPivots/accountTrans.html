@@ -1,0 +1,93 @@
+<!--
+**************************** HTML for content DIV
+  -->
+<div id="dashTitle" class="titles" align="center">
+</div>
+<table id="board">
+	<tr>
+		<td>
+			<table>
+				<tr>
+					<td valign="top"><div id="accountTransPivot"></div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<!--
+**************************** Set all parameters
+  -->
+<script type="text/javascript" src="GetCDFResource?resource=/system/pentaho-cdf/erpbi/scripts/util/parameters.js"></script>	
+
+<!--
+**************************** Generate Content
+  -->
+
+<script language="javascript" type="text/javascript">
+
+//
+// The series name clicked was placed in a parameter by contentcategory.js.  Get the series
+// and construct the measures for the pivot query.
+//
+
+var account = unescape(urlParm("account"));
+
+var dashTitle = 
+{
+	name: "dashTitle",
+	type: "textComponent",
+  	listeners:[	"Dashboards.storage.yearPeriod", 
+  				"Dashboards.storage.company", 
+  				"Dashboards.storage.profitCenter"], 
+	expression: function(){return "Journal Line Items for Account <i>"  + account + "</i> for <i>" + Dashboards.storage.yearPeriod + "</i><br>" +
+								"Company: <i>" + Dashboards.storage.company + "</i>,  Profit Center: <i>" + Dashboards.storage.profitCenter + "</i>";
+						  },
+	htmlObject: "dashTitle",
+	executeAtStart: true
+};
+
+var accountTransPivot = 
+{
+  name: "accountTransPivot",
+  type: "jpivot",
+  solution: "erpbi-reports",
+  path: "GLPivots",
+  action: "accountTrans.analysisview.xaction",
+  listeners:["Dashboards.storage.company", 
+  			"Dashboards.storage.yearPeriod",
+  			"Dashboards.storage.profitCenter"
+  			],
+  parameters: [["COMPANY","Dashboards.storage.company"], 
+  			["YEAR","Dashboards.storage.yearPeriod.slice(0,4)"],
+  			["ACCOUNT", "account"],
+  			["PROFITCENTER","Dashboards.storage.profitCenter"] 
+  			],
+  iframeHeight: "1100px",
+  iframeWidth: "700px",
+  iframeScrolling: "auto",
+  htmlObject: "accountTransPivot",
+  executeAtStart: "true",
+  preExecution:function(){},
+  postExecution:function(){}
+};
+
+var components = 
+[	
+	yearPeriodSelector,
+	companySelector,
+	profitCenterSelector,
+	accountTransPivot,
+	extractDateXAction,
+	dashTitle
+];
+
+function load()	{
+	Dashboards.init(components);
+}
+
+loadTree();
+load();
+document.close();
+
+</script>

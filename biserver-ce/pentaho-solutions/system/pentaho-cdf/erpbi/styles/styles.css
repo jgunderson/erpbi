@@ -1,0 +1,61 @@
+body 
+{
+	background-color:#8DB6CD
+}
+
+div#logo-text
+{
+	font-family: Georgia;
+	color: #FFFFFF;
+	font-size: 24pt;
+	text-align: center;	
+}
+
+div#headers
+{
+	position:relative; 
+	top;0px; left;0px padding:5px;
+	background-image:url('images/sky.jpg');
+}
+
+td.titles, div.titles
+{
+	text-align: center; 	
+}
+
+div.toplist
+{
+	background-color: #EEE9E9";
+	border:1px solid blue; 
+}
+
+ul#menu
+{background-color:#8DB6CD}
+
+div#columns 
+{clear:both}
+
+td#explorer
+{
+	vertical-align:top;
+	border:1px solid blue;
+	padding:10px; 
+	background-color:#EEE9E9
+}
+
+td#content
+{
+	vertical-align:top;
+	border:1px solid blue; 
+	padding:10px; 
+	background-color:#B0C4DE
+}
+
+div#footer
+{
+	clear:both; 
+	height:50px; 
+	padding:5px;
+	color: #000000; 
+}
+
