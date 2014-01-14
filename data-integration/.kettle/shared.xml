@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sharedobjects>
+<slaveserver><name>Data Center</name><hostname>localhost</hostname><port>8082</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>Y</master></slaveserver>
+<slaveserver><name>Cloud</name><hostname>10.5.5.65</hostname><port>8083</port><webAppName/><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>N</master></slaveserver>
+        <clusterschema>
+          <name>Cloud Schema</name>
+          <base_port>40000</base_port>
+          <sockets_buffer_size>2000</sockets_buffer_size>
+          <sockets_flush_interval>5000</sockets_flush_interval>
+          <sockets_compressed>Y</sockets_compressed>
+          <dynamic>N</dynamic>
+          <slaveservers>
+            <name>Cloud</name>
+            <name>Data Center</name>
+          </slaveservers>
+        </clusterschema>
+
+</sharedobjects>
